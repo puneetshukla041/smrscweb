@@ -19,13 +19,13 @@ const Section3 = () => {
     { id: 6, src: "/images/home/section3/image6.webp", title: "Smart Integration" },
   ];
 
-  // Mobile Images (.png)
+  // Mobile Images (.webp) <-- UPDATED HERE
   const mobileImages = [
-    { id: 1, src: "/images/home/section3/mob1.png", title: "Mobile Mantra 1" },
-    { id: 2, src: "/images/home/section3/mob2.png", title: "Mobile Mantra 2" },
-    { id: 3, src: "/images/home/section3/mob3.png", title: "Mobile Mantra 3" },
-    { id: 4, src: "/images/home/section3/mob4.png", title: "Mobile Mantra 4" },
-    { id: 5, src: "/images/home/section3/mob5.png", title: "Mobile Mantra 5" },
+    { id: 1, src: "/images/home/section3/mob1.webp", title: "Mobile Mantra 1" },
+    { id: 2, src: "/images/home/section3/mob2.webp", title: "Mobile Mantra 2" },
+    { id: 3, src: "/images/home/section3/mob3.webp", title: "Mobile Mantra 3" },
+    { id: 4, src: "/images/home/section3/mob4.webp", title: "Mobile Mantra 4" },
+    { id: 5, src: "/images/home/section3/mob5.webp", title: "Mobile Mantra 5" },
   ];
 
   // Determine which array to use based on state
