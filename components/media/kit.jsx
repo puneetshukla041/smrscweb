@@ -6,17 +6,17 @@ const mediaData = [
   {
     id: 1,
     title: 'Photos',
-    image: '/images/media/media1.png',
+    image: '/images/media/media1.webp',
   },
   {
     id: 2,
     title: 'Videos',
-    image: '/images/media/media2.png',
+    image: '/images/media/media2.webp',
   },
   {
     id: 3,
     title: 'Logos',
-    image: '/images/media/media3.png',
+    image: '/images/media/media3.webp',
   }
 ];
 

@@ -5,15 +5,15 @@ import React from 'react';
 const blogsData = [
   {
     id: 1,
-    image: '/images/media/blog1.png',
+    image: '/images/media/blog1.webp',
   },
   {
     id: 2,
-    image: '/images/media/blog2.png',
+    image: '/images/media/blog2.webp',
   },
   {
     id: 3,
-    image: '/images/media/blog3.png',
+    image: '/images/media/blog3.webp',
   }
 ];
 

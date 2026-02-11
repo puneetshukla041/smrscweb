@@ -5,14 +5,14 @@ import React from 'react';
 const releasesData = [
   {
     id: 1,
-    image: '/images/media/press1.png',
+    image: '/images/media/press1.webp',
     date: '24-12-2025',
     title: 'SS Innovations Achieves 100 Robotic Telesurgeries With Indigenous SSI Mantra System',
     source: 'BW Healthcare'
   },
   {
     id: 2,
-    image: '/images/media/press2.png',
+    image: '/images/media/press2.webp',
     date: '08-11-2025',
     title: 'SS Innovations International announces launch of World\'s First Tele Surgeon Console',
     source: 'BioSpectrum'
