@@ -1,17 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 
 const MotionLink = motion(Link);
-
 const Section1 = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
   // --- BUTTON STYLES ---
   const buttonContainerStyle = {
     display: "flex",
-    width: "236px",
+    width: "280px", // Increased width slightly to fit the longer text
     height: "51px",
     padding: "12px 24px",
     justifyContent: "center",
@@ -22,7 +22,7 @@ const Section1 = () => {
     background:
       "linear-gradient(180deg, #E5B648 0%, #C8890C 100%), radial-gradient(231% 135.8% at 0.9% 2.98%, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0.20) 100%)",
     backdropFilter: "blur(21px)",
-    cursor: "pointer",
+    cursor: "not-allowed", 
     boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.15)",
     textDecoration: "none",
   };
@@ -30,14 +30,13 @@ const Section1 = () => {
   const buttonTextStyle = {
     color: "#FFF",
     fontFamily: "Manrope, sans-serif",
-    fontSize: "20px",
+    fontSize: "18px", // Adjusted slightly for the longer text
     fontWeight: "600",
     lineHeight: "20px",
     whiteSpace: "nowrap",
   };
 
   return (
-    // Base Section with consistent vertical padding for all screens
     <section className="relative w-full flex justify-center items-center overflow-x-clip bg-[#02091A] pt-24 pb-12 md:pt-32 md:pb-20">
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap');
@@ -61,10 +60,6 @@ const Section1 = () => {
       />
 
       {/* --- DESKTOP, LAPTOP & TABLET VIEW --- */}
-      {/* 1. w-full max-w-[1440px]: Fills screen but caps at 1440px for super-wide screens.
-          2. mx-auto: Centers the container.
-          3. px-4 md:px-8: Adds safe zones on sides.
-      */}
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -72,8 +67,6 @@ const Section1 = () => {
         className="relative z-10 w-full max-w-[1440px] mx-auto px-4 md:px-8 hidden md:flex justify-center items-center"
       >
         <div
-          // This ensures the box ALWAYS maintains the image's aspect ratio.
-          // It will shrink/grow fluidly based on the width of the screen.
           className="relative w-full"
           style={{
             aspectRatio: "1693 / 861",
@@ -87,21 +80,22 @@ const Section1 = () => {
             style={{ objectFit: "contain" }}
           />
 
-          <MotionLink
-            href="/register"
+          <motion.div
+            onHoverStart={() => setIsHovered(true)}
+            onHoverEnd={() => setIsHovered(false)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             style={buttonContainerStyle}
-            // Positioned relatively to the image container
-            // left-1/2 -translate-x-1/2 centers it perfectly horizontally
             className="absolute bottom-[10%] left-1/2 -translate-x-1/2 z-20 origin-center scale-90 lg:scale-100"
           >
-            <span style={buttonTextStyle}>Register Now</span>
-          </MotionLink>
+            <span style={buttonTextStyle}>
+              {isHovered ? "Coming Soon" : "Registration Opening Soon"}
+            </span>
+          </motion.div>
         </div>
       </motion.div>
 
-      {/* --- MOBILE VIEW (UNCHANGED) --- */}
+      {/* --- MOBILE VIEW --- */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -127,17 +121,18 @@ const Section1 = () => {
             style={{ objectFit: "cover" }}
           />
 
-          <MotionLink
-            href="/register"
+          <motion.div
+            onHoverStart={() => setIsHovered(true)}
+            onHoverEnd={() => setIsHovered(false)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            style={{ ...buttonContainerStyle, width: "200px", height: "45px" }}
+            style={{ ...buttonContainerStyle, width: "240px", height: "45px" }}
             className="absolute bottom-[8%] z-20"
           >
-            <span style={{ ...buttonTextStyle, fontSize: "18px" }}>
-              Register Now
+            <span style={{ ...buttonTextStyle, fontSize: "16px" }}>
+              {isHovered ? "Coming Soon" : "Registration Opening Soon"}
             </span>
-          </MotionLink>
+          </motion.div>
         </div>
       </motion.div>
     </section>
