@@ -405,7 +405,7 @@ const colorectalFacultyList = [
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
                         <img 
-                            src="/images/about/urology/per1.png" 
+                            src="/images/about/urology/per1.webp" 
                             alt="Dr. Sudhir K Rawal" 
                             className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
                         />
@@ -492,7 +492,7 @@ const colorectalFacultyList = [
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
                         <img 
-                            src="/images/about/general/per1.png" 
+                            src="/images/about/general/per1.webp" 
                             alt="Dr. Raj Gajbhiye" 
                             className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
                         />
@@ -513,7 +513,7 @@ const colorectalFacultyList = [
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
                         <img 
-                            src="/images/about/general/per2.png" 
+                            src="/images/about/general/per2.webp" 
                             alt="Dr. Magan Mehrotra" 
                             className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
                         />
@@ -573,7 +573,7 @@ const colorectalFacultyList = [
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
                         <img 
-                            src="/images/about/general/per1.png" 
+                            src="/images/about/general/per1.webp" 
                             alt="Dr. Raj Gajbhiye" 
                             className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
                         />
@@ -594,7 +594,7 @@ const colorectalFacultyList = [
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
                         <img 
-                            src="/images/about/general/per2.png" 
+                            src="/images/about/general/per2.webp" 
                             alt="Dr. Magan Mehrotra" 
                             className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
                         />
