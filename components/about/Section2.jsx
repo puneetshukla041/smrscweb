@@ -1,0 +1,107 @@
+'use client';
+import React, { useState } from 'react';
+
+// Import your separate content files
+import AboutTab from './tabs/AboutTab';
+import CommitteeTab from './tabs/CommitteeTab';
+import GuestsTab from './tabs/GuestsTab';
+import FacultyTab from './tabs/FacultyTab';
+
+const Section2 = () => {
+  // State to track the active tab
+  const [activeTab, setActiveTab] = useState("About SMRSC");
+
+  const navItems = [
+    "About SMRSC",
+    "Organizing Committee",
+    "Chief Guests",
+    "Faculty"
+  ];
+
+  return (
+    <section className="w-full min-h-screen relative flex flex-col py-10 bg-transparent">
+      
+      {/* FIXED MOBILE VIEW:
+        - Removed 'px-6' from this main container to prevent double-padding on content tabs.
+        - Tabs (like FacultyTab) handle their own horizontal padding.
+        - Desktop logic (max-w, mx-auto, md:px-0) remains unchanged.
+      */}
+      <div className="w-full max-w-[1920px] mx-auto md:px-0">
+        
+        {/* UPDATED ALIGNMENT & GAP:
+          - Mobile Gap: Reduced to 'gap-10' (40px) from 130px to fix large empty space on mobile.
+          - Desktop Gap: Kept 'md:gap-[130px]' to preserve desktop layout.
+          - Margins: 'md:ml-[100px] xl:ml-[270px]' preserved for desktop.
+        */}
+        <div className="flex flex-col gap-10 md:gap-[130px] md:ml-[100px] xl:ml-[270px]">
+          
+          {/* === Navigation Buttons === 
+             - Added 'px-6' here specifically for mobile so buttons don't touch the edge.
+             - Added 'md:px-0' to reset padding on desktop where margins handle alignment.
+          */}
+          <div className="flex flex-wrap items-center gap-4 px-6 md:px-0">
+            {navItems.map((item) => {
+              const isActive = activeTab === item;
+              return (
+                <button
+                  key={item}
+                  onClick={() => setActiveTab(item)}
+                  className="nav-button"
+                  style={{
+                    display: 'flex',
+                    padding: '12px 24px',
+                    alignItems: 'center',
+                    gap: '10px',
+                    borderRadius: '40px',
+                    color: '#FFF',
+                    fontFamily: "'Sora', sans-serif",
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    lineHeight: '20px',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    border: isActive ? '1px solid #FFF' : '1px solid transparent',
+                    background: isActive 
+                      ? 'linear-gradient(180deg, rgba(51, 51, 51, 0.20) 0%, rgba(0, 0, 0, 0.20) 137.5%)'
+                      : 'rgba(0, 0, 0, 0.20)',
+                  }}
+                >
+                  {item}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* === Dynamic Content Area === 
+             - No padding added here. 
+             - This allows inner components (AboutTab, FacultyTab) to manage their own mobile padding 
+               without being pushed in by a parent container's padding.
+          */}
+          <div className="w-full min-h-[400px]">
+            {activeTab === "About SMRSC" && <AboutTab />}
+            {activeTab === "Organizing Committee" && <CommitteeTab />}
+            {activeTab === "Chief Guests" && <GuestsTab />}
+            {activeTab === "Faculty" && <FacultyTab />}
+          </div>
+          
+        </div>
+
+      </div>
+
+      {/* CSS for Hover Effects */}
+      <style jsx>{`
+        .nav-button:hover {
+          border: 1px solid #FFF !important;
+          background: linear-gradient(180deg, rgba(51, 51, 51, 0.20) 0%, rgba(0, 0, 0, 0.20) 137.5%) !important;
+          transform: scale(1.05);
+        }
+      `}</style>
+      
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@600&display=swap');
+      `}</style>
+    </section>
+  );
+};
+
+export default Section2;
