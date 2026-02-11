@@ -211,7 +211,7 @@ const ContactUs = () => {
                 </p>
                 
                 <div className="flex flex-col gap-1 mt-2">
-                  <p>Phone: +91 9599331905, +91 7042978484</p>
+                  <p>Phone: +91 8130027337, +91 8130027785, 81300 27785, +91 8492010373</p>
                   <p>Email: <a href="mailto:smrsc@ssinnovations.org" className="hover:text-white underline decoration-white/30">smrsc@ssinnovations.org</a></p>
                   <p>Web: <a href="https://www.ssinnovations.com" target="_blank" rel="noreferrer" className="hover:text-white underline decoration-white/30">www.ssinnovations.com</a></p>
                 </div>
