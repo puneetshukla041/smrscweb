@@ -26,7 +26,7 @@ const Section1 = () => {
         >
           {/* Desktop Image Only - No Text Overlay */}
           <Image
-            src="/images/about/section1/img1.png"
+            src="/images/about/section1/img1.webp"
             alt="SMRSC About Banner"
             fill
             priority
@@ -46,11 +46,10 @@ const Section1 = () => {
           }}
         >
           <Image
-            src="/images/about/section1/mobile.png"
+            src="/images/about/section1/mobile.webp"
             alt="SMRSC Mobile Banner"
             fill
             className="object-contain"
-            
             priority
           />
         </div>

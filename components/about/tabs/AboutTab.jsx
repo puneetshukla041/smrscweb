@@ -46,7 +46,7 @@ const FadeInView = ({ children, delay = 0 }) => {
 
 const AboutTab = () => {
   
-  // Existing Data Source
+  // Conference Data - Sources updated to .webp
   const conferenceCards = [
     { text: "National & International Renowned Faculty", src: "/images/about/section2/image1.webp" },
     { text: "Live robotic surgery in multi speciality", src: "/images/about/section2/image2.webp" },
@@ -54,22 +54,20 @@ const AboutTab = () => {
     { text: "Exclusive academic workshops, Presentations & Showcases", src: "/images/about/section2/image4.webp" }
   ];
 
-  // Data for "Who will benefit" section
+  // Benefit Data - Sources updated to .webp
   const benefitCards = [
-    { text: "Surgeons & Medical Professionals", src: "/images/about/benifit/image1.png" },
-    { text: "Researchers and Innovators", src: "/images/about/benifit/image2.png" },
-    { text: "Healthcare Administrators", src: "/images/about/benifit/image3.png" },
-    { text: "Student & Trainees", src: "/images/about/benifit/image4.png" }
+    { text: "Surgeons & Medical Professionals", src: "/images/about/benifit/image1.webp" },
+    { text: "Researchers and Innovators", src: "/images/about/benifit/image2.webp" },
+    { text: "Healthcare Administrators", src: "/images/about/benifit/image3.webp" },
+    { text: "Student & Trainees", src: "/images/about/benifit/image4.webp" }
   ];
 
   const youtubeVideoId = "48CTgZ8oB_w";
 
   // --- STYLES ---
-  // Using a function to mix dynamic styles with responsive Tailwind classes logic
   const benefitTextStyle = {
     color: '#E3F5F6',
     fontFamily: "'Manrope', sans-serif",
-    // Mobile font size adjusted via class, base values here for reference if needed
     fontStyle: 'normal',
     fontWeight: 500,
   };
@@ -179,9 +177,6 @@ const AboutTab = () => {
 
             return (
               <FadeInView key={index} delay={index * 100}>
-                {/* Mobile: Flex column (Stack)
-                  Desktop: Flex row with absolute image (Overlap)
-                */}
                 <div className="flex flex-col md:flex-row items-center relative h-auto md:h-[260px]">
                     
                     {/* Image Container */}
@@ -201,7 +196,7 @@ const AboutTab = () => {
                       />
                     </div>
 
-                    {/* The Box */}
+                    {/* Content Box */}
                     <div 
                       className={`
                         flex flex-col justify-center gap-1 
@@ -213,16 +208,14 @@ const AboutTab = () => {
                         md:bg-opacity-40 z-0 md:z-auto
                         ${isImageRight ? 'items-start md:mr-[40px]' : 'items-start md:items-end md:ml-[40px]'}
                       `}
-                      // We handle margin on desktop via classes above, but strict layout alignment needs flex props
                       style={{
-                        // Resetting flex alignment for mobile to 'start', preserving desktop logic via classes
                         alignItems: isImageRight ? 'flex-start' : undefined, 
                       }}
                     >
                       <p style={{
                           ...benefitTextStyle,
-                          width: '100%', // Full width on mobile
-                          maxWidth: '270px' // Limit on desktop
+                          width: '100%',
+                          maxWidth: '270px'
                         }}
                         className="text-[20px] md:text-[24px] leading-[28px] md:leading-[32px]"
                       >

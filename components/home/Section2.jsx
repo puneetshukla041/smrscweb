@@ -105,23 +105,11 @@ const Section2 = () => {
   };
 
   return (
-    // Switched h-screen to min-h-screen to allow scrolling on mobile if content overflows
+    // UPDATED: bg-transparent allows global CSS background to show through. 
+    // Removed specific background glow div.
     <section className="relative w-full min-h-screen flex flex-col md:justify-center items-center overflow-hidden bg-transparent py-20 md:py-0">
 
-      {/* BACKGROUND GLOW */}
-      <div
-        className="absolute z-0 pointer-events-none"
-        style={{
-          width: '80%',
-          height: '100%',
-          left: '50%',
-          top: '0',
-          transform: 'translate(-50%, -50%)',
-          background: 'rgba(0, 186, 254, 0.80)',
-          filter: 'blur(350px)',
-          borderRadius: '100%',
-        }}
-      />
+      {/* BACKGROUND GLOW REMOVED */}
 
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
 

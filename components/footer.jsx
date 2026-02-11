@@ -79,14 +79,14 @@ const Footer = () => {
           <div style={addressStyle} className="lg:mr-auto w-full lg:w-[394px]">
             <p>Sudhir Srivastava Innovations Pvt. Ltd. (R&D HQ – India)</p>
             <p>404-405, 3rd Floor, iLabs Center, Udyog Vihar, Phase III, Gurugram, Haryana, India – 122016</p>
-            <p>Phone: +91 9599331905 | +91 7042978484</p>
+            <p>Phone: +91 8130027337 | +91 8130027785 | +91 8492010373</p>
             <p>Email: smrsc@ssinnovations.org</p>
             <p>Web: www.ssinnovations.com</p>
           </div>
 
           {/* MOBILE FIX: Wrapped Links in a container.
-             - Mobile: flex-row gap-20 (side-by-side links)
-             - Desktop: lg:contents (Unwraps the div, children become direct siblings of main container, preserving original desktop layout)
+              - Mobile: flex-row gap-20 (side-by-side links)
+              - Desktop: lg:contents (Unwraps the div, children become direct siblings of main container, preserving original desktop layout)
           */}
           <div className="flex flex-row w-full lg:w-auto justify-start gap-20 lg:gap-0 lg:contents">
             
@@ -119,9 +119,9 @@ const Footer = () => {
           {/* Social Icons */}
           <div className="flex items-center gap-4">
             <a href="#" className="text-white hover:text-[#E3F5F6] transition-colors">
-               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231h0.001zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z" />
-              </svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231h0.001zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z" />
+               </svg>
             </a>
             <a href="#" className="text-white hover:text-[#E3F5F6] transition-colors"><Instagram size={20} /></a>
             <a href="#" className="text-white hover:text-[#E3F5F6] transition-colors"><Linkedin size={20} /></a>
@@ -131,15 +131,15 @@ const Footer = () => {
 
           {/* Legal Links */}
           <div className="flex flex-wrap justify-center gap-2 md:gap-6 text-center">
-             <span style={bottomLinkStyle} className="hover:text-white">Cookies</span>
-             <span style={bottomLinkStyle}>|</span>
-             <span style={bottomLinkStyle} className="hover:text-white">Privacy Policy</span>
-             <span style={bottomLinkStyle}>|</span>
-             <span style={bottomLinkStyle} className="hover:text-white">Contact us</span>
-             <span style={bottomLinkStyle}>|</span>
-             <span style={bottomLinkStyle} className="hover:text-white">Terms of use</span>
-             <span style={bottomLinkStyle}>|</span>
-             <span style={bottomLinkStyle} className="hover:text-white">Sitemap</span>
+              <span style={bottomLinkStyle} className="hover:text-white">Cookies</span>
+              <span style={bottomLinkStyle}>|</span>
+              <span style={bottomLinkStyle} className="hover:text-white">Privacy Policy</span>
+              <span style={bottomLinkStyle}>|</span>
+              <span style={bottomLinkStyle} className="hover:text-white">Contact us</span>
+              <span style={bottomLinkStyle}>|</span>
+              <span style={bottomLinkStyle} className="hover:text-white">Terms of use</span>
+              <span style={bottomLinkStyle}>|</span>
+              <span style={bottomLinkStyle} className="hover:text-white">Sitemap</span>
           </div>
         </div>
 

@@ -1,16 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 const Section1 = () => {
-  const [isHovered, setIsHovered] = useState(false);
-
   // --- BUTTON STYLES ---
   const buttonContainerStyle = {
     display: "flex",
-    width: "280px", // Increased width slightly to fit the longer text
+    width: "280px", 
     height: "51px",
     padding: "12px 24px",
     justifyContent: "center",
@@ -29,32 +27,27 @@ const Section1 = () => {
   const buttonTextStyle = {
     color: "#FFF",
     fontFamily: "Manrope, sans-serif",
-    fontSize: "18px", // Adjusted slightly for the longer text
+    fontSize: "18px", 
     fontWeight: "600",
     lineHeight: "20px",
     whiteSpace: "nowrap",
   };
 
   return (
-    <section className="relative w-full flex justify-center items-center overflow-x-clip bg-[#02091A] pt-24 pb-12 md:pt-32 md:pb-20">
+    <section className="relative w-full flex justify-center items-center overflow-x-clip pt-24 pb-12 md:pt-32 md:pb-20">
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap');
       `}</style>
 
-      {/* Cinematic glow background */}
-      <motion.div
-        animate={{ opacity: [0.4, 0.7, 0.4], scale: [1, 1.15, 1] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute z-0 pointer-events-none"
+      {/* --- ENHANCED BACKGROUND GLOW --- */}
+      <div 
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0"
         style={{
-          width: "70%",
-          height: "100%",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-          background: "rgba(0, 186, 254, 0.5)",
-          filter: "blur(250px)",
-          borderRadius: "100%",
+            width: '1456px',
+            height: '800px', // Increased height for "more" glow
+            borderRadius: '100%',
+            background: 'rgba(102, 199, 235, 0.85)', // Slightly higher opacity
+            filter: 'blur(350px)', // Increased blur
         }}
       />
 
@@ -80,15 +73,13 @@ const Section1 = () => {
           />
 
           <motion.div
-            onHoverStart={() => setIsHovered(true)}
-            onHoverEnd={() => setIsHovered(false)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             style={buttonContainerStyle}
             className="absolute bottom-[10%] left-1/2 -translate-x-1/2 z-20 origin-center scale-90 lg:scale-100"
           >
             <span style={buttonTextStyle}>
-              {isHovered ? "Coming Soon" : "Registration Opening Soon"}
+              Registration Opening Soon
             </span>
           </motion.div>
         </div>
@@ -121,15 +112,13 @@ const Section1 = () => {
           />
 
           <motion.div
-            onHoverStart={() => setIsHovered(true)}
-            onHoverEnd={() => setIsHovered(false)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             style={{ ...buttonContainerStyle, width: "240px", height: "45px" }}
             className="absolute bottom-[8%] z-20"
           >
             <span style={{ ...buttonTextStyle, fontSize: "16px" }}>
-              {isHovered ? "Coming Soon" : "Registration Opening Soon"}
+              Registration Opening Soon
             </span>
           </motion.div>
         </div>
