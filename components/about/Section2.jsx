@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation'; // Added useRouter
 
 // Import your separate content files
 import AboutTab from './tabs/AboutTab';
@@ -8,9 +8,9 @@ import CommitteeTab from './tabs/CommitteeTab';
 import GuestsTab from './tabs/GuestsTab';
 import FacultyTab from './tabs/FacultyTab';
 
-// --- Inner Component to handle Search Params ---
 const Section2Content = () => {
   const searchParams = useSearchParams();
+  const router = useRouter(); // Initialize router
   const tabParam = searchParams.get('tab');
   
   const [activeTab, setActiveTab] = useState("About SMRSC");
@@ -22,12 +22,18 @@ const Section2Content = () => {
     "Faculty"
   ];
 
-  // Logic: When URL changes (e.g., /about?tab=Faculty), update the state
+  // Function to handle tab changes and update URL
+  const handleTabChange = (item) => {
+    setActiveTab(item);
+    // This updates the URL without refreshing the page
+    router.push(`/about?tab=${encodeURIComponent(item)}`, { scroll: false });
+  };
+
+  // Sync state if user types URL directly or presses back/forward
   useEffect(() => {
     if (tabParam && navItems.includes(tabParam)) {
       setActiveTab(tabParam);
       
-      // Optional: Scroll to the tab navigation so the user sees the change
       const section = document.getElementById('about-tabs-nav');
       if (section) {
         section.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -46,7 +52,7 @@ const Section2Content = () => {
             return (
               <button
                 key={item}
-                onClick={() => setActiveTab(item)}
+                onClick={() => handleTabChange(item)} // Use the new handler
                 className="nav-button"
                 style={{
                   display: 'flex',
@@ -85,6 +91,7 @@ const Section2Content = () => {
   );
 };
 
+// ... keep Section2 component and styles exactly as they were
 // --- Main Section Component ---
 const Section2 = () => {
   return (

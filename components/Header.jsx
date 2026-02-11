@@ -21,16 +21,16 @@ const SEARCH_INDEX = [
 const MotionLink = motion(Link);
 
 const navLinks = [
-  { 
-    name: "About SMRSC", 
-    href: "/about",
-    subLinks: [
-      { name: "About the conference", href: "/about#conference" },
-      { name: "Organizing Committee", href: "/about#committee" },
-      { name: "Chief Guests", href: "/about#guests" },
-      { name: "Faculty", href: "/about#faculty" },
-    ]
-  },
+{
+  name: "About",
+  href: "/about",
+  subLinks: [
+    { name: "About the conference", href: "/about?tab=About SMRSC" },
+    { name: "Organizing Committee", href: "/about?tab=Organizing Committee" },
+    { name: "Chief Guests", href: "/about?tab=Chief Guests" },
+    { name: "Faculty", href: "/about?tab=Faculty" },
+  ]
+},
   { 
     name: "Agenda", 
     href: "/explore", 
