@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const MotionLink = motion(Link);
 const Section1 = () => {
   const [isHovered, setIsHovered] = useState(false);
 
