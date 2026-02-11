@@ -1,13 +1,12 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link'; 
 import { motion } from 'framer-motion';
 
-// Create the Motion Link component
-const MotionLink = motion(Link);
-
 const Section6 = () => {
+  // State to track hover
+  const [isHovered, setIsHovered] = useState(false);
+
   // --- BUTTON STYLES ---
   const registerBtnStyle = {
     display: 'flex',
@@ -19,7 +18,7 @@ const Section6 = () => {
     borderRadius: '24px',
     background: '#F8FFFF',
     border: 'none',
-    cursor: 'pointer',
+    cursor: 'not-allowed', // Blocked cursor
     zIndex: 20,
     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.15)',
     textDecoration: 'none', 
@@ -149,7 +148,7 @@ const Section6 = () => {
 
             {/* Mobile Image */}
             <Image 
-              src="/images/home/section6/mobile.png" 
+              src="/images/home/section6/mobile.webp" 
               alt="SMRSC 2026 Transformation Mobile"
               fill
               sizes="350px"
@@ -157,18 +156,19 @@ const Section6 = () => {
               priority
             />
 
-            {/* 3. REGISTER BUTTON */}
-            <MotionLink
-              href="/register"
+            {/* 3. BLOCKED REGISTER BUTTON */}
+            <motion.div
+              onHoverStart={() => setIsHovered(true)}
+              onHoverEnd={() => setIsHovered(false)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               style={registerBtnStyle}
               className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 md:top-[450px] md:translate-y-0"
             >
               <span style={registerBtnTextStyle}>
-                Register for SMRSC 2026
+                {isHovered ? "Coming Soon" : "Registration Opening Soon"}
               </span>
-            </MotionLink>
+            </motion.div>
 
           </div>
         </motion.div>

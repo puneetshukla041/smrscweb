@@ -31,30 +31,30 @@ const Section5 = () => {
   // ==================== PART 2 DATA & LOGIC (CAROUSEL) ====================
   const [page, setPage] = useState(0);
 
-  // UPDATED: Added 'mobileSrc' for the specific mobile images
+  // UPDATED: 'mobileSrc' changed to .webp
   const images = [
     { 
       id: 1, 
       src: "/images/home/section5/image1.webp", 
-      mobileSrc: "/images/home/section5/mob1.png", 
+      mobileSrc: "/images/home/section5/mob1.webp", // Changed to .webp
       title: "SSI Mantra 3" 
     },
     { 
       id: 2, 
       src: "/images/home/section5/image2.webp", 
-      mobileSrc: "/images/home/section5/mob2.png", 
+      mobileSrc: "/images/home/section5/mob2.webp", // Changed to .webp
       title: "Advanced Robotics" 
     },
     { 
       id: 3, 
       src: "/images/home/section5/image3.webp", 
-      mobileSrc: "/images/home/section5/mob3.png", 
+      mobileSrc: "/images/home/section5/mob3.webp", // Changed to .webp
       title: "Precision Control" 
     },
     { 
       id: 4, 
       src: "/images/home/section5/image4.webp", 
-      mobileSrc: "/images/home/section5/mob4.png", 
+      mobileSrc: "/images/home/section5/mob4.webp", // Changed to .webp
       title: "Future of Surgery" 
     },
   ];
@@ -327,7 +327,6 @@ const Section5 = () => {
             </div>
 
             {/* Slider Frame */}
-            {/* UPDATED: Applied strict mobile dimensions 339x470 */}
             <div 
               className="relative overflow-visible shrink-0 w-[339px] h-[470px] lg:w-[1380px] lg:h-[720px]"
             >
