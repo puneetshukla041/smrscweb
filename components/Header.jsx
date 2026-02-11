@@ -31,16 +31,17 @@ const navLinks = [
     { name: "Faculty", href: "/about?tab=Faculty" },
   ]
 },
-  { 
-    name: "Agenda", 
-    href: "/explore", 
-    subLinks: [
-      { name: "Overview", href: "/explore" }, 
-      { name: "Schedule Day 1", href: "/explore#day1" }, 
-      { name: "Schedule Day 2", href: "/explore#day2" }, 
-      { name: "Workshops", href: "/explore#workshops" }, 
-    ]
-  },
+{
+  name: "Agenda",
+  href: "/explore",
+  subLinks: [
+    { name: "Overview", href: "/explore?tab=overview" },
+    { name: "Schedule Day 1", href: "/explore?tab=day1" },
+    { name: "Schedule Day 2", href: "/explore?tab=day2" },
+    // If you add a Workshops tab later, this will work automatically
+    { name: "Workshops", href: "/explore?tab=day1" }, 
+  ]
+},
   { 
     name: "Visit", 
     href: "/visit/venue", 

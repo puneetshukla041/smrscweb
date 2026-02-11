@@ -1,7 +1,8 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect, Suspense } from 'react'; // Added useEffect
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useSearchParams, useRouter } from 'next/navigation'; // Added hooks
 import Header from '../../components/Header'; 
 import Footer from '../../components/footer'; 
 
@@ -10,20 +11,38 @@ import Overview from '../../components/explore/Overview';
 import ScheduleDay1 from '../../components/explore/ScheduleDay1';
 import ScheduleDay2 from '../../components/explore/ScheduleDay2';
 
-const ExplorePage = () => {
-  const [activeTab, setActiveTab] = useState('overview');
+const ExploreContent = () => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  
+  // Get the tab from URL, default to 'overview'
+  const tabParam = searchParams.get('tab') || 'overview';
+  const [activeTab, setActiveTab] = useState(tabParam);
+
+  // Sync state when URL changes (e.g. browser back button)
+  useEffect(() => {
+    if (tabParam) {
+      setActiveTab(tabParam);
+    }
+  }, [tabParam]);
+
+  const handleTabChange = (id) => {
+    setActiveTab(id);
+    // Updates URL to http://localhost:3000/explore?tab=day1
+    router.push(`/explore?tab=${id}`, { scroll: false });
+  };
+
+  const tabs = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'day1', label: 'Day 1' },
+    { id: 'day2', label: 'Day 2' }, 
+  ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#020617]">
-      <Header />
-
-      {/* Main wrapper */}
-      <main className="flex-grow w-full flex flex-col items-center overflow-x-hidden">
+    <main className="flex-grow w-full flex flex-col items-center overflow-x-hidden">
         
         {/* === 1. HERO IMAGE SECTION === */}
         <section className="w-full bg-transparent flex justify-center">
-          
-          {/* --- DESKTOP VIEW (Unchanged) --- */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -53,7 +72,6 @@ const ExplorePage = () => {
             </div>
           </motion.div>
 
-          {/* --- MOBILE VIEW (Updated) --- */}
           <div className="md:hidden w-full flex justify-center mt-[100px] mb-10 px-4">
               <div style={{ width: '350px', height: '476px', position: 'relative' }}>
                 <Image
@@ -65,25 +83,17 @@ const ExplorePage = () => {
                 />
               </div>
           </div>
-
         </section>
 
         {/* === 2. CONTENT SECTION === */}
         <div className="flex flex-col items-center w-full max-w-[1440px] px-4 md:px-0">
           
-          {/* === NAVIGATION BAR === */}
           <div className="w-full flex flex-wrap items-center justify-between mb-16 gap-6">
-            
-            {/* Left Side: Navigation Tabs */}
             <div className="flex gap-4 flex-wrap justify-center md:justify-start">
-              {[
-                { id: 'overview', label: 'Overview' },
-                { id: 'day1', label: 'Day 1' },
-                { id: 'day2', label: 'Day 2' }, 
-              ].map((tab) => (
+              {tabs.map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => handleTabChange(tab.id)}
                   className={`
                     px-8 py-3 rounded-full border transition-all duration-300 font-manrope text-sm font-medium tracking-wide
                     ${
@@ -98,23 +108,29 @@ const ExplorePage = () => {
               ))}
             </div>
 
-            {/* Right Side: Download Brochure Button */}
             <button className="inline-flex justify-center items-center gap-[10px] px-[24px] py-[12px] rounded-[40px] border border-[#2A3A3B] bg-[#E3F5F6] backdrop-blur-[21px] text-[#020617] font-manrope text-sm font-semibold hover:bg-white transition-all">
               Download Brochure
             </button>
-            
           </div>
 
-          {/* Dynamic Content Area */}
           <div className="w-full pb-20">
             {activeTab === 'overview' && <Overview />}
             {activeTab === 'day1' && <ScheduleDay1 />}
             {activeTab === 'day2' && <ScheduleDay2 />}
           </div>
-
         </div>
       </main>
+  );
+};
 
+const ExplorePage = () => {
+  return (
+    <div className="flex flex-col min-h-screen bg-[#020617]">
+      <Header />
+      {/* Suspense is required for useSearchParams in Next.js App Router */}
+      <Suspense fallback={<div className="min-h-screen text-white flex items-center justify-center">Loading...</div>}>
+        <ExploreContent />
+      </Suspense>
       <Footer />
     </div>
   );
