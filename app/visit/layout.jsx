@@ -30,7 +30,7 @@ export default function VisitLayout({ children }) {
             }}
           >
             <Image
-              src="/images/visit/hero.png"
+              src="/images/visit/hero.webp"
               alt="SMRSC Venue"
               fill
               className="object-cover"
