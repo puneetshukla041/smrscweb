@@ -1,0 +1,92 @@
+'use client';
+import React from 'react';
+import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
+
+const VenuePage = () => {
+  return (
+    <div className="flex flex-col items-center px-4 w-full animate-fadeIn">
+      
+      {/* === VENUE INFO === */}
+      <div className="w-full max-w-[1377px] flex flex-col gap-8">
+        
+        <h1 className="font-['Blauer_Nue'] text-[#F8FFFF] text-[36px] font-medium leading-[36px] w-full md:w-[350px]">
+          Bharat Mandapam
+        </h1>
+
+        <p className="font-manrope text-[#E3F5F6] text-[24px] font-normal leading-[36px] w-full">
+          SMRSC 2026 will be held at Bharat Mandapam, a premier convention centre located in New Delhi, India. It is one of the largest and most advanced convention centres in the country.
+        </p>
+
+        <div className="relative w-full mt-4 h-[500px] md:h-[631px] rounded-[20px] overflow-hidden shadow-2xl group">
+          {/* UPDATED: .png -> .webp */}
+          <Image
+            src="/images/visit/veneu.webp" 
+            alt="Bharat Mandapam"
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent via-transparent to-black" />
+          
+          <div className="absolute bottom-0 left-0 w-full z-20 p-8 md:p-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="flex flex-col gap-1">
+              <h3 className="text-white text-2xl font-bold font-manrope">Bharat Mandapam</h3>
+              <p className="text-white/80 text-lg font-manrope">Pragati Maidan, New Delhi – 110001, India</p>
+            </div>
+            <button className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-manrope font-semibold text-sm transition-all hover:bg-[#CE921B] hover:text-white">
+              See More <ArrowRight size={16} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* === PLANNING JOURNEY === */}
+      <div className="w-full max-w-[1377px] mt-[100px] md:mt-[200px] flex flex-col gap-12">
+        <h2 className="font-['Blauer_Nue'] text-[#F8FFFF] text-[36px] font-medium leading-[36px]">
+          Planning your journey
+        </h2>
+
+        <div className="flex flex-col lg:flex-row gap-8 items-center">
+          {/* Airport */}
+          <div className="relative w-full lg:w-[670px] h-[400px] overflow-hidden rounded-[40px] shadow-2xl group border border-white/10">
+            {/* UPDATED: .png -> .webp */}
+            <Image 
+              src="/images/visit/airport.webp" 
+              alt="Airport" 
+              fill 
+              className="object-cover transition-transform duration-700 group-hover:scale-105" 
+            />
+            <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-black/80" />
+            <div className="absolute bottom-8 left-8 z-20 flex flex-col gap-1">
+              <h3 className="text-[#F8FFFF] font-manrope text-[32px] font-semibold leading-[40px]">Indira Gandhi International Airport</h3>
+              <p className="text-[#F8FFFF] font-manrope text-[16px] font-normal leading-[20px]">Nearest international airport<br />30 minutes to the venue</p>
+            </div>
+          </div>
+          {/* Visa */}
+          <div className="flex flex-col justify-center flex-1 gap-6 p-4">
+            <h3 className="font-['Blauer_Nue'] text-[#F8FFFF] text-[36px] font-normal leading-[36px]">Visa Guidance</h3>
+            <p className="font-manrope text-[#F8FFFF] text-[18px] font-normal leading-[22px] max-w-[500px]">
+              International attendees may require a valid Indian visa. Visa requirements vary by nationality.
+            </p>
+            <button className="flex items-center justify-center gap-2 bg-white text-black w-fit px-8 py-3 rounded-full font-manrope font-semibold text-sm transition-all hover:bg-[#CE921B] hover:text-white">
+              Check visa requirements <ArrowRight size={16} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* === NEED HELP (Venue Context) === */}
+      <div className="w-full max-w-[1377px] mt-[100px] md:mt-[200px] flex flex-col gap-8 mb-10">
+          <h2 className="font-['Blauer_Nue'] text-[#F8FFFF] text-[36px] font-medium leading-[36px]">Need help? We're here.</h2>
+          <div className="w-full border border-white/20 bg-white/5 rounded-[20px] p-8 md:p-10 flex flex-col gap-4">
+              <p className="text-[#E6E6E6] font-manrope text-lg">Our team can assist with venue-related queries.</p>
+              <div className="flex flex-col gap-1 text-[#E6E6E6]/80 font-manrope text-base mt-2">
+                  <p>Phone: +91 9599xxxxxx, +91 7042xxxxxx</p>
+                  <p>Mon - Fri, 8:30 to 17:30</p>
+              </div>
+          </div>
+      </div>
+    </div>
+  );
+};
+export default VenuePage;
