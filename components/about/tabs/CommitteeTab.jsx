@@ -5,45 +5,44 @@ const CommitteeTab = () => {
 
   // --- DATA: International Committee (per5 - per20) ---
   const internationalCommittee = [
-    { name: "Dr. Mani Menon", role: "Vattikuti Urology Institute, Detroit, MI, USA", src: "/images/about/committe/per5.png" },
-    { name: "Dr. Ashutosh K. Tewari", role: "Icahn School of Medicine at Mount Sinai, NY, USA", src: "/images/about/committe/per6.png" },
-    { name: "Dr. Vipul Patel", role: "Global Robotics Institute, Orlando, FL, USA", src: "/images/about/committe/per7.png" },
-    { name: "Dr. Pier C. Giulianotti", role: "The University of Chicago Medicine and Biological Sciences Chicago, Chicago, IL, USA", src: "/images/about/committe/per8.png" },
-    { name: "Dr. Dudy Hanafy", role: "Harapan Kita Hospital, Jakarta, Indonesia", src: "/images/about/committe/per9.png" },
-    { name: "Dr. Pedro Luis Maldonado Munoz", role: "Interhospital, Guayaquil, Ecuador", src: "/images/about/committe/per10.png" },
-    { name: "Dr. Ashok K. Hemal", role: "Wake Forest Medical School & Baptist Medical Center, NC, USA", src: "/images/about/committe/per11.png" },
-    { name: "Dr. Husam Balkhy", role: "The University of Chicago Medicine and Biological Sciences Chicago, Chicago, IL, USA", src: "/images/about/committe/per12.png" },
-    { name: "Dr. T Sloane Guy", role: "Georgia Heart Institute, Gainesville, GA, USA", src: "/images/about/committe/per13.png" },
-    { name: "Dr. Gianluca Torregrossa", role: "Lankenau Heart Institute, Philadelphia, PA, USA", src: "/images/about/committe/per14.png" },
-    { name: "Dr. Frank Van Praet", role: "OLV Clinic, Aalst, Belgium", src: "/images/about/committe/per15.png" },
-    { name: "Dr John D Puskas", role: "Emory University Hospital Midtown, Atlanta", src: "/images/about/committe/per16.png" },
-    { name: "Dr. Bob Kiaii", role: "Foothills Medical Centre, Libin Cardiovascular Institute, University of Calgary", src: "/images/about/committe/per17.png" },
-    { name: "Dr. Max Gubitz Scheibe", role: "Interhospital, Guayaquil, Ecuador", src: "/images/about/committe/per18.png" },
-    { name: "Dr. Marcos Lenin Zambrano Avellan", role: "Interhospital, Guayaquil, Ecuador", src: "/images/about/committe/per19.png" },
-    { name: "Dr. Ivan Rizal Sini", role: "Bunda Group Hospitals, Jakarta, Indonesia", src: "/images/about/committe/per20.png" },
+    { name: "Dr. Mani Menon", role: "Vattikuti Urology Institute, Detroit, MI, USA", src: "/images/about/committe/per5.webp" },
+    { name: "Dr. Ashutosh K. Tewari", role: "Icahn School of Medicine at Mount Sinai, NY, USA", src: "/images/about/committe/per6.webp" },
+    { name: "Dr. Vipul Patel", role: "Global Robotics Institute, Orlando, FL, USA", src: "/images/about/committe/per7.webp" },
+    { name: "Dr. Pier C. Giulianotti", role: "The University of Chicago Medicine and Biological Sciences Chicago, Chicago, IL, USA", src: "/images/about/committe/per8.webp" },
+    { name: "Dr. Dudy Hanafy", role: "Harapan Kita Hospital, Jakarta, Indonesia", src: "/images/about/committe/per9.webp" },
+    { name: "Dr. Pedro Luis Maldonado Munoz", role: "Interhospital, Guayaquil, Ecuador", src: "/images/about/committe/per10.webp" },
+    { name: "Dr. Ashok K. Hemal", role: "Wake Forest Medical School & Baptist Medical Center, NC, USA", src: "/images/about/committe/per11.webp" },
+    { name: "Dr. Husam Balkhy", role: "The University of Chicago Medicine and Biological Sciences Chicago, Chicago, IL, USA", src: "/images/about/committe/per12.webp" },
+    { name: "Dr. T Sloane Guy", role: "Georgia Heart Institute, Gainesville, GA, USA", src: "/images/about/committe/per13.webp" },
+    { name: "Dr. Gianluca Torregrossa", role: "Lankenau Heart Institute, Philadelphia, PA, USA", src: "/images/about/committe/per14.webp" },
+    { name: "Dr. Frank Van Praet", role: "OLV Clinic, Aalst, Belgium", src: "/images/about/committe/per15.webp" },
+    { name: "Dr John D Puskas", role: "Emory University Hospital Midtown, Atlanta", src: "/images/about/committe/per16.webp" },
+    { name: "Dr. Bob Kiaii", role: "Foothills Medical Centre, Libin Cardiovascular Institute, University of Calgary", src: "/images/about/committe/per17.webp" },
+    { name: "Dr. Max Gubitz Scheibe", role: "Interhospital, Guayaquil, Ecuador", src: "/images/about/committe/per18.webp" },
+    { name: "Dr. Marcos Lenin Zambrano Avellan", role: "Interhospital, Guayaquil, Ecuador", src: "/images/about/committe/per19.webp" },
+    { name: "Dr. Ivan Rizal Sini", role: "Bunda Group Hospitals, Jakarta, Indonesia", src: "/images/about/committe/per20.webp" },
   ];
 
   // --- DATA: National Committee (per21 - per34) ---
   const nationalCommittee = [
-    { name: "Dr. Sudhir K Rawal", role: "Rajiv Gandhi Cancer Institute and Research Center", src: "/images/about/per21.png" },
-    { name: "Dr. Somashekhar SP", role: "Aster DM Healthcare", src: "/images/about/per22.png" },
-    { name: "Dr. Lalitaditya Malik", role: "Manipal Hospitals, Jaipur, RJ", src: "/images/about/per23.png" },
-    { name: "Dr. Priya Bhave Chittawar", role: "Her Health Hospital, Bhopal, MP", src: "/images/about/per24.png" },
-    { name: "Dr. Ritesh Mongha", role: "Marengo Asia Hospitals, Faridabad, Haryana", src: "/images/about/per25.png" },
-    { name: "Dr. Mohit Bhandari", role: "Bhandari Hospital and Research Centre, Indore", src: "/images/about/per26.png" },
-    { name: "Dr. Chandra Mohan Vaddi", role: "Preeti Urology & Kidney Hospital, Telangana, Hyderabad", src: "/images/about/per27.png" },
-    { name: "Dr. Venkatesh Munikrishnan", role: "Apollo Hospitals, Chennai", src: "/images/about/per28.png" },
-    { name: "Dr. Harish Badami", role: "Malla Reddy Narayana Multispeciality Hospital, Hyderabad", src: "/images/about/per29.png" },
-    { name: "Dr. Subhash Khanna", role: "Swagat Hospitals, Guwahati", src: "/images/about/per30.png" },
-    { name: "Dr. Magan Mehrotra", role: "Apex Hospital, Moradabad, UP", src: "/images/about/per31.png" },
-    { name: "Dr. Leena Mehrotra", role: "Apex Hospital, Moradabad, UP", src: "/images/about/per32.png" },
-    { name: "Dr. Manjiri Somashekhar", role: "Aster CMI Bangalore, Aster RV Bangalore", src: "/images/about/per33.png" },
-    { name: "Dr. Raj Gajbhiye", role: "Government Medical College, Nagpur", src: "/images/about/per34.png" },
+    { name: "Dr. Sudhir K Rawal", role: "Rajiv Gandhi Cancer Institute and Research Center", src: "/images/about/committe/per21.webp" },
+    { name: "Dr. Somashekhar SP", role: "Aster DM Healthcare", src: "/images/about/committe/per22.webp" },
+    { name: "Dr. Lalitaditya Malik", role: "Manipal Hospitals, Jaipur, RJ", src: "/images/about/committe/per23.webp" },
+    { name: "Dr. Priya Bhave Chittawar", role: "Her Health Hospital, Bhopal, MP", src: "/images/about/committe/per24.webp" },
+    { name: "Dr. Ritesh Mongha", role: "Marengo Asia Hospitals, Faridabad, Haryana", src: "/images/about/committe/per25.webp" },
+    { name: "Dr. Mohit Bhandari", role: "Bhandari Hospital and Research Centre, Indore", src: "/images/about/committe/per26.webp" },
+    { name: "Dr. Chandra Mohan Vaddi", role: "Preeti Urology & Kidney Hospital, Telangana, Hyderabad", src: "/images/about/committe/per27.webp" },
+    { name: "Dr. Venkatesh Munikrishnan", role: "Apollo Hospitals, Chennai", src: "/images/about/committe/per28.webp" },
+    { name: "Dr. Harish Badami", role: "Malla Reddy Narayana Multispeciality Hospital, Hyderabad", src: "/images/about/committe/per29.webp" },
+    { name: "Dr. Subhash Khanna", role: "Swagat Hospitals, Guwahati", src: "/images/about/committe/per30.webp" },
+    { name: "Dr. Magan Mehrotra", role: "Apex Hospital, Moradabad, UP", src: "/images/about/committe/per31.webp" },
+    { name: "Dr. Leena Mehrotra", role: "Apex Hospital, Moradabad, UP", src: "/images/about/committe/per32.webp" },
+    { name: "Dr. Manjiri Somashekhar", role: "Aster CMI Bangalore, Aster RV Bangalore", src: "/images/about/committe/per33.webp" },
+    { name: "Dr. Raj Gajbhiye", role: "Government Medical College, Nagpur", src: "/images/about/committe/per34.webp" },
   ];
 
   // --- STYLES ---
 
-  // 1. Headings
   const baseHeadingStyle = {
     color: '#F8FFFF',
     fontFamily: '"Blauer Nue", sans-serif',
@@ -62,9 +61,7 @@ const CommitteeTab = () => {
     marginBottom: '60px'
   };
 
-  // 3. Text Styles
   const textWrapperStyle = {
-    // width is handled via classes for responsiveness
     marginTop: '16px', 
     display: 'flex',
     flexDirection: 'column',
@@ -96,14 +93,10 @@ const CommitteeTab = () => {
         
         {/* Organizing Chairman */}
         <div className="flex flex-col items-center flex-1 w-full xl:w-auto">
-          {/* Responsive Width: w-full on mobile, 330px on XL */}
           <h3 style={baseHeadingStyle} className="w-full xl:w-[330px]">Organizing Chairman</h3>
-          
-          {/* Responsive Image Container: w-full max 305px on mobile, fixed 305px on XL via max-w */}
           <div className="relative rounded-[12px] overflow-hidden w-full max-w-[305px] h-[390px]">
-            <img src="/images/about/committe/per1.png" alt="Dr. Sudhir Srivastava" className="object-contain w-full h-full" />
+            <img src="/images/about/committe/per1.webp" alt="Dr. Sudhir Srivastava" className="object-contain w-full h-full" />
           </div>
-          
           <div style={textWrapperStyle} className="w-full max-w-[305px]">
             <div style={nameStyle}>Dr. Sudhir Srivastava</div>
             <div style={descStyle}>Founder, Chairman and CEO SS Innovations, INDIA</div>
@@ -112,7 +105,6 @@ const CommitteeTab = () => {
 
         {/* Organizing Co-Chairpersons */}
         <div className="flex flex-col items-center flex-[1.5] w-full xl:w-auto">
-          {/* Responsive Width & Whitespace: Wrap on mobile, NoWrap on XL */}
           <h3 
             style={baseHeadingStyle} 
             className="w-full xl:w-[435px] whitespace-normal xl:whitespace-nowrap"
@@ -123,7 +115,7 @@ const CommitteeTab = () => {
           <div className="flex flex-col md:flex-row gap-6 w-full md:w-auto items-center md:items-start">
             <div className="flex flex-col items-center md:items-start w-full md:w-auto">
               <div className="relative rounded-[12px] overflow-hidden w-full max-w-[305px] h-[390px]">
-                <img src="/images/about/committe/per2.png" alt="Dr. Sudhir K Rawal" className="object-contain w-full h-full" />
+                <img src="/images/about/committe/per2.webp" alt="Dr. Sudhir K Rawal" className="object-contain w-full h-full" />
               </div>
               <div style={textWrapperStyle} className="w-full max-w-[305px]">
                 <div style={nameStyle}>Dr. Sudhir K Rawal</div>
@@ -132,7 +124,7 @@ const CommitteeTab = () => {
             </div>
             <div className="flex flex-col items-center md:items-start w-full md:w-auto">
               <div className="relative rounded-[12px] overflow-hidden w-full max-w-[305px] h-[390px]">
-                <img src="/images/about/committe/per3.png" alt="Dr. S.P. Somashekhar" className="object-contain w-full h-full" />
+                <img src="/images/about/committe/per3.webp" alt="Dr. S.P. Somashekhar" className="object-contain w-full h-full" />
               </div>
               <div style={textWrapperStyle} className="w-full max-w-[305px]">
                 <div style={nameStyle}>Dr. S.P. Somashekhar</div>
@@ -146,7 +138,7 @@ const CommitteeTab = () => {
         <div className="flex flex-col items-center flex-1 w-full xl:w-auto">
           <h3 style={baseHeadingStyle} className="w-full xl:w-[330px]">Organizing Secretary</h3>
           <div className="relative rounded-[12px] overflow-hidden w-full max-w-[305px] h-[390px]">
-            <img src="/images/about/committe/per4.png" alt="Dr. Minu Bajpai" className="object-contain w-full h-full" />
+            <img src="/images/about/committe/per4.webp" alt="Dr. Minu Bajpai" className="object-contain w-full h-full" />
           </div>
           <div style={textWrapperStyle} className="w-full max-w-[305px]">
             <div style={nameStyle}>Dr. Minu Bajpai</div>
@@ -181,9 +173,9 @@ const CommitteeTab = () => {
         </div>
       </div>
 
-      {/* ================= SECTION 3: NATIONAL COMMITTEE (NEW) ================= */}
+      {/* ================= SECTION 3: NATIONAL COMMITTEE ================= */}
       <div className="w-full px-6 xl:pl-0 xl:pr-[270px]">
-        <h3 style={sectionHeadingStyle}>Scientific Organizing Committee national</h3>
+        <h3 style={sectionHeadingStyle}>Scientific Organizing Committee National</h3>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 gap-y-12 place-items-center">
           {nationalCommittee.map((member, idx) => (

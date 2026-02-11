@@ -69,75 +69,71 @@ const FacultyTab = () => {
   // ==========================================
 
   // --- 1. INTERNATIONAL CARDIAC ---
-  const internationalFacultyList = [
-    { name: "Dr. Valluvan Jeevanandam", desc: "The University of Chicago Medicine and Biological Sciences Chicago, Chicago, IL, USA", image: "image2.png" },
-    { name: "Dr. T Sloane Guy", desc: "Georgia Heart Institute, Gainesville, GA, USA", image: "image3.png" },
-    { name: "Dr. Gianluca Torregrossa", desc: "Lankenau Heart Institute, Philadelphia, PA, USA", image: "image4.png" },
-    { name: "Dr. Frank Van Praet", desc: "OLV Clinic, Aalst, Belgium", image: "image5.png" },
-    { name: "Dr. Bob Kiaii", desc: "Foothills Medical Centre, Libin Cardiovascular Institute, University of Calgary", image: "image6.png" },
-    { name: "Dr. Jae Won Lee", desc: "Buchon Sejong Hospital, Seoul, South Korea", image: "image7.png" },
-    { name: "Dr John D Puskas", desc: "Emory University Hospital Midtown, Atlanta", image: "image8.png" },
-    { name: "Dr. Johannes Oliver Bonatti", desc: "University of Pittsburgh Medical Center, Pittsburg, PA, USA", image: "image9.png" },
-    { name: "Dr. Dudy Hanafy", desc: "Harapan Kita Hospital, Jakarta, Indonesia", image: "image10.png" },
-    { name: "Dr. Go Watanabe", desc: "New Heart Watanabe Hospital, Tokyo, Japan", image: "image11.png" },
-    { name: "Dr. Nirav Patel", desc: "Lenox Hill Hospital, New York, NY, USA", image: "image12.png" },
-    { name: "Dr. Victor Castillo", desc: "Fundación Cardiovascular de Colombia, Bucaramanga, Colombia", image: "image13.png" },
-    { name: "Dr. Feras Khaliel", desc: "King Faisal Specialist Hospital and Research Centre, Riyadh, Saudi Arabia", image: "image14.png" }
-  ];
-
+const internationalFacultyList = [
+  { name: "Dr. Valluvan Jeevanandam", desc: "The University of Chicago Medicine...", image: "image2.webp" },
+  { name: "Dr. T Sloane Guy", desc: "Georgia Heart Institute, Gainesville, GA, USA", image: "image3.webp" },
+  { name: "Dr. Gianluca Torregrossa", desc: "Lankenau Heart Institute, Philadelphia, PA, USA", image: "image4.webp" },
+  { name: "Dr. Frank Van Praet", desc: "OLV Clinic, Aalst, Belgium", image: "image5.webp" },
+  { name: "Dr. Bob Kiaii", desc: "Foothills Medical Centre, University of Calgary", image: "image6.webp" },
+  { name: "Dr. Jae Won Lee", desc: "Buchon Sejong Hospital, Seoul, South Korea", image: "image7.webp" },
+  { name: "Dr John D Puskas", desc: "Emory University Hospital Midtown, Atlanta", image: "image8.webp" },
+  { name: "Dr. Johannes Oliver Bonatti", desc: "University of Pittsburgh Medical Center", image: "image9.webp" },
+  { name: "Dr. Dudy Hanafy", desc: "Harapan Kita Hospital, Jakarta, Indonesia", image: "image10.webp" },
+  { name: "Dr. Go Watanabe", desc: "New Heart Watanabe Hospital, Tokyo, Japan", image: "image11.webp" },
+  { name: "Dr. Nirav Patel", desc: "Lenox Hill Hospital, New York, NY, USA", image: "image12.webp" },
+  { name: "Dr. Victor Castillo", desc: "Fundación Cardiovascular de Colombia", image: "image13.webp" },
+  { name: "Dr. Feras Khaliel", desc: "King Faisal Specialist Hospital, Saudi Arabia", image: "image14.webp" }
+];
   // --- 2. NATIONAL CARDIAC ---
-  const nationalFacultyList = [
-    { name: "Dr. Lalitaditya Malik", desc: "Manipal Hospitals, Jaipur, Rajasthan", image: "per2.png" },
-    { name: "Dr. Harish Badami", desc: "Malla Reddy Narayana Multispeciality Hospital, Hyderabad", image: "per3.png" },
-    { name: "Dr. Nitin Rajput", desc: "Medanta - The Medicity, Gurugram, Haryana", image: "per4.png" },
-    { name: "Dr. Hiremath CS", desc: "Sri Sathya Sai Institute of Higher Medical Sciences, Bengaluru, KA", image: "per5.png" },
-    { name: "Dr. Ashok Seth", desc: "Fortis Escorts, Okhla, Delhi", image: "per6.png" },
-    { name: "Dr. Zile Singh Meherwal", desc: "Fortis Escorts, Okhla, Delhi", image: "per7.png" },
-    { name: "Dr. Yugal Kishore Mishra", desc: "Manipal Hospitals, Dwarka, Delhi", image: "per8.png" },
-    { name: "Dr. Praveen Chandra", desc: "Medanta - The Medicity, Gurugram, Haryana", image: "per9.png" },
-    { name: "Dr. Krishna Subramony Iyer", desc: "Fortis Escorts, Okhla, Delhi", image: "per10.png" },
-    { name: "Dr. Arul Furtado", desc: "Aster CMI Hospital, Bengaluru, KA", image: "per11.png" },
-    { name: "Dr. Ritwick Raj Bhuyan", desc: "Fortis Escorts, Okhla, Delhi", image: "per12.png" },
-    { name: "Dr. T.S. Mahant", desc: "Fortis Hospital, Mohali, PB", image: "per13.png" },
-    { name: "Dr. Ganeshakrishnan Iyer", desc: "Aster CMI Hospital, Bengaluru, KA", image: "per14.png" },
-    { name: "Dr. Manoj Durairaj", desc: "Marian Cardiac Centre and Research Foundation, Pune, MH", image: "per15.png" },
-    { name: "Dr. M M Yusuf", desc: "Apollo Hospital, Chennai, TN", image: "per16.png" },
-    { name: "Dr. Ajay Kaul", desc: "Fortis Hospital, Noida, UP", image: "per17.png" },
-    { name: "Dr. Kunal Sarkar", desc: "Medica Superspecialty Hospital, Kolkata, WB", image: "per18.png" },
-    { name: "Dr. S K Agarwal", desc: "Sanjay Gandhi Postgraduate Institute of Medical Sciences, Lucknow, UP", image: "per19.png" },
-    { name: "Dr. Arunkumar Ulaganathan", desc: "KG Hospital, Coimbatore, TN", image: "per20.png" },
-    { name: "Dr. Devagourou Velayoudam", desc: "Aiims, New Delhi", image: "per21.png" },
-    { name: "Dr. Anubhav Gupta", desc: "Vardhman Mahavir Medical College and Safdarjung Hospital, Delhi", image: "per22.png" },
-    { name: "Dr. Amit Chandan", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "per23.png" },
-    { name: "Dr. Satyajit Bose", desc: "The Mission Hospital, Durgapur, WB", image: "per24.png" },
-    { name: "Dr. Dhiren Shah", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "per25.png" }
-  ];
+const nationalFacultyList = [
+  { name: "Dr. Lalitaditya Malik", desc: "Manipal Hospitals, Jaipur, Rajasthan", image: "per2.webp" },
+  { name: "Dr. Harish Badami", desc: "Malla Reddy Narayana Hospital, Hyderabad", image: "per3.webp" },
+  { name: "Dr. Nitin Rajput", desc: "Medanta - The Medicity, Gurugram, Haryana", image: "per4.webp" },
+  { name: "Dr. Hiremath CS", desc: "Sri Sathya Sai Institute, Bengaluru, KA", image: "per5.webp" },
+  { name: "Dr. Ashok Seth", desc: "Fortis Escorts, Okhla, Delhi", image: "per6.webp" },
+  { name: "Dr. Zile Singh Meherwal", desc: "Fortis Escorts, Okhla, Delhi", image: "per7.webp" },
+  { name: "Dr. Yugal Kishore Mishra", desc: "Manipal Hospitals, Dwarka, Delhi", image: "per8.webp" },
+  { name: "Dr. Praveen Chandra", desc: "Medanta - The Medicity, Gurugram, Haryana", image: "per9.webp" },
+  { name: "Dr. Krishna Subramony Iyer", desc: "Fortis Escorts, Okhla, Delhi", image: "per10.webp" },
+  { name: "Dr. Arul Furtado", desc: "Aster CMI Hospital, Bengaluru, KA", image: "per11.webp" },
+  { name: "Dr. Ritwick Raj Bhuyan", desc: "Fortis Escorts, Okhla, Delhi", image: "per12.webp" },
+  { name: "Dr. T.S. Mahant", desc: "Fortis Hospital, Mohali, PB", image: "per13.webp" },
+  { name: "Dr. Ganeshakrishnan Iyer", desc: "Aster CMI Hospital, Bengaluru, KA", image: "per14.webp" },
+  { name: "Dr. Manoj Durairaj", desc: "Marian Cardiac Centre, Pune, MH", image: "per15.webp" },
+  { name: "Dr. M M Yusuf", desc: "Apollo Hospital, Chennai, TN", image: "per16.webp" },
+  { name: "Dr. Ajay Kaul", desc: "Fortis Hospital, Noida, UP", image: "per17.webp" },
+  { name: "Dr. Kunal Sarkar", desc: "Medica Superspecialty Hospital, Kolkata, WB", image: "per18.webp" },
+  { name: "Dr. S K Agarwal", desc: "SGPGI, Lucknow, UP", image: "per19.webp" },
+  { name: "Dr. Arunkumar Ulaganathan", desc: "KG Hospital, Coimbatore, TN", image: "per20.webp" },
+  { name: "Dr. Devagourou Velayoudam", desc: "Aiims, New Delhi", image: "per21.webp" },
+  { name: "Dr. Anubhav Gupta", desc: "Safdarjung Hospital, Delhi", image: "per22.webp" },
+  { name: "Dr. Amit Chandan", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "per23.webp" },
+  { name: "Dr. Satyajit Bose", desc: "The Mission Hospital, Durgapur, WB", image: "per24.webp" },
+  { name: "Dr. Dhiren Shah", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "per25.webp" }
+];
 
-  // --- 3. UROLOGY ---
-  const urologyFacultyList = [
-    { name: "Dr. Amitabh Singh", desc: "Rajiv Gandhi Cancer Institute and Research Center, Delhi", image: "per4.png" },
-    { name: "Dr. Sarbartha Kumar Pratihar", desc: "Rajiv Gandhi Cancer Institute and Research Center, Delhi", image: "per5.png" },
-    { name: "Dr. Nikhil Saurabh", desc: "Rajiv Gandhi Cancer Institute and Research Center, Delhi", image: "per6.png" },
-    { name: "Dr. M Ramalingam", desc: "Hindustan Hospital, Coimbatore, TN", image: "per7.png" },
-    { name: "Dr. R.S. Sinha", desc: "VMMC & Safdarjung Hospital, New Delhi", image: "per8.png" }
-  ];
-  const urologyCoChairpersons = [
-    { name: "Dr. Chandra Mohan vaddi", desc: "Preeti Urology & Kidney Hospital, Hyderabad, TL", image: "per2.png" },
-    { name: "Dr. Ritesh Mongha", desc: "Metro Hospital, Faridabad, HR", image: "per3.png" }
-  ];
+const urologyFacultyList = [
+  { name: "Dr. Amitabh Singh", desc: "RGCI, Delhi", image: "per4.webp" },
+  { name: "Dr. Sarbartha Kumar Pratihar", desc: "RGCI, Delhi", image: "per5.webp" },
+  { name: "Dr. Nikhil Saurabh", desc: "RGCI, Delhi", image: "per6.webp" },
+  { name: "Dr. M Ramalingam", desc: "Hindustan Hospital, Coimbatore, TN", image: "per7.webp" },
+  { name: "Dr. R.S. Sinha", desc: "VMMC & Safdarjung Hospital, New Delhi", image: "per8.webp" }
+];
 
-  // --- 4. GENERAL SURGERY ---
-  const generalFacultyList = [
-    { name: "Dr. Deepak Mittal", desc: "Aadhar Hospital, Hisar, HR", image: "per3.png" },
-    { name: "Dr. Harish Sharma", desc: "Aadhar Hospital, Hisar, HR", image: "per4.png" }
-  ];
+const urologyCoChairpersons = [
+  { name: "Dr. Chandra Mohan vaddi", desc: "Preeti Urology & Kidney Hospital", image: "per2.webp" },
+  { name: "Dr. Ritesh Mongha", desc: "Metro Hospital, Faridabad, HR", image: "per3.webp" }
+];
 
-  // --- 5. COLORECTAL SURGERY ---
-  const colorectalFacultyList = [
-    { name: "Dr. Deepak Mittal", desc: "Aadhar Hospital, Hisar, HR", image: "per3.png" },
-    { name: "Dr. Harish Sharma", desc: "Aadhar Hospital, Hisar, HR", image: "per4.png" }
-  ];
+const generalFacultyList = [
+  { name: "Dr. Deepak Mittal", desc: "Aadhar Hospital, Hisar, HR", image: "per3.webp" },
+  { name: "Dr. Harish Sharma", desc: "Aadhar Hospital, Hisar, HR", image: "per4.webp" }
+];
 
+const colorectalFacultyList = [
+  { name: "Dr. Deepak Mittal", desc: "Aadhar Hospital, Hisar, HR", image: "per3.webp" },
+  { name: "Dr. Harish Sharma", desc: "Aadhar Hospital, Hisar, HR", image: "per4.webp" }
+];
 
   // ==========================================
   //                STYLES
@@ -349,7 +345,7 @@ const FacultyTab = () => {
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                     <div style={cardImageContainer} className="group cursor-pointer">
                         <img 
-                            src="/images/about/cardiac/per1.png" 
+                            src="/images/about/cardiac/per1.webp" 
                             alt="Dr. Sudhir Srivastava" 
                             className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
                         />
