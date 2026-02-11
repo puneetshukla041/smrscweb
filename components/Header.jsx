@@ -39,7 +39,7 @@ const navLinks = [
     { name: "Schedule Day 1", href: "/explore?tab=day1" },
     { name: "Schedule Day 2", href: "/explore?tab=day2" },
     // If you add a Workshops tab later, this will work automatically
-    { name: "Workshops", href: "/explore?tab=day1" }, 
+
   ]
 },
   { 
