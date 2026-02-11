@@ -1,7 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-// Using standard img tag to ensure compatibility and avoid build issues
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Overview = () => {
@@ -19,11 +18,13 @@ const Overview = () => {
 
   const imageIndex = ((page % images.length) + images.length) % images.length;
 
-  const paginate = (newDirection: number) => {
+  // FIXED: Removed ': number'
+  const paginate = (newDirection) => {
     setPage(page + newDirection);
   };
 
-  const getPosition = (index: number) => {
+  // FIXED: Removed ': number'
+  const getPosition = (index) => {
     const total = images.length;
     let diff = (index - imageIndex + total) % total;
     
@@ -38,8 +39,8 @@ const Overview = () => {
   };
 
   // --- Animation Variants ---
-  // Typed as Variants to fix TypeScript error: "Type 'string' is not assignable to type 'Easing | Easing[]'"
-  const itemVariants: Variants = {
+  // FIXED: Removed ': Variants'
+  const itemVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { 
       opacity: 1, 
@@ -49,12 +50,13 @@ const Overview = () => {
   };
 
   const springTransition = {
-    type: "spring" as const,
+    type: "spring",
     stiffness: 260,
     damping: 30,
   };
 
-  const cardVariants: Variants = {
+  // FIXED: Removed ': Variants'
+  const cardVariants = {
     center: {
       x: "0%",
       scale: 1,
@@ -120,7 +122,8 @@ const Overview = () => {
     }
   };
 
-  const textVariants: Variants = {
+  // FIXED: Removed ': Variants'
+  const textVariants = {
     center: {
       y: 0,
       opacity: 1,
@@ -139,7 +142,8 @@ const Overview = () => {
   // --- Styles ---
   const arrowBtnClass = "flex w-[40px] md:w-[48px] h-[40px] md:h-[48px] p-[8px] md:p-[10px] justify-center items-center gap-[10px] rounded-full bg-white/5 hover:bg-white/10 transition-all border border-white/10 shrink-0 z-50 active:scale-95 cursor-pointer";
 
-  const cardLabelStyle: React.CSSProperties = {
+  // FIXED: Removed ': React.CSSProperties'
+  const cardLabelStyle = {
     color: '#E1C583',
     textShadow: '0 4px 4px rgba(0, 0, 0, 0.25)',
     fontFamily: '"Blauer Nue", sans-serif',
@@ -153,7 +157,8 @@ const Overview = () => {
     zIndex: 40,
   };
 
-  const indicatorContainerStyle: React.CSSProperties = {
+  // FIXED: Removed ': React.CSSProperties'
+  const indicatorContainerStyle = {
     display: 'inline-flex',
     padding: '0.75rem 1.125rem',
     alignItems: 'center',
@@ -164,8 +169,8 @@ const Overview = () => {
     backdropFilter: 'blur(4px)', 
   };
 
-  // --- Styles for Bottom Content ---
-  const dayHeadingStyle: React.CSSProperties = {
+  // FIXED: Removed ': React.CSSProperties'
+  const dayHeadingStyle = {
     width: '100%',
     maxWidth: '408px',
     color: '#F8FFFF',
@@ -174,7 +179,8 @@ const Overview = () => {
     fontWeight: 500,
   };
 
-  const dayParaStyle: React.CSSProperties = {
+  // FIXED: Removed ': React.CSSProperties'
+  const dayParaStyle = {
     width: '100%',
     maxWidth: '445px',
     color: '#E3F5F6',
@@ -187,7 +193,8 @@ const Overview = () => {
     marginBottom: '32px',
   };
 
-  const viewBtnStyle: React.CSSProperties = {
+  // FIXED: Removed ': React.CSSProperties'
+  const viewBtnStyle = {
     display: 'flex',
     width: '144px',
     padding: '12px 24px',
@@ -205,7 +212,8 @@ const Overview = () => {
     cursor: 'pointer',
   };
 
-  const calendarBtnStyle: React.CSSProperties = {
+  // FIXED: Removed ': React.CSSProperties'
+  const calendarBtnStyle = {
     display: 'flex',
     width: '162px',
     padding: '12px 24px',
@@ -232,7 +240,6 @@ const Overview = () => {
            SMRSC 2026 brings together live surgery, innovation, and global expertise across two focused days. Explore the experiences, sessions, and programs that define the conference.
          </p>
 
-         {/* Responsive Margin Top: mt-20 on mobile, mt-[265px] on desktop */}
          <h2 
            className="mt-20 md:mt-[265px] mb-8"
            style={{
@@ -260,14 +267,12 @@ const Overview = () => {
       >
         <div className="relative flex items-center justify-center w-full overflow-visible px-4 md:px-10">
           
-          {/* Left Arrow */}
           <div className="absolute left-2 md:left-10 z-[60]">
             <button onClick={() => paginate(-1)} className={arrowBtnClass}>
               <ChevronLeft className="text-white w-full h-full" />
             </button>
           </div>
 
-          {/* Slider Frame */}
           <div 
             className="relative overflow-visible shrink-0 w-full max-w-[340px] md:max-w-[1380px] h-[450px] md:h-[720px]"
           >
@@ -283,7 +288,6 @@ const Overview = () => {
                   style={{ willChange: "transform, opacity, filter" }}
                   className="absolute top-0 left-0 w-full h-full bg-transparent"
                 >
-                  {/* Animated Label */}
                   <motion.div 
                     variants={textVariants} 
                     style={cardLabelStyle}
@@ -292,9 +296,7 @@ const Overview = () => {
                     Experience Zone
                   </motion.div>
 
-                  {/* Inner Container */}
                   <div className="w-full h-full rounded-[24px] md:rounded-[40px] overflow-hidden bg-[#0a0a0a] border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.6)] relative">
-                    {/* Replaced next/image with standard img tag */}
                     <img 
                       src={img.src} 
                       alt={img.title}
@@ -307,7 +309,6 @@ const Overview = () => {
             })}
           </div>
 
-          {/* Right Arrow */}
           <div className="absolute right-2 md:right-10 z-[60]">
             <button onClick={() => paginate(1)} className={arrowBtnClass}>
               <ChevronRight className="text-white w-full h-full" />
@@ -315,7 +316,6 @@ const Overview = () => {
           </div>
         </div>
 
-        {/* Pagination Indicators */}
         <div className="mt-8 md:mt-12 z-50" style={indicatorContainerStyle}>
           {images.map((_, idx) => (
             <button
@@ -330,12 +330,9 @@ const Overview = () => {
       </motion.div>
 
       {/* 3. Bottom Section */}
-      {/* Responsive Margin Top: mt-20 on mobile, mt-[230px] on desktop */}
       <div 
         className="w-full flex flex-col items-center justify-center max-w-[1380px] px-4 md:px-0 mt-20 md:mt-[230px]"
       >
-        {/* Title Block */}
-        {/* Responsive Margin Bottom: mb-20 on mobile, mb-[350px] on desktop */}
         <div 
           className="w-full flex flex-col items-start mb-20 md:mb-[350px]" 
         >
@@ -357,7 +354,6 @@ const Overview = () => {
           >
             Two days....
           </div>
-          {/* Responsive Font Size for INFINITE POSSIBILITIES */}
           <div 
             className="text-[32px] leading-[40px] md:text-[64px] md:leading-[86px]"
             style={{
@@ -372,12 +368,8 @@ const Overview = () => {
           </div>
         </div>
 
-        {/* Day 1 Block */}
-        {/* Responsive Gap: gap-10 on mobile, gap-[80px] on desktop. Margin bottom adjusted. */}
         <div className="w-full flex flex-col md:flex-row items-center justify-between gap-10 md:gap-[80px] mb-20 md:mb-[200px]">
-           {/* Left Image - MUST have a height on mobile because flex parent is h-auto */}
            <div className="shrink-0 w-full md:w-[810px] h-[300px] md:h-[489px] relative rounded-[24px] overflow-hidden">
-             {/* Replaced next/image with standard img tag */}
              <img 
                src="/images/explore/image7.webp" 
                alt="Day 1 Science" 
@@ -385,7 +377,6 @@ const Overview = () => {
              />
            </div>
            
-           {/* Right Content */}
            <div className="flex flex-col items-start justify-center w-full max-w-[445px]">
              <h3 className="text-[28px] leading-[32px] md:text-[36px] md:leading-[40px]" style={dayHeadingStyle}>
                Day 1 - Science, Insight & Discussion
@@ -400,11 +391,8 @@ const Overview = () => {
            </div>
         </div>
 
-        {/* Day 2 Block */}
         <div className="w-full flex flex-col md:flex-row items-center justify-between gap-10 md:gap-[80px] mb-20">
-           {/* Left Image - MUST have a height on mobile */}
            <div className="shrink-0 w-full md:w-[810px] h-[300px] md:h-[489px] relative rounded-[24px] overflow-hidden">
-             {/* Replaced next/image with standard img tag */}
              <img 
                src="/images/explore/image8.webp" 
                alt="Day 2 Live Surgery" 
@@ -412,7 +400,6 @@ const Overview = () => {
              />
            </div>
            
-           {/* Right Content */}
            <div className="flex flex-col items-start justify-center w-full max-w-[445px]">
              <h3 className="text-[28px] leading-[32px] md:text-[36px] md:leading-[40px]" style={dayHeadingStyle}>
                Day 2 - Live Surgery & Hands-On Experience
@@ -426,9 +413,7 @@ const Overview = () => {
              </div>
            </div>
         </div>
-
       </div>
-
     </div>
   );
 };
