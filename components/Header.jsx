@@ -51,15 +51,15 @@ const navLinks = [
       { name: "Places to Visit", href: "/visit/places" },
     ]
   },
-  { 
-    name: "Media", 
-    href: "/media", 
-    subLinks: [
-      { name: "Blogs", href: "/media#blogs" },
-      { name: "Press Release", href: "/media#press" },
-      { name: "Media Kit", href: "/media#kit" },
-    ]
-  },
+{ 
+  name: "Media", 
+  href: "/media", 
+  subLinks: [
+    { name: "Blogs", href: "/media?tab=blogs" },
+    { name: "Press Release", href: "/media?tab=release" },
+    { name: "Media Kit", href: "/media?tab=kit" },
+  ]
+},
   { 
     name: "Past Events", 
     href: "/pastevents", 
