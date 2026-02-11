@@ -64,8 +64,8 @@ const navLinks = [
     name: "Past Events", 
     href: "/pastevents", 
     subLinks: [
-      { name: "SMRSC 2025", href: "/pastevents#2025" }, 
-      { name: "SMRSC 2024", href: "/pastevents#2024" }, 
+      { name: "SMRSC 2025", href: "/pastevents?tab=2025" }, 
+      { name: "SMRSC 2024", href: "/pastevents?tab=2024" }, 
     ]
   },
   { name: "Contact Us", href: "/contactus" }, 
