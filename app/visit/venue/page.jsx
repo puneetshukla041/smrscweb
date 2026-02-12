@@ -19,7 +19,6 @@ const VenuePage = () => {
         </p>
 
         <div className="relative w-full mt-4 h-[500px] md:h-[631px] rounded-[20px] overflow-hidden shadow-2xl group">
-          {/* UPDATED: .png -> .webp */}
           <Image
             src="/images/visit/veneu.webp" 
             alt="Bharat Mandapam"
@@ -49,7 +48,6 @@ const VenuePage = () => {
         <div className="flex flex-col lg:flex-row gap-8 items-center">
           {/* Airport */}
           <div className="relative w-full lg:w-[670px] h-[400px] overflow-hidden rounded-[40px] shadow-2xl group border border-white/10">
-            {/* UPDATED: .png -> .webp */}
             <Image 
               src="/images/visit/airport.webp" 
               alt="Airport" 
@@ -86,6 +84,26 @@ const VenuePage = () => {
               </div>
           </div>
       </div>
+
+      {/* === MAP SECTION === */}
+      <div className="w-full max-w-[1380px] mb-20 flex justify-center">
+         <div 
+           className="w-full relative rounded-[20px] overflow-hidden shadow-2xl border border-white/10"
+           style={{ aspectRatio: '1380/487' }}
+         >
+            <iframe
+              src="https://maps.google.com/maps?q=Bharat%20Mandapam%20New%20Delhi&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="grayscale-[20%] hover:grayscale-0 transition-all duration-500"
+            ></iframe>
+         </div>
+      </div>
+
     </div>
   );
 };
