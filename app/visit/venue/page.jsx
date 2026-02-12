@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import localFont from 'next/font/local';
 
-// FIXED: Added one more '../' to reach the root public folder from app/visit/venue
+// FIXED: Use three levels up (../../../) to get from 'app/visit/venue' to the root 'public' folder.
 const blauerNue = localFont({
   src: '../../../public/fonts/BlauerNue.otf', 
   display: 'swap',
@@ -123,7 +123,8 @@ const VenuePage = () => {
                 </div>
             </div>
             
-            <p className="text-[#E3F5F6] font-manrope text-[14px] font-normal opacity-60 mt-2">
+            {/* UPDATED TEXT STYLING */}
+            <p className="text-[#F8FFFF] font-manrope text-[18px] font-normal leading-[20px] w-full lg:w-[497px] mt-2">
                 Please follow venue signage upon arrival for smooth access.
             </p>
         </div>
