@@ -13,7 +13,6 @@ const Footer = () => {
     fontStyle: 'normal',
     fontWeight: 300,
     lineHeight: '32px', /* 228.571% */
-    // Moved 'width' to className for responsiveness
   };
 
   const linkStyle = {
@@ -48,10 +47,6 @@ const Footer = () => {
   };
 
   return (
-    // UPDATED PADDING: 
-    // - pt-12 (Mobile) -> lg:pt-[100px] (Desktop)
-    // - pb-[32px] (Bottom)
-    // - px-6 (Mobile) -> lg:px-[270px] (Desktop)
     <footer className="w-full pt-12 lg:pt-[100px] pb-[32px] px-6 lg:px-[270px] border-t border-white/10">
       
       {/* Font Imports */}
@@ -62,12 +57,9 @@ const Footer = () => {
       <div className="w-full mx-auto flex flex-col">
         
         {/* === TOP SECTION === */}
-        {/* Mobile: Flex-col (stacked), Desktop: Flex-row (side-by-side) */}
-        {/* Adjusted gap-12 to gap-10 for mobile to tighten spacing */}
         <div className="flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-0 mb-16">
           
           {/* 1. Logo Column */}
-          {/* Changed mr-12 to lg:mr-12 to remove right margin on mobile */}
           <div className="flex-shrink-0 lg:mr-12">
             <img 
               src="/logos/header.png" 
@@ -77,7 +69,6 @@ const Footer = () => {
           </div>
 
           {/* 2. Address Column */}
-          {/* Added className w-full lg:w-[394px] to handle responsive width */}
           <div style={addressStyle} className="lg:mr-auto w-full lg:w-[394px]">
             <p>Sudhir Srivastava Innovations Pvt. Ltd. (R&D HQ – India)</p>
             <p>404-405, 3rd Floor, iLabs Center, Udyog Vihar, Phase III, Gurugram, Haryana, India – 122016</p>
@@ -86,14 +77,10 @@ const Footer = () => {
             <p>Web: www.ssinnovations.com</p>
           </div>
 
-          {/* MOBILE FIX: Wrapped Links in a container.
-              - Mobile: flex-row gap-20 (side-by-side links)
-              - Desktop: lg:contents (Unwraps the div, children become direct siblings of main container, preserving original desktop layout)
-          */}
+          {/* Links Container */}
           <div className="flex flex-row w-full lg:w-auto justify-start gap-20 lg:gap-0 lg:contents">
             
             {/* 3. Links Column 1 */}
-            {/* Changed mr-20 to lg:mr-20 */}
             <div className="flex flex-col gap-1 lg:mr-20">
               <Link href="/about" style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">
                 About SMRSC
@@ -104,9 +91,17 @@ const Footer = () => {
               <Link href="/visit/venue" style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">
                 Venue
               </Link>
-              <Link href="/media?tab=kit" style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">
+              
+              {/* UPDATED: Brochure link does not redirect */}
+              <a 
+                href="#" 
+                onClick={(e) => e.preventDefault()} 
+                style={linkStyle} 
+                className="hover:text-[#E3F5F6] transition-colors cursor-default opacity-80"
+                title="Coming Soon"
+              >
                 Brochure
-              </Link>
+              </a>
             </div>
 
             {/* 4. Links Column 2 */}
