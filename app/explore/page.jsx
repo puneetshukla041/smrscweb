@@ -1,8 +1,8 @@
 'use client';
-import React, { useState, useEffect, Suspense } from 'react'; // Added useEffect
+import React, { useState, useEffect, Suspense } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useSearchParams, useRouter } from 'next/navigation'; // Added hooks
+import { useSearchParams, useRouter } from 'next/navigation';
 import Header from '../../components/Header'; 
 import Footer from '../../components/footer'; 
 
@@ -10,6 +10,7 @@ import Footer from '../../components/footer';
 import Overview from '../../components/explore/Overview';
 import ScheduleDay1 from '../../components/explore/ScheduleDay1';
 import ScheduleDay2 from '../../components/explore/ScheduleDay2';
+import ScheduleDay3 from '../../components/explore/ScheduleDay3'; // Added Day 3 Import
 
 const ExploreContent = () => {
   const searchParams = useSearchParams();
@@ -28,7 +29,7 @@ const ExploreContent = () => {
 
   const handleTabChange = (id) => {
     setActiveTab(id);
-    // Updates URL to http://localhost:3000/explore?tab=day1
+    // Updates URL to http://localhost:3000/explore?tab=day3
     router.push(`/explore?tab=${id}`, { scroll: false });
   };
 
@@ -36,6 +37,7 @@ const ExploreContent = () => {
     { id: 'overview', label: 'Overview' },
     { id: 'day1', label: 'Day 1' },
     { id: 'day2', label: 'Day 2' }, 
+    { id: 'day3', label: 'Day 3' }, // Added Day 3 Tab
   ];
 
   return (
@@ -117,6 +119,7 @@ const ExploreContent = () => {
             {activeTab === 'overview' && <Overview />}
             {activeTab === 'day1' && <ScheduleDay1 />}
             {activeTab === 'day2' && <ScheduleDay2 />}
+            {activeTab === 'day3' && <ScheduleDay3 />} {/* Added Day 3 Component */}
           </div>
         </div>
       </main>

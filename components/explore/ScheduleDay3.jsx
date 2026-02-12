@@ -1,7 +1,8 @@
 'use client';
 import React from 'react';
 
-const ScheduleDay2 = () => {
+// FIXED: Component name changed from ScheduleDay2 to ScheduleDay3
+const ScheduleDay3 = () => {
   return (
     <div className="w-full flex flex-col items-center animate-fadeIn pb-20 pt-10 px-4 md:px-0 bg-[#020617] min-h-[60vh]">
       

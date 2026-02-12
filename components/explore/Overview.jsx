@@ -2,8 +2,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useRouter } from 'next/navigation'; // Added for redirection
 
 const Overview = () => {
+  const router = useRouter(); // Initialize router
+
   // --- Carousel State & Logic ---
   const [page, setPage] = useState(0);
 
@@ -18,12 +21,10 @@ const Overview = () => {
 
   const imageIndex = ((page % images.length) + images.length) % images.length;
 
-  // FIXED: Removed ': number'
   const paginate = (newDirection) => {
     setPage(page + newDirection);
   };
 
-  // FIXED: Removed ': number'
   const getPosition = (index) => {
     const total = images.length;
     let diff = (index - imageIndex + total) % total;
@@ -38,8 +39,12 @@ const Overview = () => {
     return "far-right";
   };
 
+  // --- Navigation Handler ---
+  const handleNavigation = (tab) => {
+    router.push(`/explore?tab=${tab}`, { scroll: false });
+  };
+
   // --- Animation Variants ---
-  // FIXED: Removed ': Variants'
   const itemVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { 
@@ -55,7 +60,6 @@ const Overview = () => {
     damping: 30,
   };
 
-  // FIXED: Removed ': Variants'
   const cardVariants = {
     center: {
       x: "0%",
@@ -122,7 +126,6 @@ const Overview = () => {
     }
   };
 
-  // FIXED: Removed ': Variants'
   const textVariants = {
     center: {
       y: 0,
@@ -142,7 +145,6 @@ const Overview = () => {
   // --- Styles ---
   const arrowBtnClass = "flex w-[40px] md:w-[48px] h-[40px] md:h-[48px] p-[8px] md:p-[10px] justify-center items-center gap-[10px] rounded-full bg-white/5 hover:bg-white/10 transition-all border border-white/10 shrink-0 z-50 active:scale-95 cursor-pointer";
 
-  // FIXED: Removed ': React.CSSProperties'
   const cardLabelStyle = {
     color: '#E1C583',
     textShadow: '0 4px 4px rgba(0, 0, 0, 0.25)',
@@ -157,7 +159,6 @@ const Overview = () => {
     zIndex: 40,
   };
 
-  // FIXED: Removed ': React.CSSProperties'
   const indicatorContainerStyle = {
     display: 'inline-flex',
     padding: '0.75rem 1.125rem',
@@ -169,7 +170,6 @@ const Overview = () => {
     backdropFilter: 'blur(4px)', 
   };
 
-  // FIXED: Removed ': React.CSSProperties'
   const dayHeadingStyle = {
     width: '100%',
     maxWidth: '408px',
@@ -179,7 +179,6 @@ const Overview = () => {
     fontWeight: 500,
   };
 
-  // FIXED: Removed ': React.CSSProperties'
   const dayParaStyle = {
     width: '100%',
     maxWidth: '445px',
@@ -193,7 +192,6 @@ const Overview = () => {
     marginBottom: '32px',
   };
 
-  // FIXED: Removed ': React.CSSProperties'
   const viewBtnStyle = {
     display: 'flex',
     width: '144px',
@@ -212,7 +210,6 @@ const Overview = () => {
     cursor: 'pointer',
   };
 
-  // FIXED: Removed ': React.CSSProperties'
   const calendarBtnStyle = {
     display: 'flex',
     width: '162px',
@@ -237,7 +234,7 @@ const Overview = () => {
       {/* 1. Top Text Section */}
       <div className="w-full max-w-[1380px] px-4 md:px-0 flex flex-col">
          <p className="text-[#E3F5F6] font-manrope text-[24px] md:text-[32px] font-medium leading-[32px] md:leading-[40px]">
-           SMRSC 2026 brings together live surgery, innovation, and global expertise across two focused days. Explore the experiences, sessions, and programs that define the conference.
+           SMRSC 2026 brings together live surgery, innovation, and global expertise across three focused days. Explore the experiences, sessions, and programs that define the conference.
          </p>
 
          <h2 
@@ -352,7 +349,7 @@ const Overview = () => {
               lineHeight: '32px',
             }}
           >
-            Two days....
+            Three days....
           </div>
           <div 
             className="text-[32px] leading-[40px] md:text-[64px] md:leading-[86px]"
@@ -368,6 +365,7 @@ const Overview = () => {
           </div>
         </div>
 
+        {/* DAY 1 CARD */}
         <div className="w-full flex flex-col md:flex-row items-center justify-between gap-10 md:gap-[80px] mb-20 md:mb-[200px]">
            <div className="shrink-0 w-full md:w-[810px] h-[300px] md:h-[489px] relative rounded-[24px] overflow-hidden">
              <img 
@@ -385,13 +383,14 @@ const Overview = () => {
                Live robotic surgeries across multiple specialties offer real-time clinical insight. Innovation showcases highlight telesurgery, robotic platforms, and advanced instruments in action.
              </p>
              <div className="flex flex-wrap items-center gap-4">
-                 <button style={viewBtnStyle}>View Day 1</button>
+                 <button style={viewBtnStyle} onClick={() => handleNavigation('day1')}>View Day 1</button>
                  <button style={calendarBtnStyle}>Add to Calendar</button>
              </div>
            </div>
         </div>
 
-        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-10 md:gap-[80px] mb-20">
+        {/* DAY 2 CARD */}
+        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-10 md:gap-[80px] mb-20 md:mb-[200px]">
            <div className="shrink-0 w-full md:w-[810px] h-[300px] md:h-[489px] relative rounded-[24px] overflow-hidden">
              <img 
                src="/images/explore/image8.webp" 
@@ -408,11 +407,37 @@ const Overview = () => {
                Advanced techniques and training pathways take focus through structured sessions. Hands-on learning via workshops and simulations is paired with discussions on the future of connected robotic surgery.
              </p>
              <div className="flex flex-wrap items-center gap-4">
-                 <button style={viewBtnStyle}>View Day 2</button>
+                 <button style={viewBtnStyle} onClick={() => handleNavigation('day2')}>View Day 2</button>
                  <button style={calendarBtnStyle}>Add to Calendar</button>
              </div>
            </div>
         </div>
+
+        {/* DAY 3 CARD (New Addition) */}
+        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-10 md:gap-[80px] mb-20">
+           <div className="shrink-0 w-full md:w-[810px] h-[300px] md:h-[489px] relative rounded-[24px] overflow-hidden">
+             {/* Note: Ensure image9.webp exists or replace with a placeholder */}
+             <img 
+               src="/images/explore/image9.webp" 
+               alt="Day 3 Workshops" 
+               className="absolute inset-0 w-full h-full object-cover"
+             />
+           </div>
+           
+           <div className="flex flex-col items-start justify-center w-full max-w-[445px]">
+             <h3 className="text-[28px] leading-[32px] md:text-[36px] md:leading-[40px]" style={dayHeadingStyle}>
+               Day 3 - Workshops & Masterclasses
+             </h3>
+             <p style={dayParaStyle}>
+               Intensive dry-lab sessions, masterclasses on complex suturing, and deep-dives into future technologies. A dedicated day for refining skills and direct interaction with global experts.
+             </p>
+             <div className="flex flex-wrap items-center gap-4">
+                 <button style={viewBtnStyle} onClick={() => handleNavigation('day3')}>View Day 3</button>
+                 <button style={calendarBtnStyle}>Add to Calendar</button>
+             </div>
+           </div>
+        </div>
+
       </div>
     </div>
   );
