@@ -3,7 +3,8 @@ import React from 'react';
 
 const ScheduleDay1 = () => {
   return (
-    <div className="w-full flex flex-col items-center justify-center min-h-[50vh] py-20 px-4">
+    <div className="w-full flex flex-col items-ce
+    nter justify-center min-h-[50vh] py-20 px-4">
       <div className="relative">
          {/* Glow Effect */}
          <div className="absolute inset-0 bg-blue-500/20 blur-[60px] rounded-full"></div>
