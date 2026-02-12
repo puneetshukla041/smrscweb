@@ -2,6 +2,14 @@
 import React from 'react';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
+import localFont from 'next/font/local';
+
+// FIXED: Added one more '../' to reach the root public folder from app/visit/venue
+const blauerNue = localFont({
+  src: '../../../public/fonts/BlauerNue.otf', 
+  display: 'swap',
+  variable: '--font-blauer-nue',
+});
 
 const VenuePage = () => {
   return (
@@ -10,7 +18,7 @@ const VenuePage = () => {
       {/* === VENUE INFO === */}
       <div className="w-full max-w-[1377px] flex flex-col gap-8">
         
-        <h1 className="font-['Blauer_Nue'] text-[#F8FFFF] text-[36px] font-medium leading-[36px] w-full md:w-[350px]">
+        <h1 className={`${blauerNue.className} text-[#F8FFFF] text-[36px] font-medium leading-[36px] w-full md:w-[350px]`}>
           Bharat Mandapam
         </h1>
 
@@ -33,7 +41,6 @@ const VenuePage = () => {
               <p className="text-white/80 text-lg font-manrope">Pragati Maidan, New Delhi – 110001, India</p>
             </div>
             
-            {/* LINK: ITPO Website */}
             <a 
               href="https://www.itpo.gov.in/" 
               target="_blank" 
@@ -48,7 +55,7 @@ const VenuePage = () => {
 
       {/* === PLANNING JOURNEY === */}
       <div className="w-full max-w-[1377px] mt-[100px] md:mt-[150px] flex flex-col gap-12">
-        <h2 className="font-['Blauer_Nue'] text-[#F8FFFF] text-[36px] font-medium leading-[36px]">
+        <h2 className={`${blauerNue.className} text-[#F8FFFF] text-[36px] font-medium leading-[36px]`}>
           Planning your journey
         </h2>
 
@@ -70,12 +77,13 @@ const VenuePage = () => {
           
           {/* Visa */}
           <div className="flex flex-col justify-center flex-1 gap-6 p-4">
-            <h3 className="font-['Blauer_Nue'] text-[#F8FFFF] text-[36px] font-normal leading-[36px]">Visa Guidance</h3>
+            <h3 className={`${blauerNue.className} text-[#F8FFFF] text-[36px] font-normal leading-[36px]`}>
+              Visa Guidance
+            </h3>
             <p className="font-manrope text-[#F8FFFF] text-[18px] font-normal leading-[22px] max-w-[500px]">
               International attendees may require a valid Indian visa. Visa requirements vary by nationality.
             </p>
             
-            {/* LINK: India Visa Online */}
             <a 
               href="https://indianvisaonline.gov.in/" 
               target="_blank" 
@@ -121,9 +129,11 @@ const VenuePage = () => {
         </div>
       </div>
 
-      {/* === NEED HELP (Venue Context) === */}
+      {/* === NEED HELP === */}
       <div className="w-full max-w-[1377px] mt-[100px] flex flex-col gap-8 mb-10">
-          <h2 className="font-['Blauer_Nue'] text-[#F8FFFF] text-[36px] font-medium leading-[36px]">Need help? We're here.</h2>
+          <h2 className={`${blauerNue.className} text-[#F8FFFF] text-[36px] font-medium leading-[36px]`}>
+            Need help? We're here.
+          </h2>
           <div className="w-full border border-white/20 bg-white/5 rounded-[20px] p-8 md:p-10 flex flex-col gap-4">
               <p className="text-[#E6E6E6] font-manrope text-lg">Our team can assist with venue-related queries.</p>
               <div className="flex flex-col gap-1 text-[#E6E6E6]/80 font-manrope text-base mt-2">
@@ -140,7 +150,6 @@ const VenuePage = () => {
            style={{ aspectRatio: '1380/487' }}
          >
             <iframe
-              /* FIXED: Standard Google Maps Embed Query */
               src="https://maps.google.com/maps?q=Bharat+Mandapam%2C+Pragati+Maidan%2C+New+Delhi&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
