@@ -81,7 +81,7 @@ const VenuePage = () => {
           <div className="w-full border border-white/20 bg-white/5 rounded-[20px] p-8 md:p-10 flex flex-col gap-4">
               <p className="text-[#E6E6E6] font-manrope text-lg">Our team can assist with venue-related queries.</p>
               <div className="flex flex-col gap-1 text-[#E6E6E6]/80 font-manrope text-base mt-2">
-                  <p>Phone: +91 9599xxxxxx, +91 7042xxxxxx</p>
+                  <p>Phone: +91 8130027337, +91 8492010373</p>
                   <p>Mon - Fri, 8:30 to 17:30</p>
               </div>
           </div>
