@@ -12,8 +12,8 @@ const ScheduleDay1 = () => {
          <h3 className="relative z-10 text-[#E3F5F6] text-[40px] md:text-[64px] font-semibold font-['Blauer_Nue'] tracking-widest uppercase animate-pulse text-center">
            Coming Soon
          </h3>
-      </div>
-    </div>
+      </di
+      
   );
 };
 
