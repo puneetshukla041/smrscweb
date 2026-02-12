@@ -40,7 +40,7 @@ const VenuePage = () => {
       </div>
 
       {/* === PLANNING JOURNEY === */}
-      <div className="w-full max-w-[1377px] mt-[100px] md:mt-[200px] flex flex-col gap-12">
+      <div className="w-full max-w-[1377px] mt-[100px] md:mt-[150px] flex flex-col gap-12">
         <h2 className="font-['Blauer_Nue'] text-[#F8FFFF] text-[36px] font-medium leading-[36px]">
           Planning your journey
         </h2>
@@ -71,10 +71,43 @@ const VenuePage = () => {
             </button>
           </div>
         </div>
+
+        {/* === NEW SECTION: ENTRY & METRO INFO === */}
+        <div className="flex flex-col gap-4 mt-8">
+            <div className="flex flex-col lg:flex-row gap-6 justify-between">
+                {/* Box 1: Car & Cab */}
+                <div className="flex flex-col justify-center gap-[10px] p-[20px_16px] rounded-[20px] border border-white/20 bg-transparent w-full lg:w-[426px]">
+                    <h3 className="text-[#F8FFFF] font-manrope text-[20px] font-normal">Car & Cab Entry</h3>
+                    <p className="text-[#E3F5F6] font-manrope text-[16px] font-normal opacity-80">
+                        Use <span className="font-bold text-white">Gate 7</span> for all vehicle access and drop-offs.
+                    </p>
+                </div>
+
+                {/* Box 2: Pedestrian */}
+                <div className="flex flex-col justify-center gap-[10px] p-[20px_16px] rounded-[20px] border border-white/20 bg-transparent w-full lg:w-[426px]">
+                    <h3 className="text-[#F8FFFF] font-manrope text-[20px] font-normal">Pedestrian Entry</h3>
+                    <p className="text-[#E3F5F6] font-manrope text-[16px] font-normal opacity-80">
+                        Use <span className="font-bold text-white">Gate 10</span> if arriving by metro or on foot.
+                    </p>
+                </div>
+
+                {/* Box 3: Metro */}
+                <div className="flex flex-col justify-center gap-[10px] p-[20px_16px] rounded-[20px] border border-white/20 bg-transparent w-full lg:w-[426px]">
+                    <h3 className="text-[#F8FFFF] font-manrope text-[20px] font-normal">Nearest Metro</h3>
+                    <p className="text-[#E3F5F6] font-manrope text-[16px] font-normal opacity-80">
+                        Supreme Court Metro Station — a short walk to Gate 10.
+                    </p>
+                </div>
+            </div>
+            
+            <p className="text-[#E3F5F6] font-manrope text-[14px] font-normal opacity-60 mt-2">
+                Please follow venue signage upon arrival for smooth access.
+            </p>
+        </div>
       </div>
 
       {/* === NEED HELP (Venue Context) === */}
-      <div className="w-full max-w-[1377px] mt-[100px] md:mt-[200px] flex flex-col gap-8 mb-10">
+      <div className="w-full max-w-[1377px] mt-[100px] flex flex-col gap-8 mb-10">
           <h2 className="font-['Blauer_Nue'] text-[#F8FFFF] text-[36px] font-medium leading-[36px]">Need help? We're here.</h2>
           <div className="w-full border border-white/20 bg-white/5 rounded-[20px] p-8 md:p-10 flex flex-col gap-4">
               <p className="text-[#E6E6E6] font-manrope text-lg">Our team can assist with venue-related queries.</p>
@@ -92,7 +125,7 @@ const VenuePage = () => {
            style={{ aspectRatio: '1380/487' }}
          >
             <iframe
-              src="https://maps.google.com/maps?q=Bharat%20Mandapam%20New%20Delhi&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=Bharat+Mandapam,+Pragati+Maidan,+New+Delhi&t=&z=14&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
