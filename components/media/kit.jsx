@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 
+
 const ScheduleDay1 = () => {
   return (
     <div className="w-full flex flex-col items-center justify-center min-h-[50vh] py-20 px-4">
