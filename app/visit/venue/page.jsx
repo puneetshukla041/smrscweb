@@ -32,9 +32,16 @@ const VenuePage = () => {
               <h3 className="text-white text-2xl font-bold font-manrope">Bharat Mandapam</h3>
               <p className="text-white/80 text-lg font-manrope">Pragati Maidan, New Delhi – 110001, India</p>
             </div>
-            <button className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-manrope font-semibold text-sm transition-all hover:bg-[#CE921B] hover:text-white">
+            
+            {/* UPDATED LINK: ITPO Website */}
+            <a 
+              href="https://www.itpo.gov.in/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-manrope font-semibold text-sm transition-all hover:bg-[#CE921B] hover:text-white"
+            >
               See More <ArrowRight size={16} />
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -60,15 +67,23 @@ const VenuePage = () => {
               <p className="text-[#F8FFFF] font-manrope text-[16px] font-normal leading-[20px]">Nearest international airport<br />30 minutes to the venue</p>
             </div>
           </div>
+          
           {/* Visa */}
           <div className="flex flex-col justify-center flex-1 gap-6 p-4">
             <h3 className="font-['Blauer_Nue'] text-[#F8FFFF] text-[36px] font-normal leading-[36px]">Visa Guidance</h3>
             <p className="font-manrope text-[#F8FFFF] text-[18px] font-normal leading-[22px] max-w-[500px]">
               International attendees may require a valid Indian visa. Visa requirements vary by nationality.
             </p>
-            <button className="flex items-center justify-center gap-2 bg-white text-black w-fit px-8 py-3 rounded-full font-manrope font-semibold text-sm transition-all hover:bg-[#CE921B] hover:text-white">
+            
+            {/* UPDATED LINK: India Visa Online */}
+            <a 
+              href="https://indianvisaonline.gov.in/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 bg-white text-black w-fit px-8 py-3 rounded-full font-manrope font-semibold text-sm transition-all hover:bg-[#CE921B] hover:text-white"
+            >
               Check visa requirements <ArrowRight size={16} />
-            </button>
+            </a>
           </div>
         </div>
 
@@ -125,7 +140,7 @@ const VenuePage = () => {
            style={{ aspectRatio: '1380/487' }}
          >
             <iframe
-              src="https://maps.google.com/maps?q=Bharat+Mandapam,+Pragati+Maidan,+New+Delhi&t=&z=14&ie=UTF8&iwloc=&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.285860012224!2d77.23785467615965!3d28.62119047567098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce322e211a095%3A0x1db02b6d0ca0702a!2sBharat%20Mandapam%20Convention%20Center!5e0!3m2!1sen!2sin!4v1707742125500!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ border: 0 }}
