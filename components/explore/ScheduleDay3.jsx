@@ -26,7 +26,7 @@ const ScheduleDay2 = () => {
             background: 'linear-gradient(90deg, rgba(11, 211, 211, 0.80) 2.04%, rgba(34, 92, 240, 0.80) 99.58%)'
           }}
         >
-           <span className="text-white text-lg font-medium">Day 2</span>
+           <span className="text-white text-lg font-medium">Day 3</span>
         </div>
 
         {/* Content Area with Coming Soon message */}
