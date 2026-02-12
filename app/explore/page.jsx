@@ -120,6 +120,7 @@ const ExploreContent = () => {
           </div>
         </div>
       </main>
+      
   );
 };
 
