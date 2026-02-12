@@ -11,7 +11,6 @@ const hotels = [
     distance: '2.6 km',
     rating: '4.1',
     price: 'INR 18,000/ night',
-    // UPDATED: .png -> .webp
     image: '/images/visit/venue1.webp',
   },
   {
@@ -90,7 +89,7 @@ const HotelsPage = () => {
                 </div>
 
                 {/* Content */}
-                <div className="flex flex-col w-full h-full justify-between">
+                <div className="flex flex-col w-full h-full justify-center">
                   <div>
                     <h3 className="font-manrope text-[28px] font-semibold leading-[24px] text-white mb-2">
                       {hotel.name}
@@ -113,21 +112,14 @@ const HotelsPage = () => {
                       {hotel.price}
                     </p>
                   </div>
-                  <div className="flex justify-end mt-4">
-                    <button className="flex items-center gap-2 px-3 py-2 rounded-[24px] bg-[#F8FFFF] text-[#020617] text-sm font-medium hover:bg-white transition-colors">
-                      See More
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                      </svg>
-                    </button>
-                  </div>
+                  {/* BUTTON REMOVED HERE */}
                 </div>
               </div>
             ))}
           </div>
 
           {/* --- Need Help Section --- */}
-          <div className="w-full max-w-[1344px] flex flex-col gap-6">
+          <div className="w-full max-w-[1344px] flex flex-col gap-6 mb-20">
             
             {/* Title */}
             <h2 className="text-[#F8FFFF] text-[36px] font-semibold leading-normal font-['Blauer_Nue'] w-full max-w-[472px]">
