@@ -140,7 +140,7 @@ const VenuePage = () => {
            style={{ aspectRatio: '1380/487' }}
          >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.285860012224!2d77.23785467615965!3d28.62119047567098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce322e211a095%3A0x1db02b6d0ca0702a!2sBharat%20Mandapam%20Convention%20Center!5e0!3m2!1sen!2sin!4v1707742125500!5m2!1sen!2sin"
+              src="https://maps.google.com/?cid=2139257570347479082&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ"
               width="100%"
               height="100%"
               style={{ border: 0 }}
