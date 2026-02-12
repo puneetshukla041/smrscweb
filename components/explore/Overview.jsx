@@ -412,32 +412,30 @@ const Overview = () => {
              </div>
            </div>
         </div>
-
-        {/* DAY 3 CARD (New Addition) */}
-        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-10 md:gap-[80px] mb-20">
-           <div className="shrink-0 w-full md:w-[810px] h-[300px] md:h-[489px] relative rounded-[24px] overflow-hidden">
-             {/* Note: Ensure image9.webp exists or replace with a placeholder */}
-             <img 
-               src="/images/explore/image9.webp" 
-               alt="Day 3 Workshops" 
-               className="absolute inset-0 w-full h-full object-cover"
-             />
-           </div>
-           
-           <div className="flex flex-col items-start justify-center w-full max-w-[445px]">
-             <h3 className="text-[28px] leading-[32px] md:text-[36px] md:leading-[40px]" style={dayHeadingStyle}>
-               Day 3 - Workshops & Masterclasses
-             </h3>
-             <p style={dayParaStyle}>
-               Intensive dry-lab sessions, masterclasses on complex suturing, and deep-dives into future technologies. A dedicated day for refining skills and direct interaction with global experts.
-             </p>
-             <div className="flex flex-wrap items-center gap-4">
-                 <button style={viewBtnStyle} onClick={() => handleNavigation('day3')}>View Day 3</button>
-                 <button style={calendarBtnStyle}>Add to Calendar</button>
-             </div>
-           </div>
-        </div>
-
+{/* DAY 3 CARD */}
+<div className="w-full flex flex-col md:flex-row items-center justify-between gap-10 md:gap-[80px] mb-20">
+   <div className="shrink-0 w-full md:w-[810px] h-[300px] md:h-[489px] relative rounded-[24px] overflow-hidden">
+     {/* Make sure this image exists or use a placeholder */}
+     <img 
+       src="/images/explore/image9.webp" 
+       alt="Day 3 Workshops" 
+       className="absolute inset-0 w-full h-full object-cover"
+     />
+   </div>
+   
+   <div className="flex flex-col items-start justify-center w-full max-w-[445px]">
+     <h3 className="text-[28px] leading-[32px] md:text-[36px] md:leading-[40px]" style={dayHeadingStyle}>
+       Day 3 - Workshops & Masterclasses
+     </h3>
+     <p style={dayParaStyle}>
+       Intensive dry-lab sessions, masterclasses on complex suturing, and deep-dives into future technologies.
+     </p>
+     <div className="flex flex-wrap items-center gap-4">
+         <button style={viewBtnStyle} onClick={() => handleNavigation('day3')}>View Day 3</button>
+         <button style={calendarBtnStyle}>Add to Calendar</button>
+     </div>
+   </div>
+</div>
       </div>
     </div>
   );
