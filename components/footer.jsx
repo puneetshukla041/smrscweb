@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { Instagram, Linkedin, Mail, Phone } from 'lucide-react';
+import Link from 'next/link';
 
 const Footer = () => {
   // --- Styles ---
@@ -23,6 +24,7 @@ const Footer = () => {
     fontWeight: 500,
     lineHeight: '32px',
     cursor: 'pointer',
+    display: 'block', // Ensure links take up space
   };
 
   const bottomLinkStyle = {
@@ -93,17 +95,31 @@ const Footer = () => {
             {/* 3. Links Column 1 */}
             {/* Changed mr-20 to lg:mr-20 */}
             <div className="flex flex-col gap-1 lg:mr-20">
-              <a style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">About SMRSC</a>
-              <a style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">Explore Event</a>
-              <a style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">Venue</a>
-              <a style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">Brochure</a>
+              <Link href="/about" style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">
+                About SMRSC
+              </Link>
+              <Link href="/explore" style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">
+                Explore Event
+              </Link>
+              <Link href="/visit/venue" style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">
+                Venue
+              </Link>
+              <Link href="/media?tab=kit" style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">
+                Brochure
+              </Link>
             </div>
 
             {/* 4. Links Column 2 */}
             <div className="flex flex-col gap-1">
-              <a style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">Media</a>
-              <a style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">Register now</a>
-              <a style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">Contact us</a>
+              <Link href="/media" style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">
+                Media
+              </Link>
+              <Link href="/register" style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">
+                Register now
+              </Link>
+              <Link href="/contactus" style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">
+                Contact us
+              </Link>
             </div>
 
           </div>
@@ -120,26 +136,26 @@ const Footer = () => {
           <div className="flex items-center gap-4">
             <a href="#" className="text-white hover:text-[#E3F5F6] transition-colors">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231h0.001zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z" />
-               </svg>
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231h0.001zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z" />
+                </svg>
             </a>
             <a href="#" className="text-white hover:text-[#E3F5F6] transition-colors"><Instagram size={20} /></a>
             <a href="#" className="text-white hover:text-[#E3F5F6] transition-colors"><Linkedin size={20} /></a>
-            <a href="#" className="text-white hover:text-[#E3F5F6] transition-colors"><Mail size={20} /></a>
-            <a href="#" className="text-white hover:text-[#E3F5F6] transition-colors"><Phone size={20} /></a>
+            <a href="mailto:smrsc@ssinnovations.org" className="text-white hover:text-[#E3F5F6] transition-colors"><Mail size={20} /></a>
+            <a href="tel:+918130027337" className="text-white hover:text-[#E3F5F6] transition-colors"><Phone size={20} /></a>
           </div>
 
           {/* Legal Links */}
           <div className="flex flex-wrap justify-center gap-2 md:gap-6 text-center">
-              <span style={bottomLinkStyle} className="hover:text-white">Cookies</span>
+              <Link href="#" style={bottomLinkStyle} className="hover:text-white">Cookies</Link>
               <span style={bottomLinkStyle}>|</span>
-              <span style={bottomLinkStyle} className="hover:text-white">Privacy Policy</span>
+              <Link href="#" style={bottomLinkStyle} className="hover:text-white">Privacy Policy</Link>
               <span style={bottomLinkStyle}>|</span>
-              <span style={bottomLinkStyle} className="hover:text-white">Contact us</span>
+              <Link href="/contactus" style={bottomLinkStyle} className="hover:text-white">Contact us</Link>
               <span style={bottomLinkStyle}>|</span>
-              <span style={bottomLinkStyle} className="hover:text-white">Terms of use</span>
+              <Link href="#" style={bottomLinkStyle} className="hover:text-white">Terms of use</Link>
               <span style={bottomLinkStyle}>|</span>
-              <span style={bottomLinkStyle} className="hover:text-white">Sitemap</span>
+              <Link href="#" style={bottomLinkStyle} className="hover:text-white">Sitemap</Link>
           </div>
         </div>
 
