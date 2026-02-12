@@ -135,7 +135,7 @@ const HotelsPage = () => {
                 </p>
 
                 <div>
-                  <p>Phone: +91 9599xxxxxx, +91 7042xxxxxx</p>
+                  <p>Phone: +91 8130027337, +91 8492010373</p>
                   <p>Mon - Fri, 8:30 to 17:30</p>
                 </div>
 
