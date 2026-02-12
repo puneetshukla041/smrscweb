@@ -33,7 +33,7 @@ const VenuePage = () => {
               <p className="text-white/80 text-lg font-manrope">Pragati Maidan, New Delhi – 110001, India</p>
             </div>
             
-            {/* UPDATED LINK: ITPO Website */}
+            {/* LINK: ITPO Website */}
             <a 
               href="https://www.itpo.gov.in/" 
               target="_blank" 
@@ -75,7 +75,7 @@ const VenuePage = () => {
               International attendees may require a valid Indian visa. Visa requirements vary by nationality.
             </p>
             
-            {/* UPDATED LINK: India Visa Online */}
+            {/* LINK: India Visa Online */}
             <a 
               href="https://indianvisaonline.gov.in/" 
               target="_blank" 
@@ -87,7 +87,7 @@ const VenuePage = () => {
           </div>
         </div>
 
-        {/* === NEW SECTION: ENTRY & METRO INFO === */}
+        {/* === ENTRY & METRO INFO === */}
         <div className="flex flex-col gap-4 mt-8">
             <div className="flex flex-col lg:flex-row gap-6 justify-between">
                 {/* Box 1: Car & Cab */}
@@ -140,7 +140,8 @@ const VenuePage = () => {
            style={{ aspectRatio: '1380/487' }}
          >
             <iframe
-              src="https://maps.google.com/?cid=2139257570347479082&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ"
+              /* FIXED: Standard Google Maps Embed Query */
+              src="https://maps.google.com/maps?q=Bharat+Mandapam%2C+Pragati+Maidan%2C+New+Delhi&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
