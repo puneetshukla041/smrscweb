@@ -7,7 +7,8 @@ import { usePathname, useRouter } from 'next/navigation';
 
 // --- 1. PROFESSIONAL SEARCH INDEX (The "Brain") ---
 const SEARCH_INDEX = [
-  { title: "Conference Agenda & Schedule", href: "/explore", category: "Program", icon: <Calendar size={20}/>, tags: ["timing", "dates", "plan", "day 1", "day 2"] },
+  // Updated tags to include "day 3"
+  { title: "Conference Agenda & Schedule", href: "/explore", category: "Program", icon: <Calendar size={20}/>, tags: ["timing", "dates", "plan", "day 1", "day 2", "day 3"] },
   { title: "Scientific Workshops", href: "/explore#workshops", category: "Program", icon: <FileText size={20}/>, tags: ["training", "hands on", "learning"] },
   { title: "Organizing Committee", href: "/about#committee", category: "Leadership", icon: <Users size={20}/>, tags: ["board", "team", "chairman", "secretary"] },
   { title: "International Faculty", href: "/about#faculty", category: "Speakers", icon: <Users size={20}/>, tags: ["doctors", "professors", "guests", "experts"] },
@@ -38,8 +39,7 @@ const navLinks = [
     { name: "Overview", href: "/explore?tab=overview" },
     { name: "Schedule Day 1", href: "/explore?tab=day1" },
     { name: "Schedule Day 2", href: "/explore?tab=day2" },
-    // If you add a Workshops tab later, this will work automatically
-
+    { name: "Schedule Day 3", href: "/explore?tab=day3" }, // Added Day 3 here
   ]
 },
   { 
