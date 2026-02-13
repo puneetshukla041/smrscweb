@@ -1,9 +1,14 @@
 'use client';
+
 import React, { useState, useEffect } from "react";
 import { Search, Menu, X, ChevronDown, Calendar, FileText, Users, MapPin, ArrowRight, Sparkles, CornerDownLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from 'next/link'; 
-import { usePathname, useRouter } from 'next/navigation'; 
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+
+/* -------------------------------------------------------------------------- */
+/* CONSTANTS                                   */
+/* -------------------------------------------------------------------------- */
 
 const SEARCH_INDEX = [
   { title: "Conference Agenda & Schedule", href: "/explore", category: "Program", icon: <Calendar size={20}/>, tags: ["timing", "dates", "plan", "day 1", "day 2", "day 3"] },
@@ -16,7 +21,7 @@ const SEARCH_INDEX = [
   { title: "Contact Support", href: "/contactus", category: "Support", icon: <Users size={20}/>, tags: ["help", "email", "phone"] },
 ];
 
-const navLinks = [
+const NAV_LINKS = [
   {
     name: "About",
     href: "/about",
@@ -66,35 +71,39 @@ const navLinks = [
   { name: "Contact Us", href: "/contactus" }, 
 ];
 
-const premiumSpring = { type: "spring", stiffness: 300, damping: 30, mass: 1 };
-const softSpring = { type: "spring", stiffness: 120, damping: 20, mass: 0.8 };
+const ANIMATION_SPRING = { type: "spring", stiffness: 300, damping: 30, mass: 1 };
+const SOFT_SPRING = { type: "spring", stiffness: 120, damping: 20, mass: 0.8 };
 
-const mobileContainerVars = {
-  initial: { opacity: 0 },
-  open: { 
-    opacity: 1, 
-    transition: { staggerChildren: 0.08, delayChildren: 0.1 } 
+const MOBILE_VARIANTS = {
+  container: {
+    initial: { opacity: 0 },
+    open: { 
+      opacity: 1, 
+      transition: { staggerChildren: 0.08, delayChildren: 0.1 } 
+    },
+    exit: { 
+      opacity: 0, 
+      transition: { staggerChildren: 0.05, staggerDirection: -1, when: "afterChildren" } 
+    }
   },
-  exit: { 
-    opacity: 0, 
-    transition: { staggerChildren: 0.05, staggerDirection: -1, when: "afterChildren" } 
+  link: {
+    initial: { y: 20, opacity: 0 },
+    open: { 
+      y: 0, 
+      opacity: 1, 
+      transition: { ease: [0.16, 1, 0.3, 1], duration: 0.6 } 
+    },
+    exit: { 
+      y: 20, 
+      opacity: 0, 
+      transition: { duration: 0.3 } 
+    }
   }
 };
 
-const mobileLinkVars = {
-  initial: { y: 20, opacity: 0 },
-  open: { 
-    y: 0, 
-    opacity: 1, 
-    transition: { ease: [0.16, 1, 0.3, 1], duration: 0.6 } 
-  },
-  exit: { 
-    y: 20, 
-    opacity: 0, 
-    transition: { duration: 0.3 } 
-  }
-};
-
+/* -------------------------------------------------------------------------- */
+/* MAIN COMPONENT                              */
+/* -------------------------------------------------------------------------- */
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -118,9 +127,11 @@ export default function Header() {
   useEffect(() => {
     setMounted(true);
     const targetDate = new Date("2026-04-08T00:00:00").getTime();
+    
     const updateTimer = () => {
       const now = new Date().getTime();
       const distance = targetDate - now;
+      
       if (distance < 0) {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       } else {
@@ -132,6 +143,7 @@ export default function Header() {
         });
       }
     };
+    
     updateTimer(); 
     const interval = setInterval(updateTimer, 1000);
     return () => clearInterval(interval);
@@ -154,16 +166,15 @@ export default function Header() {
       >
         <div className="w-full max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8 py-4 flex items-center justify-between">
           
-          {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <Link 
               href="/" 
-              prefetch={true} // 🔥 CRITICAL FOR INSTANT LOAD
+              prefetch={true}
               className="cursor-pointer block relative z-[120]"
             >
               <motion.img
                 whileHover={{ scale: 1.05 }}
-                transition={softSpring}
+                transition={SOFT_SPRING}
                 src="/logos/header.png" 
                 alt="SMRSC Logo"
                 className="w-[90px] md:w-[110px] h-auto brightness-200" 
@@ -171,9 +182,8 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-x-14 flex-1 justify-center h-full">
-            {navLinks.map((link) => {
+            {NAV_LINKS.map((link) => {
               const isActive = isActiveLink(link.href);
               const showLine = hoveredLink === link.name || (isActive && hoveredLink === null);
 
@@ -184,10 +194,9 @@ export default function Header() {
                   onMouseEnter={() => setHoveredLink(link.name)}
                   onMouseLeave={() => setHoveredLink(null)}
                 >
-                  {/* --- 1. DESKTOP MAIN LINKS --- */}
                   <Link 
                     href={link.href}
-                    prefetch={true} // 🔥 CRITICAL FOR INSTANT LOAD
+                    prefetch={true}
                     className={`${navTextStyle} relative flex items-center gap-1 ${isActive ? "text-white font-semibold" : "text-[#E6E6E6] font-medium hover:text-white"}`}
                   >
                     {link.name}
@@ -203,13 +212,12 @@ export default function Header() {
                           initial={{ width: "0px", opacity: 0 }}
                           animate={{ width: "92px", opacity: 1 }}
                           exit={{ width: "0px", opacity: 0, transition: { duration: 0.2 } }}
-                          transition={premiumSpring} 
+                          transition={ANIMATION_SPRING} 
                         />
                       )}
                     </AnimatePresence>
                   </Link>
 
-                  {/* Dropdown */}
                   <AnimatePresence>
                     {link.subLinks && hoveredLink === link.name && (
                       <motion.div
@@ -228,10 +236,9 @@ export default function Header() {
                               transition={{ delay: idx * 0.04 }} 
                               className="w-full"
                             >
-                              {/* --- 2. DESKTOP SUB LINKS --- */}
                               <Link
                                 href={subLink.href}
-                                prefetch={true} // 🔥 CRITICAL FOR INSTANT LOAD
+                                prefetch={true}
                                 className={`whitespace-nowrap text-sm w-full text-center py-2 rounded-md transition-all duration-200 font-['Manrope',_sans-serif] block ${pathname === subLink.href.split('#')[0] ? "text-white bg-white/5 font-medium" : "text-[#E6E6E6]/80 hover:text-white hover:bg-white/5"}`}
                               >
                                 {subLink.name}
@@ -247,7 +254,6 @@ export default function Header() {
             })}
           </nav>
 
-          {/* Desktop Action Buttons */}
           <div className="hidden lg:flex items-center gap-x-6 flex-shrink-0">
             <motion.button 
               whileHover={{ scale: 1.1 }}
@@ -270,7 +276,6 @@ export default function Header() {
             </motion.div>
           </div>
 
-          {/* Mobile Toggle Button */}
           <div className="lg:hidden flex items-center gap-4 relative z-[120]">
             <button 
               onClick={() => setIsSearchOpen(true)}
@@ -287,7 +292,6 @@ export default function Header() {
           </div>
         </div>
 
-        {/* --- BOTTOM ROW: RESPONSIVE TIMER STRIP --- */}
         {mounted && (
           <div className="hidden md:flex w-full justify-center items-center py-2.5 md:py-2 border-t border-white/5">
             <div className="flex items-center gap-3 md:gap-6">
@@ -303,7 +307,6 @@ export default function Header() {
         )}
       </motion.header>
 
-      {/* --- MOBILE MENU --- */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -314,26 +317,25 @@ export default function Header() {
             className="fixed inset-0 z-[100] bg-[#02091A]/95 backdrop-blur-xl flex flex-col pt-28 px-6 pb-6"
           >
             <motion.nav 
-              variants={mobileContainerVars}
+              variants={MOBILE_VARIANTS.container}
               initial="initial"
               animate="open"
               exit="exit"
               className="flex flex-col h-full overflow-y-auto"
             >
               <div className="flex flex-col gap-y-2">
-                {navLinks.map((link) => {
+                {NAV_LINKS.map((link) => {
                   const isActive = isActiveLink(link.href);
                   return (
                     <div key={link.name} className="flex flex-col border-b border-white/5 pb-2">
                       <motion.div 
-                        variants={mobileLinkVars}
+                        variants={MOBILE_VARIANTS.link}
                         className="flex items-center justify-between py-2 group cursor-pointer"
                         onClick={() => link.subLinks ? toggleCategory(link.name) : setIsMenuOpen(false)}
                       >
-                        {/* --- 3. MOBILE MAIN LINKS --- */}
                         <Link 
                           href={link.href} 
-                          prefetch={true} // 🔥 CRITICAL FOR INSTANT LOAD
+                          prefetch={true}
                           onClick={(e) => { if(link.subLinks) e.preventDefault(); }}
                           className={`text-2xl font-light font-sans tracking-tight transition-colors ${isActive || openCategory === link.name ? "text-[#CE921B]" : "text-white"}`}
                         >
@@ -342,7 +344,7 @@ export default function Header() {
                         {link.subLinks && (
                           <motion.span
                             animate={{ rotate: openCategory === link.name ? 180 : 0 }}
-                            transition={softSpring}
+                            transition={SOFT_SPRING}
                             className={`p-2 rounded-full ${openCategory === link.name ? "text-[#CE921B] bg-[#CE921B]/10" : "text-white/50"}`}
                           >
                             <ChevronDown size={20} />
@@ -367,10 +369,9 @@ export default function Header() {
                                   animate={{ x: 0, opacity: 1 }}
                                   transition={{ delay: subIdx * 0.05 }}
                                 >
-                                  {/* --- 4. MOBILE SUB LINKS --- */}
                                   <Link
                                     href={sub.href}
-                                    prefetch={true} // 🔥 CRITICAL FOR INSTANT LOAD
+                                    prefetch={true}
                                     onClick={() => setIsMenuOpen(false)}
                                     className={`block text-base font-sans pl-4 border-l-2 transition-all ${isActiveLink(sub.href) ? "text-[#CE921B] border-[#CE921B]" : "text-white/60 hover:text-white border-white/10 hover:border-[#CE921B]"}`}
                                   >
@@ -399,7 +400,10 @@ export default function Header() {
   );
 }
 
-// ... TimerBlock, Separator, and SearchModal remain exactly the same below ...
+/* -------------------------------------------------------------------------- */
+/* SUB-COMPONENTS                                  */
+/* -------------------------------------------------------------------------- */
+
 const TimerBlock = ({ value, label }) => (
   <div className="flex flex-col items-center gap-[2px] w-[45px] md:w-[60px]">
     <span className="text-[#E6E6E6] text-[14px] md:text-[16px] font-medium font-['Manrope'] leading-[20px] tabular-nums tracking-wide">
@@ -423,7 +427,7 @@ function SearchModal({ isOpen, onClose }) {
   const [selectedIndex, setSelectedIndex] = useState(0); 
   const router = useRouter();
   
-  const quickLinks = [
+  const QUICK_LINKS = [
     { name: "Scientific Agenda", href: "/explore", icon: <FileText size={18} /> },
     { name: "Registration", href: "/register", icon: <Users size={18} /> },
     { name: "Venue Map", href: "/visit/venue", icon: <MapPin size={18} /> },
@@ -439,7 +443,7 @@ function SearchModal({ isOpen, onClose }) {
 
   useEffect(() => {
     if (!query) {
-      setResults(quickLinks); 
+      setResults(QUICK_LINKS); 
       setSelectedIndex(0);
       return;
     }
