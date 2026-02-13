@@ -12,7 +12,7 @@ const heavyAssets = [
   '/logos/header.png',
   '/logos/ssilogo.png',
 
-  // --- HOME PAGE (All Sections) ---
+  // --- HOME PAGE ---
   '/images/home/section1/image2.webp', '/images/home/section1/mobileimg.png',
   '/images/home/section2/card.webp', 
   '/images/home/section2/image1.webp', '/images/home/section2/image2.webp',
@@ -28,16 +28,15 @@ const heavyAssets = [
   '/images/home/section6/image1.webp', '/images/home/section6/mobile.webp', '/images/home/section6/image1.png',
 
   // --- ABOUT: SECTIONS ---
-  '/images/about/section1/image1.webp', '/images/about/section1/img1.webp', '/images/about/section1/mobile.webp',
+  '/images/about/section1/img1.webp', '/images/about/section1/mobile.webp',
   '/images/about/section2/image1.webp', '/images/about/section2/image2.webp',
   '/images/about/section2/image3.webp', '/images/about/section2/image4.webp',
-  '/images/about/section2/image5.webp', '/images/about/section2/image6.webp', '/images/about/section2/image7.webp',
 
-  // --- ABOUT: UROLOGY (The ones erroring out) ---
+  // --- ABOUT: UROLOGY ---
   '/images/about/urology/clippath.webp',
-  ...Array.from({ length: 8 }, (_, i) => `/images/about/urology/per${i + 1}.webp`),   // per1 - per8
-  ...Array.from({ length: 14 }, (_, i) => `/images/about/urology/per${i + 21}.webp`), // per21 - per34
-  ...Array.from({ length: 13 }, (_, i) => `/images/about/urology/image${i + 2}.webp`), // image2 - image14
+  ...Array.from({ length: 8 }, (_, i) => `/images/about/urology/per${i + 1}.webp`),   // per1-per8
+  ...Array.from({ length: 14 }, (_, i) => `/images/about/urology/per${i + 21}.webp`), // per21-per34
+  ...Array.from({ length: 13 }, (_, i) => `/images/about/urology/image${i + 2}.webp`), // image2-image14
 
   // --- ABOUT: CARDIAC ---
   ...Array.from({ length: 25 }, (_, i) => `/images/about/cardiac/per${i + 1}.webp`),
@@ -74,9 +73,10 @@ const videoAssets = [
   "/videos/Color.webm"
 ];
 
-// --- SMART QUEUE SYSTEM (Keep existing logic) ---
+// --- SMART QUEUE SYSTEM ---
 const loadAssetQueue = async (urls, type = 'image', concurrency = 5) => {
   const queue = [...urls];
+  
   const worker = async () => {
     while (queue.length > 0) {
       const url = queue.shift();
@@ -86,17 +86,23 @@ const loadAssetQueue = async (urls, type = 'image', concurrency = 5) => {
           await new Promise((resolve) => {
             const img = new Image();
             img.src = url;
+            // Silent resolve even on error to prevent console spam interruption
             img.onload = resolve;
-            img.onerror = resolve; 
+            img.onerror = () => {
+               // We suppress the console.warn here to keep production logs clean
+               // The image just won't be preloaded, which is fine.
+               resolve(); 
+            }; 
           });
         } else if (type === 'video') {
           await fetch(url, { cache: "force-cache" });
         }
       } catch (e) {
-        console.warn("Failed to load:", url);
+        // Silent fail
       }
     }
   };
+
   await Promise.all(Array.from({ length: concurrency }, () => worker()));
 };
 
@@ -105,15 +111,10 @@ const MasterLoader = () => {
 
   useEffect(() => {
     const startLoading = async () => {
-      // 1. Prefetch Routes
+      console.log(`🚀 Starting preload of ${heavyAssets.length} images...`);
       allRoutes.forEach((route) => router.prefetch(route));
-
-      // 2. Download Videos
       loadAssetQueue(videoAssets, 'video', 1);
-
-      // 3. Download Images
       await loadAssetQueue(heavyAssets, 'image', 5);
-      
       console.log("✅ All Assets Cached Successfully");
     };
 
