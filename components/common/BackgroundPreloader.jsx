@@ -1,154 +1,170 @@
-'use client';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+'use client'
 
-export default function BackgroundPreloader() {
-  const router = useRouter();
+import { useEffect, useState, useRef } from 'react'
+
+export default function AuthBackground() {
+  const [stars, setStars] = useState([])
+  const [nebulae, setNebulae] = useState([])
+  const [motionReduced, setMotionReduced] = useState(false)
+  const rootRef = useRef(null)
+
+  const targetRef = useRef({ x: 0, y: 0 })
+  const currentRef = useRef({ x: 0, y: 0 })
+  const rafRef = useRef(null)
 
   useEffect(() => {
-    // 1. Helper to generate numbered lists efficiently (to keep code clean)
-    const range = (start, end, prefix, ext) => 
-      Array.from({ length: end - start + 1 }, (_, i) => `${prefix}${start + i}.${ext}`);
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const setRm = () => setMotionReduced(mq.matches)
+    setRm()
+    mq.addEventListener?.('change', setRm)
 
-    // --- ASSET DATABASE ---
+    const w = window.innerWidth
+    const isMobile = w < 640 
     
-    // 1. All Next.js Page Routes
-    const pageRoutes = [
-      '/about', '/contactus', '/explore', '/login', '/media', 
-      '/pastevents', '/register', '/visit/venue', '/visit/hotels', '/visit/places'
-    ];
+    // UPDATED: Quantity is now halved
+    // Original: 150 / 400 / 1000 -> New: 75 / 200 / 500
+    const starCount = mq.matches ? 75 : (isMobile ? 200 : 500)
+    const nebulaCount = mq.matches ? 2 : (isMobile ? 3 : 4)
 
-    // 2. Videos (Heavy items)
-    const videos = [
-      '/videos/Color.webm',
-      '/videos/smrsc24.webm'
-    ];
+    const arms = 4
+    const armSpread = 1.0
+  
+    const genStars = []
+    for (let i = 0; i < starCount; i++) {
+      const angle = Math.random() * Math.PI * 2 * arms
+      const distance = Math.random() ** 0.8 * 80
+      const offsetX = (Math.random() - 0.5) * armSpread * (distance / 80)
+      const offsetY = (Math.random() - 0.5) * armSpread * (distance / 80)
+      const x = Math.cos(angle) * distance + offsetX
+      const y = Math.sin(angle) * distance + offsetY
 
-    // 3. Fonts
-    const fonts = [
-      '/fonts/BlauerNue.otf',
-      '/fonts/Roba-Regular.ttf'
-    ];
+      genStars.push({
+        id: i,
+        top: `${50 + y * 0.9}%`,
+        left: `${50 + x * 0.9}%`,
+        size: +(Math.random() * 1.3 + 0.2).toFixed(2),
+        delay: +(Math.random() * 4).toFixed(2), 
+        duration: +(Math.random() * 2 + 1.5).toFixed(2), 
+        opacity: +(0.3 + Math.random() * 0.6).toFixed(2),
+      })
+    }
+    setStars(genStars)
 
-    // 4. All Images (Mapped from your folder structure)
-    const allImages = [
-      // --- ABOUT ---
-      ...range(1, 4, '/images/about/benifit/image', 'webp'),
-      
-      // Cardiac
-      ...range(1, 25, '/images/about/cardiac/per', 'webp'),
-      
-      // Committee (Specific names + range)
-      '/images/about/committe/krawal.png',
-      '/images/about/committe/somash.png', 
-      '/images/about/committe/sudhir.png', 
-      '/images/about/committe/vishwa.png',
-      ...range(1, 34, '/images/about/committe/per', 'webp'),
+    const nebulaColors = [
+      'rgba(139, 92, 246, 0.04)', 
+      'rgba(219, 39, 119, 0.03)', 
+      'rgba(206, 146, 27, 0.03)', 
+    ]
 
-      // Faculty
-      '/images/about/faculty/image1.png',
-      '/images/about/faculty/image1.webp',
-
-      // General
-      ...range(1, 4, '/images/about/general/per', 'webp'),
-
-      // About Section 1 & 2
-      '/images/about/section1/image1.webp',
-      '/images/about/section1/img1.webp',
-      '/images/about/section1/mobile.webp',
-      ...range(1, 7, '/images/about/section2/image', 'webp'),
-
-      // Urology (Complex mix)
-      '/images/about/urology/clippath.webp',
-      ...range(1, 8, '/images/about/urology/per', 'webp'),
-      ...range(21, 34, '/images/about/urology/per', 'webp'), // Gap in your list 9-20?
-      ...range(2, 14, '/images/about/urology/image', 'webp'), // image2 to image14
-
-      // --- EXPLORE ---
-      '/images/explore/hero.webp',
-      '/images/explore/mobile.png',
-      ...range(1, 8, '/images/explore/image', 'webp'),
-
-      // --- HOME ---
-      '/images/home/section1/image2.png',
-      '/images/home/section1/image2.webp',
-      '/images/home/section1/mobileimg.png',
-      '/images/home/section2/card.webp',
-      ...range(1, 4, '/images/home/section2/image', 'webp'),
-      ...range(1, 7, '/images/home/section3/image', 'webp'),
-      ...range(1, 5, '/images/home/section3/mob', 'webp'),
-      ...range(1, 4, '/images/home/section4/image', 'webp'),
-      ...range(1, 4, '/images/home/section5/image', 'webp'),
-      ...range(1, 4, '/images/home/section5/mob', 'webp'),
-      '/images/home/section6/image1.webp',
-      '/images/home/section6/image1.png',
-      '/images/home/section6/mobile.webp',
-
-      // --- MEDIA ---
-      ...range(1, 3, '/images/media/blog', 'webp'),
-      ...range(1, 3, '/images/media/media', 'webp'),
-      ...range(1, 2, '/images/media/press', 'webp'),
-      '/images/media/image1.webp',
-      '/images/media/mobile.webp',
-
-      // --- PAST EVENTS ---
-      // 2025
-      ...range(1, 12, '/images/pastevent/2025/image', 'webp'),
-      // 24
-      ...range(1, 12, '/images/pastevent/24/image', 'webp'),
-
-      // --- VISIT ---
-      '/images/visit/airport.webp',
-      '/images/visit/hero.webp',
-      '/images/visit/veneu.webp',
-      '/images/visit/image.webp',
-      '/images/visit/mobile.png',
-      ...range(1, 9, '/images/visit/place', 'webp'),
-      ...range(1, 6, '/images/visit/venue', 'webp'),
-    ];
-
-
-    // --- EXECUTION ENGINE ---
-    const startNuclearPreloading = async () => {
-      console.log('🚀 SMRSC Turbo: Initializing Total Site Download...');
-      const start = performance.now();
-
-      // 1. Prefetch Routes (Next.js JS Chunks)
-      pageRoutes.forEach((route) => router.prefetch(route));
-
-      // 2. Preload Images (Browser Cache)
-      let loadedCount = 0;
-      allImages.forEach((src) => {
-        const img = new Image();
-        img.src = src;
-        img.onload = () => loadedCount++;
-      });
-
-      // 3. Preload Videos (Fetch Blob to Disk Cache)
-      videos.forEach((videoSrc) => {
-        fetch(videoSrc).then(r => r.blob()).catch(e => console.log('Video fetch skipped', e));
-      });
-
-      // 4. Preload Fonts
-      fonts.forEach((fontSrc) => {
-        const font = new FontFace('PreloadedFont', `url(${fontSrc})`);
-        font.load().then((f) => document.fonts.add(f)).catch(e => {});
-      });
-
-      console.log(`✅ SMRSC Turbo: ${allImages.length} images, ${videos.length} videos, and all routes requested.`);
-    };
-
-    // Wait 3.5s for Home LCP, then BLAST.
-    const timer = setTimeout(() => {
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(() => startNuclearPreloading(), { timeout: 2000 });
-      } else {
-        startNuclearPreloading();
+    const genNebulae = Array.from({ length: nebulaCount }, (_, i) => {
+      const angle = Math.random() * Math.PI * 2 * arms
+      const distance = Math.random() * 50 + 10
+      const x = Math.cos(angle) * distance
+      const y = Math.sin(angle) * distance
+      const sizeBase = Math.random() * 250 + 200
+      return {
+        id: i,
+        top: `${50 + y * 0.8}%`,
+        left: `${50 + x * 0.8}%`,
+        size: Math.round(sizeBase),
+        color: nebulaColors[i % nebulaColors.length],
+        blur: Math.round(sizeBase / 2),
       }
-    }, 3500);
+    })
+    setNebulae(genNebulae)
 
-    return () => clearTimeout(timer);
-  }, [router]);
+    return () => mq.removeEventListener?.('change', setRm)
+  }, [])
 
-  return null;
+  useEffect(() => {
+    const root = rootRef.current
+    if (!root) return
+    let active = true
+
+    const step = () => {
+      if (!active) return
+      const ease = 0.06
+      currentRef.current.x += (targetRef.current.x - currentRef.current.x) * ease
+      currentRef.current.y += (targetRef.current.y - currentRef.current.y) * ease
+      
+      root.style.setProperty('--mx', currentRef.current.x.toFixed(3))
+      root.style.setProperty('--my', currentRef.current.y.toFixed(3))
+      rafRef.current = requestAnimationFrame(step)
+    }
+
+    const onPointerMove = (e) => {
+      targetRef.current.x = (e.clientX / window.innerWidth - 0.5) * 2
+      targetRef.current.y = (e.clientY / window.innerHeight - 0.5) * 2
+    }
+
+    window.addEventListener('pointermove', onPointerMove, { passive: true })
+    rafRef.current = requestAnimationFrame(step)
+
+    return () => {
+      active = false
+      cancelAnimationFrame(rafRef.current)
+      window.removeEventListener('pointermove', onPointerMove)
+    }
+  }, [])
+
+  return (
+    <div
+      ref={rootRef}
+      className="fixed inset-0 -z-50 w-screen h-screen overflow-hidden bg-[#000000]"
+      style={{ '--mx': 0, '--my': 0 }}
+    >
+      <div
+        className="absolute inset-0 will-change-transform"
+        style={{
+          transform: `translate(calc(var(--mx) * 20px), calc(var(--my) * 20px)) scale(1.1)`,
+          animation: motionReduced ? undefined : 'galaxy-rotate 350s linear infinite',
+        }}
+      >
+        {/* Faint Nebulae */}
+        {nebulae.map((n) => (
+          <div
+            key={n.id}
+            className="absolute rounded-full pointer-events-none"
+            style={{
+              width: `${n.size}px`,
+              height: `${n.size}px`,
+              top: n.top,
+              left: n.left,
+              backgroundColor: n.color,
+              filter: `blur(${n.blur}px)`,
+              transform: `translate(-50%, -50%)`,
+            }}
+          />
+        ))}
+
+        {/* Halved Starfield */}
+        {stars.map((s) => (
+          <div
+            key={s.id}
+            className="absolute rounded-full bg-white pointer-events-none"
+            style={{
+              width: `${s.size}px`,
+              height: `${s.size}px`,
+              top: s.top,
+              left: s.left,
+              opacity: s.opacity,
+              animation: motionReduced ? undefined : `twinkle ${s.duration}s ease-in-out ${s.delay}s infinite`,
+              boxShadow: s.size > 1 ? '0 0 4px rgba(255,255,255,0.4)' : 'none',
+            }}
+          />
+        ))}
+      </div>
+
+      <style>{`
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.3; transform: scale(0.8); }
+          50% { opacity: 1; transform: scale(1.1); }
+        }
+        @keyframes galaxy-rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
+    </div>
+  )
 }

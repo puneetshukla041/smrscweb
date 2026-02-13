@@ -1,13 +1,14 @@
 'use client'
 import React from 'react';
-import dynamic from 'next/dynamic';
+// REMOVED: import dynamic from 'next/dynamic'; <--- DELETE THIS LINE
 
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/footer';
 import Section1 from '../../components/about/Section1';
 
-// Lazy load the second section
-const Section2 = dynamic(() => import('../../components/about/Section2'));
+// CHANGED: Direct import instead of dynamic. 
+// This bundles the code together so it's ready instantly.
+import Section2 from '../../components/about/Section2'; 
 
 const AboutPage = () => {
   return (
