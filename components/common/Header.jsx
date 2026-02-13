@@ -5,10 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from 'next/link'; 
 import { usePathname, useRouter } from 'next/navigation'; 
 
-// --- SEARCH INDEX & CONFIGS REMAIN SAME ---
-// (Paste your existing SEARCH_INDEX, navLinks, animation vars here)
-// ...
-
 const SEARCH_INDEX = [
   { title: "Conference Agenda & Schedule", href: "/explore", category: "Program", icon: <Calendar size={20}/>, tags: ["timing", "dates", "plan", "day 1", "day 2", "day 3"] },
   { title: "Scientific Workshops", href: "/explore#workshops", category: "Program", icon: <FileText size={20}/>, tags: ["training", "hands on", "learning"] },
@@ -160,7 +156,11 @@ export default function Header() {
           
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/" prefetch={true} className="cursor-pointer block relative z-[120]">
+            <Link 
+              href="/" 
+              prefetch={true} // ⚡️ INSTANT LOAD
+              className="cursor-pointer block relative z-[120]"
+            >
               <motion.img
                 whileHover={{ scale: 1.05 }}
                 transition={softSpring}
@@ -186,7 +186,7 @@ export default function Header() {
                 >
                   <Link 
                     href={link.href}
-                    prefetch={true} // 🔥 CRITICAL FOR INSTANT LOAD
+                    prefetch={true} // ⚡️ INSTANT LOAD
                     className={`${navTextStyle} relative flex items-center gap-1 ${isActive ? "text-white font-semibold" : "text-[#E6E6E6] font-medium hover:text-white"}`}
                   >
                     {link.name}
@@ -229,7 +229,7 @@ export default function Header() {
                             >
                               <Link
                                 href={subLink.href}
-                                prefetch={true} // 🔥 CRITICAL FOR INSTANT LOAD
+                                prefetch={true} // ⚡️ INSTANT LOAD
                                 className={`whitespace-nowrap text-sm w-full text-center py-2 rounded-md transition-all duration-200 font-['Manrope',_sans-serif] block ${pathname === subLink.href.split('#')[0] ? "text-white bg-white/5 font-medium" : "text-[#E6E6E6]/80 hover:text-white hover:bg-white/5"}`}
                               >
                                 {subLink.name}
@@ -301,8 +301,7 @@ export default function Header() {
         )}
       </motion.header>
 
-      {/* --- MOBILE MENU & SEARCH MODAL (Keep your existing code for these below, no changes needed for logic, just import them) --- */}
-      {/* ... Mobile Menu Code ... */}
+      {/* --- MOBILE MENU --- */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -312,10 +311,7 @@ export default function Header() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-[100] bg-[#02091A]/95 backdrop-blur-xl flex flex-col pt-28 px-6 pb-6"
           >
-             {/* Use Link with prefetch={true} inside mobile menu as well */}
-             {/* ... Copy your existing Mobile Nav code here ... */}
-             {/* Just ensure every <Link> has prefetch={true} */}
-             <motion.nav 
+            <motion.nav 
               variants={mobileContainerVars}
               initial="initial"
               animate="open"
@@ -334,7 +330,7 @@ export default function Header() {
                       >
                         <Link 
                           href={link.href} 
-                          prefetch={true}
+                          prefetch={true} // ⚡️ INSTANT LOAD
                           onClick={(e) => { if(link.subLinks) e.preventDefault(); }}
                           className={`text-2xl font-light font-sans tracking-tight transition-colors ${isActive || openCategory === link.name ? "text-[#CE921B]" : "text-white"}`}
                         >
@@ -370,7 +366,7 @@ export default function Header() {
                                 >
                                   <Link
                                     href={sub.href}
-                                    prefetch={true}
+                                    prefetch={true} // ⚡️ INSTANT LOAD
                                     onClick={() => setIsMenuOpen(false)}
                                     className={`block text-base font-sans pl-4 border-l-2 transition-all ${isActiveLink(sub.href) ? "text-[#CE921B] border-[#CE921B]" : "text-white/60 hover:text-white border-white/10 hover:border-[#CE921B]"}`}
                                   >
@@ -399,7 +395,7 @@ export default function Header() {
   );
 }
 
-// ... Keep your TimerBlock, Separator, and SearchModal components exactly as they were ...
+// ... TimerBlock, Separator, and SearchModal remain exactly the same below ...
 const TimerBlock = ({ value, label }) => (
   <div className="flex flex-col items-center gap-[2px] w-[45px] md:w-[60px]">
     <span className="text-[#E6E6E6] text-[14px] md:text-[16px] font-medium font-['Manrope'] leading-[20px] tabular-nums tracking-wide">
