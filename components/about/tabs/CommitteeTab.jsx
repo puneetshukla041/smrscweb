@@ -25,7 +25,7 @@ const CommitteeTab = () => {
 
   // --- DATA: National Committee (per21 - per34) ---
   const nationalCommittee = [
-    { name: "Dr. Sudhir K Rawal", role: "Rajiv Gandhi Cancer Institute and Research Center", src: "/images/about/committe/per21.webp" },
+    { name: "Dr. Sudhir K Rawal", role: "Rajiv Gandhi Cancer Institute and Research Center", src: "/images/about/committe/krawal.png" },
     { name: "Dr. Somashekhar SP", role: "Aster DM Healthcare", src: "/images/about/committe/somash.png" },
     { name: "Dr. Lalitaditya Malik", role: "Manipal Hospitals, Jaipur, RJ", src: "/images/about/committe/per23.webp" },
     { name: "Dr. Priya Bhave Chittawar", role: "Her Health Hospital, Bhopal, MP", src: "/images/about/committe/per24.webp" },
@@ -95,7 +95,7 @@ const CommitteeTab = () => {
         <div className="flex flex-col items-center flex-1 w-full xl:w-auto">
           <h3 style={baseHeadingStyle} className="w-full xl:w-[330px]">Organizing Chairman</h3>
           <div className="relative rounded-[12px] overflow-hidden w-full max-w-[305px] h-[390px]">
-            <img src="/images/about/committe/per1.webp" alt="Dr. Sudhir Srivastava" className="object-contain w-full h-full" />
+            <img src="/images/about/committe/sudhir.png" alt="Dr. Sudhir Srivastava" className="object-contain w-full h-full" />
           </div>
           <div style={textWrapperStyle} className="w-full max-w-[305px]">
             <div style={nameStyle}>Dr. Sudhir Srivastava</div>
@@ -115,7 +115,7 @@ const CommitteeTab = () => {
           <div className="flex flex-col md:flex-row gap-6 w-full md:w-auto items-center md:items-start">
             <div className="flex flex-col items-center md:items-start w-full md:w-auto">
               <div className="relative rounded-[12px] overflow-hidden w-full max-w-[305px] h-[390px]">
-                <img src="/images/about/committe/per2.webp" alt="Dr. Sudhir K Rawal" className="object-contain w-full h-full" />
+                <img src="/images/about/committe/krawal.png" alt="Dr. Sudhir K Rawal" className="object-contain w-full h-full" />
               </div>
               <div style={textWrapperStyle} className="w-full max-w-[305px]">
                 <div style={nameStyle}>Dr. Sudhir K Rawal</div>
