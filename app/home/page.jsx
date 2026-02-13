@@ -1,17 +1,18 @@
 'use client'
 import React from 'react';
+import dynamic from 'next/dynamic'; // 1. Import dynamic
 
-// 👇 CHANGED: Using relative paths (../../) instead of alias (@)
+// Static Imports (Load immediately for LCP)
 import Header from '../../components/Header';
 import Footer from '../../components/footer';
-
-// Importing sections
 import Section1 from '../../components/home/Section1';
-import Section2 from '../../components/home/Section2';
-import Section3 from '../../components/home/Section3';
-import Section4 from '../../components/home/Section4';
-import Section5 from '../../components/home/Section5';
-import Section6 from '../../components/home/Section6';
+
+// 2. Lazy Load Sections (Load in background)
+const Section2 = dynamic(() => import('../../components/home/Section2'));
+const Section3 = dynamic(() => import('../../components/home/Section3'));
+const Section4 = dynamic(() => import('../../components/home/Section4'));
+const Section5 = dynamic(() => import('../../components/home/Section5'));
+const Section6 = dynamic(() => import('../../components/home/Section6'));
 
 const HomePage = () => {
   return (
@@ -21,8 +22,7 @@ const HomePage = () => {
       <main className="flex-grow">
         <Section1 />
 
-        {/* This wrapper hides Section 2 on mobile (hidden) 
-            and shows it on medium screens and up (md:block) */}
+        {/* Section 2: Hidden on mobile, lazy loaded */}
         <div className="hidden md:block">
           <Section2 />
         </div>

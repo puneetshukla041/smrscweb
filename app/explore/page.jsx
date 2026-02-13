@@ -3,24 +3,33 @@ import React, { useState, useEffect, Suspense } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useSearchParams, useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
+
 import Header from '../../components/Header'; 
 import Footer from '../../components/footer'; 
 
-// Import components
+// Static Import (First view)
 import Overview from '../../components/explore/Overview';
-import ScheduleDay1 from '../../components/explore/ScheduleDay1';
-import ScheduleDay2 from '../../components/explore/ScheduleDay2';
-import ScheduleDay3 from '../../components/explore/ScheduleDay3'; // Added Day 3 Import
+
+// Dynamic Imports (Heavy schedules)
+// loading: returns a small spinner while the JS downloads
+const ScheduleDay1 = dynamic(() => import('../../components/explore/ScheduleDay1'), {
+  loading: () => <p className="text-white text-center py-10">Loading Day 1...</p>
+});
+const ScheduleDay2 = dynamic(() => import('../../components/explore/ScheduleDay2'), {
+  loading: () => <p className="text-white text-center py-10">Loading Day 2...</p>
+});
+const ScheduleDay3 = dynamic(() => import('../../components/explore/ScheduleDay3'), {
+  loading: () => <p className="text-white text-center py-10">Loading Day 3...</p>
+});
 
 const ExploreContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   
-  // Get the tab from URL, default to 'overview'
   const tabParam = searchParams.get('tab') || 'overview';
   const [activeTab, setActiveTab] = useState(tabParam);
 
-  // Sync state when URL changes (e.g. browser back button)
   useEffect(() => {
     if (tabParam) {
       setActiveTab(tabParam);
@@ -29,7 +38,6 @@ const ExploreContent = () => {
 
   const handleTabChange = (id) => {
     setActiveTab(id);
-    // Updates URL to http://localhost:3000/explore?tab=day3
     router.push(`/explore?tab=${id}`, { scroll: false });
   };
 
@@ -37,7 +45,7 @@ const ExploreContent = () => {
     { id: 'overview', label: 'Overview' },
     { id: 'day1', label: 'Day 1' },
     { id: 'day2', label: 'Day 2' }, 
-    { id: 'day3', label: 'Day 3' }, // Added Day 3 Tab
+    { id: 'day3', label: 'Day 3' },
   ];
 
   return (
@@ -115,11 +123,11 @@ const ExploreContent = () => {
             </button>
           </div>
 
-          <div className="w-full pb-20">
+          <div className="w-full pb-20 min-h-[50vh]">
             {activeTab === 'overview' && <Overview />}
             {activeTab === 'day1' && <ScheduleDay1 />}
             {activeTab === 'day2' && <ScheduleDay2 />}
-            {activeTab === 'day3' && <ScheduleDay3 />} {/* Added Day 3 Component */}
+            {activeTab === 'day3' && <ScheduleDay3 />}
           </div>
         </div>
       </main>
@@ -131,7 +139,6 @@ const ExplorePage = () => {
   return (
     <div className="flex flex-col min-h-screen bg-[#020617]">
       <Header />
-      {/* Suspense is required for useSearchParams in Next.js App Router */}
       <Suspense fallback={<div className="min-h-screen text-white flex items-center justify-center">Loading...</div>}>
         <ExploreContent />
       </Suspense>

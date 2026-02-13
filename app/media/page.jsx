@@ -2,25 +2,25 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSearchParams, useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 
-// --- Header & Footer Imports ---
 import Header from '../../components/Header'; 
 import Footer from '../../components/footer'; 
 
-// --- Dynamic Content Imports ---
+// Static: Blogs (Assuming it's the default view)
 import Overview from '../../components/media/blogs';
-import ScheduleDay1 from '../../components/media/kit';
-import ScheduleDay2 from '../../components/media/release';
+
+// Dynamic: Heavy media components
+const ScheduleDay1 = dynamic(() => import('../../components/media/kit'));     // Media Kit
+const ScheduleDay2 = dynamic(() => import('../../components/media/release')); // Press Release
 
 const MediaContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   
-  // Get tab from URL, default to 'blogs'
   const tabParam = searchParams.get('tab') || 'blogs';
   const [activeTab, setActiveTab] = useState(tabParam);
 
-  // Update local state if URL changes (e.g., browser back button)
   useEffect(() => {
     if (tabParam) {
       setActiveTab(tabParam);
@@ -29,7 +29,6 @@ const MediaContent = () => {
 
   const handleTabChange = (tabName) => {
     setActiveTab(tabName);
-    // Updates URL to /media?tab=release
     router.push(`/media?tab=${tabName}`, { scroll: false });
   };
 
@@ -101,7 +100,6 @@ const MediaPage = () => {
   return (
     <>
       <Header />
-      {/* Suspense is required for useSearchParams in Next.js App Router */}
       <Suspense fallback={<div className="min-h-screen bg-[#020617] flex items-center justify-center text-white">Loading...</div>}>
         <MediaContent />
       </Suspense>

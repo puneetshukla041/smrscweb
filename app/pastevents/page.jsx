@@ -2,22 +2,22 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { motion } from 'framer-motion'; 
 import { useSearchParams, useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
+
 import Header from '../../components/Header'; 
 import Footer from '../../components/footer'; 
 
-// Imports
-import SMRSC2024 from '../../components/pastevent/SMRSC2024';
-import SMRSC2025 from '../../components/pastevent/SMRSC2025';
+// Dynamic Imports
+const SMRSC2024 = dynamic(() => import('../../components/pastevent/SMRSC2024'));
+const SMRSC2025 = dynamic(() => import('../../components/pastevent/SMRSC2025'));
 
 const PastEventsContent = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   
-  // Get 'tab' from URL, default to '2025'
   const tabParam = searchParams.get('tab');
   const [activeTab, setActiveTab] = useState(tabParam || '2025');
 
-  // Update state if URL changes (e.g., back button)
   useEffect(() => {
     if (tabParam && (tabParam === '2024' || tabParam === '2025')) {
       setActiveTab(tabParam);
@@ -26,7 +26,6 @@ const PastEventsContent = () => {
 
   const handleTabChange = (year) => {
     setActiveTab(year);
-    // Push the new ID to the URL query string
     router.push(`/pastevents?tab=${year}`, { scroll: false });
   };
 
@@ -105,7 +104,7 @@ const PastEventsContent = () => {
       </div>
 
       {/* --- CONTENT SECTION --- */}
-      <div className="w-full max-w-[1717.48px] mb-20 px-4 md:px-0">
+      <div className="w-full max-w-[1717.48px] mb-20 px-4 md:px-0 min-h-[50vh]">
         {activeTab === '2025' && <SMRSC2025 />}
         {activeTab === '2024' && <SMRSC2024 />}
       </div>
@@ -113,7 +112,6 @@ const PastEventsContent = () => {
   );
 };
 
-// Main Export with Suspense (Required for useSearchParams)
 const PastEvents = () => {
   return (
     <>
