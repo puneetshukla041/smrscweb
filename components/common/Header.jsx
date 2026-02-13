@@ -158,7 +158,7 @@ export default function Header() {
           <div className="flex-shrink-0 flex items-center">
             <Link 
               href="/" 
-              prefetch={true} // ⚡️ INSTANT LOAD
+              prefetch={true} // 🔥 CRITICAL FOR INSTANT LOAD
               className="cursor-pointer block relative z-[120]"
             >
               <motion.img
@@ -184,9 +184,10 @@ export default function Header() {
                   onMouseEnter={() => setHoveredLink(link.name)}
                   onMouseLeave={() => setHoveredLink(null)}
                 >
+                  {/* --- 1. DESKTOP MAIN LINKS --- */}
                   <Link 
                     href={link.href}
-                    prefetch={true} // ⚡️ INSTANT LOAD
+                    prefetch={true} // 🔥 CRITICAL FOR INSTANT LOAD
                     className={`${navTextStyle} relative flex items-center gap-1 ${isActive ? "text-white font-semibold" : "text-[#E6E6E6] font-medium hover:text-white"}`}
                   >
                     {link.name}
@@ -227,9 +228,10 @@ export default function Header() {
                               transition={{ delay: idx * 0.04 }} 
                               className="w-full"
                             >
+                              {/* --- 2. DESKTOP SUB LINKS --- */}
                               <Link
                                 href={subLink.href}
-                                prefetch={true} // ⚡️ INSTANT LOAD
+                                prefetch={true} // 🔥 CRITICAL FOR INSTANT LOAD
                                 className={`whitespace-nowrap text-sm w-full text-center py-2 rounded-md transition-all duration-200 font-['Manrope',_sans-serif] block ${pathname === subLink.href.split('#')[0] ? "text-white bg-white/5 font-medium" : "text-[#E6E6E6]/80 hover:text-white hover:bg-white/5"}`}
                               >
                                 {subLink.name}
@@ -328,9 +330,10 @@ export default function Header() {
                         className="flex items-center justify-between py-2 group cursor-pointer"
                         onClick={() => link.subLinks ? toggleCategory(link.name) : setIsMenuOpen(false)}
                       >
+                        {/* --- 3. MOBILE MAIN LINKS --- */}
                         <Link 
                           href={link.href} 
-                          prefetch={true} // ⚡️ INSTANT LOAD
+                          prefetch={true} // 🔥 CRITICAL FOR INSTANT LOAD
                           onClick={(e) => { if(link.subLinks) e.preventDefault(); }}
                           className={`text-2xl font-light font-sans tracking-tight transition-colors ${isActive || openCategory === link.name ? "text-[#CE921B]" : "text-white"}`}
                         >
@@ -364,9 +367,10 @@ export default function Header() {
                                   animate={{ x: 0, opacity: 1 }}
                                   transition={{ delay: subIdx * 0.05 }}
                                 >
+                                  {/* --- 4. MOBILE SUB LINKS --- */}
                                   <Link
                                     href={sub.href}
-                                    prefetch={true} // ⚡️ INSTANT LOAD
+                                    prefetch={true} // 🔥 CRITICAL FOR INSTANT LOAD
                                     onClick={() => setIsMenuOpen(false)}
                                     className={`block text-base font-sans pl-4 border-l-2 transition-all ${isActiveLink(sub.href) ? "text-[#CE921B] border-[#CE921B]" : "text-white/60 hover:text-white border-white/10 hover:border-[#CE921B]"}`}
                                   >
