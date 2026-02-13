@@ -124,7 +124,7 @@ const CommitteeTab = () => {
             </div>
             <div className="flex flex-col items-center md:items-start w-full md:w-auto">
               <div className="relative rounded-[12px] overflow-hidden w-full max-w-[305px] h-[390px]">
-                <img src="/images/about/committe/per3.webp" alt="Dr. S.P. Somashekhar" className="object-contain w-full h-full" />
+                <img src="/images/about/committe/somash.png" alt="Dr. S.P. Somashekhar" className="object-contain w-full h-full" />
               </div>
               <div style={textWrapperStyle} className="w-full max-w-[305px]">
                 <div style={nameStyle}>Dr. S.P. Somashekhar</div>
