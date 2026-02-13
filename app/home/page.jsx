@@ -3,11 +3,11 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 
 // 👇 1. IMPORT THE SILENT DOWNLOADER
-import BackgroundPreloader from '../../components/BackgroundPreloader';
+import BackgroundPreloader from '../../components/common/BackgroundPreloader';
 
 // Static Imports (Load immediately for Speed)
-import Header from '../../components/Header';
-import Footer from '../../components/footer';
+import Header from '../../components/common/Header';
+import Footer from '../../components/common/footer';
 import Section1 from '../../components/home/Section1';
 
 // Lazy Load Home Sections (Keep Home fast, let the preloader handle the rest)

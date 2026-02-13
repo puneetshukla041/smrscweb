@@ -4,8 +4,8 @@ import React from 'react';
 import { motion } from 'framer-motion'; // Removed 'Variants' as it is a TS type
 
 // --- Imports ---
-import Header from '../../components/Header'; 
-import Footer from '../../components/footer'; 
+import Header from '../../components/common/Header'; 
+import Footer from '../../components/common/footer'; 
 
 const ContactUs = () => {
   // --- Animation Variants ---

@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Timer from "../components/Timer"; 
-import SmoothScroll from "../components/SmoothScroll"; // <--- Import this
+import Timer from "../components/ui/CountdownTimer"; 
+import SmoothScroll from "../components/common/SmoothScroll"; // <--- Import this
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

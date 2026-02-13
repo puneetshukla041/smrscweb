@@ -3,8 +3,8 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import Header from '../../components/Header'; 
-import Footer from '../../components/footer'; 
+import Header from '../../components/common/Header'; 
+import Footer from '../../components/common/footer'; 
 
 export default function VisitLayout({ children }) {
   const pathname = usePathname();

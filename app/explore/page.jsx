@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 import { useSearchParams, useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 
-import Header from '../../components/Header'; 
-import Footer from '../../components/footer'; 
+import Header from '../../components/common/Header'; 
+import Footer from '../../components/common/footer'; 
 
 // Static Import (First view)
 import Overview from '../../components/explore/Overview';
