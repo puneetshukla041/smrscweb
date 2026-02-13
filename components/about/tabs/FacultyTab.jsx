@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { SlidersHorizontal, Check } from 'lucide-react';
 
 // ==========================================
@@ -69,71 +70,72 @@ const FacultyTab = () => {
   // ==========================================
 
   // --- 1. INTERNATIONAL CARDIAC ---
-const internationalFacultyList = [
-  { name: "Dr. Valluvan Jeevanandam", desc: "The University of Chicago Medicine...", image: "image2.webp" },
-  { name: "Dr. T Sloane Guy", desc: "Georgia Heart Institute, Gainesville, GA, USA", image: "image3.webp" },
-  { name: "Dr. Gianluca Torregrossa", desc: "Lankenau Heart Institute, Philadelphia, PA, USA", image: "image4.webp" },
-  { name: "Dr. Frank Van Praet", desc: "OLV Clinic, Aalst, Belgium", image: "image5.webp" },
-  { name: "Dr. Bob Kiaii", desc: "Foothills Medical Centre, University of Calgary", image: "image6.webp" },
-  { name: "Dr. Jae Won Lee", desc: "Buchon Sejong Hospital, Seoul, South Korea", image: "image7.webp" },
-  { name: "Dr John D Puskas", desc: "Emory University Hospital Midtown, Atlanta", image: "image8.webp" },
-  { name: "Dr. Johannes Oliver Bonatti", desc: "University of Pittsburgh Medical Center", image: "image9.webp" },
-  { name: "Dr. Dudy Hanafy", desc: "Harapan Kita Hospital, Jakarta, Indonesia", image: "image10.webp" },
-  { name: "Dr. Go Watanabe", desc: "New Heart Watanabe Hospital, Tokyo, Japan", image: "image11.webp" },
-  { name: "Dr. Nirav Patel", desc: "Lenox Hill Hospital, New York, NY, USA", image: "image12.webp" },
-  { name: "Dr. Victor Castillo", desc: "Fundación Cardiovascular de Colombia", image: "image13.webp" },
-  { name: "Dr. Feras Khaliel", desc: "King Faisal Specialist Hospital, Saudi Arabia", image: "image14.webp" }
-];
+  const internationalFacultyList = [
+    { name: "Dr. Valluvan Jeevanandam", desc: "The University of Chicago Medicine...", image: "image2.webp" },
+    { name: "Dr. T Sloane Guy", desc: "Georgia Heart Institute, Gainesville, GA, USA", image: "image3.webp" },
+    { name: "Dr. Gianluca Torregrossa", desc: "Lankenau Heart Institute, Philadelphia, PA, USA", image: "image4.webp" },
+    { name: "Dr. Frank Van Praet", desc: "OLV Clinic, Aalst, Belgium", image: "image5.webp" },
+    { name: "Dr. Bob Kiaii", desc: "Foothills Medical Centre, University of Calgary", image: "image6.webp" },
+    { name: "Dr. Jae Won Lee", desc: "Buchon Sejong Hospital, Seoul, South Korea", image: "image7.webp" },
+    { name: "Dr John D Puskas", desc: "Emory University Hospital Midtown, Atlanta", image: "image8.webp" },
+    { name: "Dr. Johannes Oliver Bonatti", desc: "University of Pittsburgh Medical Center", image: "image9.webp" },
+    { name: "Dr. Dudy Hanafy", desc: "Harapan Kita Hospital, Jakarta, Indonesia", image: "image10.webp" },
+    { name: "Dr. Go Watanabe", desc: "New Heart Watanabe Hospital, Tokyo, Japan", image: "image11.webp" },
+    { name: "Dr. Nirav Patel", desc: "Lenox Hill Hospital, New York, NY, USA", image: "image12.webp" },
+    { name: "Dr. Victor Castillo", desc: "Fundación Cardiovascular de Colombia", image: "image13.webp" },
+    { name: "Dr. Feras Khaliel", desc: "King Faisal Specialist Hospital, Saudi Arabia", image: "image14.webp" }
+  ];
+
   // --- 2. NATIONAL CARDIAC ---
-const nationalFacultyList = [
-  { name: "Dr. Lalitaditya Malik", desc: "Manipal Hospitals, Jaipur, Rajasthan", image: "per2.webp" },
-  { name: "Dr. Harish Badami", desc: "Malla Reddy Narayana Hospital, Hyderabad", image: "per3.webp" },
-  { name: "Dr. Nitin Rajput", desc: "Medanta - The Medicity, Gurugram, Haryana", image: "per4.webp" },
-  { name: "Dr. Hiremath CS", desc: "Sri Sathya Sai Institute, Bengaluru, KA", image: "per5.webp" },
-  { name: "Dr. Ashok Seth", desc: "Fortis Escorts, Okhla, Delhi", image: "per6.webp" },
-  { name: "Dr. Zile Singh Meherwal", desc: "Fortis Escorts, Okhla, Delhi", image: "per7.webp" },
-  { name: "Dr. Yugal Kishore Mishra", desc: "Manipal Hospitals, Dwarka, Delhi", image: "per8.webp" },
-  { name: "Dr. Praveen Chandra", desc: "Medanta - The Medicity, Gurugram, Haryana", image: "per9.webp" },
-  { name: "Dr. Krishna Subramony Iyer", desc: "Fortis Escorts, Okhla, Delhi", image: "per10.webp" },
-  { name: "Dr. Arul Furtado", desc: "Aster CMI Hospital, Bengaluru, KA", image: "per11.webp" },
-  { name: "Dr. Ritwick Raj Bhuyan", desc: "Fortis Escorts, Okhla, Delhi", image: "per12.webp" },
-  { name: "Dr. T.S. Mahant", desc: "Fortis Hospital, Mohali, PB", image: "per13.webp" },
-  { name: "Dr. Ganeshakrishnan Iyer", desc: "Aster CMI Hospital, Bengaluru, KA", image: "per14.webp" },
-  { name: "Dr. Manoj Durairaj", desc: "Marian Cardiac Centre, Pune, MH", image: "per15.webp" },
-  { name: "Dr. M M Yusuf", desc: "Apollo Hospital, Chennai, TN", image: "per16.webp" },
-  { name: "Dr. Ajay Kaul", desc: "Fortis Hospital, Noida, UP", image: "per17.webp" },
-  { name: "Dr. Kunal Sarkar", desc: "Medica Superspecialty Hospital, Kolkata, WB", image: "per18.webp" },
-  { name: "Dr. S K Agarwal", desc: "SGPGI, Lucknow, UP", image: "per19.webp" },
-  { name: "Dr. Arunkumar Ulaganathan", desc: "KG Hospital, Coimbatore, TN", image: "per20.webp" },
-  { name: "Dr. Devagourou Velayoudam", desc: "Aiims, New Delhi", image: "per21.webp" },
-  { name: "Dr. Anubhav Gupta", desc: "Safdarjung Hospital, Delhi", image: "per22.webp" },
-  { name: "Dr. Amit Chandan", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "per23.webp" },
-  { name: "Dr. Satyajit Bose", desc: "The Mission Hospital, Durgapur, WB", image: "per24.webp" },
-  { name: "Dr. Dhiren Shah", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "per25.webp" }
-];
+  const nationalFacultyList = [
+    { name: "Dr. Lalitaditya Malik", desc: "Manipal Hospitals, Jaipur, Rajasthan", image: "per2.webp" },
+    { name: "Dr. Harish Badami", desc: "Malla Reddy Narayana Hospital, Hyderabad", image: "per3.webp" },
+    { name: "Dr. Nitin Rajput", desc: "Medanta - The Medicity, Gurugram, Haryana", image: "per4.webp" },
+    { name: "Dr. Hiremath CS", desc: "Sri Sathya Sai Institute, Bengaluru, KA", image: "per5.webp" },
+    { name: "Dr. Ashok Seth", desc: "Fortis Escorts, Okhla, Delhi", image: "per6.webp" },
+    { name: "Dr. Zile Singh Meherwal", desc: "Fortis Escorts, Okhla, Delhi", image: "per7.webp" },
+    { name: "Dr. Yugal Kishore Mishra", desc: "Manipal Hospitals, Dwarka, Delhi", image: "per8.webp" },
+    { name: "Dr. Praveen Chandra", desc: "Medanta - The Medicity, Gurugram, Haryana", image: "per9.webp" },
+    { name: "Dr. Krishna Subramony Iyer", desc: "Fortis Escorts, Okhla, Delhi", image: "per10.webp" },
+    { name: "Dr. Arul Furtado", desc: "Aster CMI Hospital, Bengaluru, KA", image: "per11.webp" },
+    { name: "Dr. Ritwick Raj Bhuyan", desc: "Fortis Escorts, Okhla, Delhi", image: "per12.webp" },
+    { name: "Dr. T.S. Mahant", desc: "Fortis Hospital, Mohali, PB", image: "per13.webp" },
+    { name: "Dr. Ganeshakrishnan Iyer", desc: "Aster CMI Hospital, Bengaluru, KA", image: "per14.webp" },
+    { name: "Dr. Manoj Durairaj", desc: "Marian Cardiac Centre, Pune, MH", image: "per15.webp" },
+    { name: "Dr. M M Yusuf", desc: "Apollo Hospital, Chennai, TN", image: "per16.webp" },
+    { name: "Dr. Ajay Kaul", desc: "Fortis Hospital, Noida, UP", image: "per17.webp" },
+    { name: "Dr. Kunal Sarkar", desc: "Medica Superspecialty Hospital, Kolkata, WB", image: "per18.webp" },
+    { name: "Dr. S K Agarwal", desc: "SGPGI, Lucknow, UP", image: "per19.webp" },
+    { name: "Dr. Arunkumar Ulaganathan", desc: "KG Hospital, Coimbatore, TN", image: "per20.webp" },
+    { name: "Dr. Devagourou Velayoudam", desc: "Aiims, New Delhi", image: "per21.webp" },
+    { name: "Dr. Anubhav Gupta", desc: "Safdarjung Hospital, Delhi", image: "per22.webp" },
+    { name: "Dr. Amit Chandan", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "per23.webp" },
+    { name: "Dr. Satyajit Bose", desc: "The Mission Hospital, Durgapur, WB", image: "per24.webp" },
+    { name: "Dr. Dhiren Shah", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "per25.webp" }
+  ];
 
-const urologyFacultyList = [
-  { name: "Dr. Amitabh Singh", desc: "RGCI, Delhi", image: "per4.webp" },
-  { name: "Dr. Sarbartha Kumar Pratihar", desc: "RGCI, Delhi", image: "per5.webp" },
-  { name: "Dr. Nikhil Saurabh", desc: "RGCI, Delhi", image: "per6.webp" },
-  { name: "Dr. M Ramalingam", desc: "Hindustan Hospital, Coimbatore, TN", image: "per7.webp" },
-  { name: "Dr. R.S. Sinha", desc: "VMMC & Safdarjung Hospital, New Delhi", image: "per8.webp" }
-];
+  const urologyFacultyList = [
+    { name: "Dr. Amitabh Singh", desc: "RGCI, Delhi", image: "per4.webp" },
+    { name: "Dr. Sarbartha Kumar Pratihar", desc: "RGCI, Delhi", image: "per5.webp" },
+    { name: "Dr. Nikhil Saurabh", desc: "RGCI, Delhi", image: "per6.webp" },
+    { name: "Dr. M Ramalingam", desc: "Hindustan Hospital, Coimbatore, TN", image: "per7.webp" },
+    { name: "Dr. R.S. Sinha", desc: "VMMC & Safdarjung Hospital, New Delhi", image: "per8.webp" }
+  ];
 
-const urologyCoChairpersons = [
-  { name: "Dr. Chandra Mohan vaddi", desc: "Preeti Urology & Kidney Hospital", image: "per2.webp" },
-  { name: "Dr. Ritesh Mongha", desc: "Metro Hospital, Faridabad, HR", image: "per3.webp" }
-];
+  const urologyCoChairpersons = [
+    { name: "Dr. Chandra Mohan vaddi", desc: "Preeti Urology & Kidney Hospital", image: "per2.webp" },
+    { name: "Dr. Ritesh Mongha", desc: "Metro Hospital, Faridabad, HR", image: "per3.webp" }
+  ];
 
-const generalFacultyList = [
-  { name: "Dr. Deepak Mittal", desc: "Aadhar Hospital, Hisar, HR", image: "per3.webp" },
-  { name: "Dr. Harish Sharma", desc: "Aadhar Hospital, Hisar, HR", image: "per4.webp" }
-];
+  const generalFacultyList = [
+    { name: "Dr. Deepak Mittal", desc: "Aadhar Hospital, Hisar, HR", image: "per3.webp" },
+    { name: "Dr. Harish Sharma", desc: "Aadhar Hospital, Hisar, HR", image: "per4.webp" }
+  ];
 
-const colorectalFacultyList = [
-  { name: "Dr. Deepak Mittal", desc: "Aadhar Hospital, Hisar, HR", image: "per3.webp" },
-  { name: "Dr. Harish Sharma", desc: "Aadhar Hospital, Hisar, HR", image: "per4.webp" }
-];
+  const colorectalFacultyList = [
+    { name: "Dr. Deepak Mittal", desc: "Aadhar Hospital, Hisar, HR", image: "per3.webp" },
+    { name: "Dr. Harish Sharma", desc: "Aadhar Hospital, Hisar, HR", image: "per4.webp" }
+  ];
 
   // ==========================================
   //                STYLES
@@ -235,7 +237,6 @@ const colorectalFacultyList = [
     <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20">
       
       {/* --- PAGE HEADER & FILTER --- */}
-      {/* Updated: flex-col for mobile to center/stack, md:flex-row to keep desktop as is */}
       <div className="flex flex-col md:flex-row items-center md:justify-between w-full max-w-[1390px] relative gap-6 md:gap-0">
         <h2 style={allSpecialtyStyle} className="text-center md:text-left">{activeFilter === 'All' ? 'All Specialty' : `${activeFilter} Faculty`}</h2>
         
@@ -284,7 +285,6 @@ const colorectalFacultyList = [
             </div>
 
             {/* Chairman Int. */}
-            {/* Updated: items-center for mobile, md:items-start for desktop */}
             <div className="flex flex-col items-center md:items-start mb-16">
                 <div style={sectionLabelBoxStyle}>
                 <span style={sectionLabelTextStyle}>Chairman</span>
@@ -292,10 +292,12 @@ const colorectalFacultyList = [
                 <FadeInView>
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                     <div style={cardImageContainer} className="group cursor-pointer">
-                        <img 
+                        <Image 
                             src="/images/about/faculty/image1.png" 
                             alt="Dr. Husam Balkhy" 
-                            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                            fill
+                            className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                            unoptimized={true} // ⚡ ZERO BUFFERING
                         />
                     </div>
                     <div style={nameStyle}>Dr. Husam Balkhy</div>
@@ -305,21 +307,21 @@ const colorectalFacultyList = [
             </div>
 
             {/* Faculty Int. */}
-            {/* Updated: items-center for mobile, md:items-start for desktop */}
             <div className="flex flex-col items-center md:items-start w-full mb-16">
                 <div style={sectionLabelBoxStyle}>
                 <span style={sectionLabelTextStyle}>Faculty Members</span>
                 </div>
-                {/* Updated: justify-items-center for mobile grid alignment */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 justify-items-center md:justify-items-start">
                 {internationalFacultyList.map((faculty, index) => (
                     <FadeInView key={index} delay={index * 30}>
                         <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
-                            <img 
+                            <Image 
                                 src={`/images/about/${faculty.image}`} 
                                 alt={faculty.name} 
-                                className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                                fill
+                                className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                                unoptimized={true} // ⚡ ZERO BUFFERING
                             />
                         </div>
                         <div style={nameStyle}>{faculty.name}</div>
@@ -336,7 +338,6 @@ const colorectalFacultyList = [
             </div>
 
             {/* Chairman Nat. */}
-            {/* Updated: items-center for mobile, md:items-start for desktop */}
             <div className="flex flex-col items-center md:items-start mb-16">
                 <div style={sectionLabelBoxStyle}>
                 <span style={sectionLabelTextStyle}>Chairman</span>
@@ -344,10 +345,12 @@ const colorectalFacultyList = [
                 <FadeInView>
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                     <div style={cardImageContainer} className="group cursor-pointer">
-                        <img 
+                        <Image 
                             src="/images/about/cardiac/per1.webp" 
                             alt="Dr. Sudhir Srivastava" 
-                            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                            fill
+                            className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                            unoptimized={true} // ⚡ ZERO BUFFERING
                         />
                     </div>
                     <div style={nameStyle}>Dr. Sudhir Srivastava</div>
@@ -357,21 +360,21 @@ const colorectalFacultyList = [
             </div>
 
             {/* Faculty Nat. */}
-            {/* Updated: items-center for mobile, md:items-start for desktop */}
             <div className="flex flex-col items-center md:items-start w-full mb-16">
                 <div style={sectionLabelBoxStyle}>
                 <span style={sectionLabelTextStyle}>Faculty Members</span>
                 </div>
-                {/* Updated: justify-items-center for mobile grid alignment */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 justify-items-center md:justify-items-start">
                 {nationalFacultyList.map((faculty, index) => (
                     <FadeInView key={index} delay={index * 30}>
                         <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
-                            <img 
+                            <Image 
                                 src={`/images/about/cardiac/${faculty.image}`} 
                                 alt={faculty.name} 
-                                className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                                fill
+                                className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                                unoptimized={true} // ⚡ ZERO BUFFERING
                             />
                         </div>
                         <div style={nameStyle}>{faculty.name}</div>
@@ -396,7 +399,6 @@ const colorectalFacultyList = [
 
             <div className="flex flex-wrap gap-16 mb-16 justify-center md:justify-start">
                 {/* Chairman Urology */}
-                {/* Updated: items-center for mobile, md:items-start for desktop */}
                 <div className="flex flex-col items-center md:items-start">
                 <div style={sectionLabelBoxStyle}>
                     <span style={sectionLabelTextStyle}>Chairman</span>
@@ -404,10 +406,12 @@ const colorectalFacultyList = [
                 <FadeInView>
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
-                        <img 
+                        <Image 
                             src="/images/about/urology/per1.webp" 
                             alt="Dr. Sudhir K Rawal" 
-                            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                            fill
+                            className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                            unoptimized={true} // ⚡ ZERO BUFFERING
                         />
                         </div>
                         <div style={nameStyle}>Dr. Sudhir K Rawal</div>
@@ -417,21 +421,21 @@ const colorectalFacultyList = [
                 </div>
 
                 {/* Co-Chair Urology */}
-                {/* Updated: items-center for mobile, md:items-start for desktop */}
                 <div className="flex flex-col items-center md:items-start">
                 <div style={sectionLabelBoxStyle}>
                     <span style={sectionLabelTextStyle}>Co - Chairperson</span>
                 </div>
-                {/* Updated: justify-center for mobile */}
                 <div className="flex gap-8 flex-wrap justify-center md:justify-start">
                     {urologyCoChairpersons.map((co, index) => (
                     <FadeInView key={index} delay={100}>
                         <div className="flex flex-col items-center md:items-start text-center md:text-left">
                             <div style={cardImageContainer} className="group cursor-pointer">
-                            <img 
+                            <Image 
                                 src={`/images/about/urology/${co.image}`} 
                                 alt={co.name} 
-                                className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                                fill
+                                className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                                unoptimized={true} // ⚡ ZERO BUFFERING
                             />
                             </div>
                             <div style={nameStyle}>{co.name}</div>
@@ -444,21 +448,21 @@ const colorectalFacultyList = [
             </div>
 
             {/* Faculty Urology */}
-            {/* Updated: items-center for mobile, md:items-start for desktop */}
             <div className="flex flex-col items-center md:items-start w-full mb-16">
                 <div style={sectionLabelBoxStyle}>
                 <span style={sectionLabelTextStyle}>Faculty Members</span>
                 </div>
-                {/* Updated: justify-items-center for mobile grid alignment */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 justify-items-center md:justify-items-start">
                 {urologyFacultyList.map((faculty, index) => (
                     <FadeInView key={index} delay={index * 30}>
                         <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
-                            <img 
+                            <Image 
                                 src={`/images/about/urology/${faculty.image}`} 
                                 alt={faculty.name} 
-                                className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                                fill
+                                className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                                unoptimized={true} // ⚡ ZERO BUFFERING
                             />
                         </div>
                         <div style={nameStyle}>{faculty.name}</div>
@@ -483,7 +487,6 @@ const colorectalFacultyList = [
 
             <div className="flex flex-wrap gap-16 mb-16 justify-center md:justify-start">
                 {/* Chairman Gen. */}
-                {/* Updated: items-center for mobile, md:items-start for desktop */}
                 <div className="flex flex-col items-center md:items-start">
                 <div style={sectionLabelBoxStyle}>
                     <span style={sectionLabelTextStyle}>Chairman</span>
@@ -491,10 +494,12 @@ const colorectalFacultyList = [
                 <FadeInView>
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
-                        <img 
+                        <Image 
                             src="/images/about/general/per1.webp" 
                             alt="Dr. Raj Gajbhiye" 
-                            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                            fill
+                            className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                            unoptimized={true} // ⚡ ZERO BUFFERING
                         />
                         </div>
                         <div style={nameStyle}>Dr. Raj Gajbhiye</div>
@@ -504,7 +509,6 @@ const colorectalFacultyList = [
                 </div>
 
                 {/* Co-Chair Gen. */}
-                {/* Updated: items-center for mobile, md:items-start for desktop */}
                 <div className="flex flex-col items-center md:items-start">
                 <div style={sectionLabelBoxStyle}>
                     <span style={sectionLabelTextStyle}>Co - Chairperson</span>
@@ -512,10 +516,12 @@ const colorectalFacultyList = [
                 <FadeInView>
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
-                        <img 
+                        <Image 
                             src="/images/about/general/per2.webp" 
                             alt="Dr. Magan Mehrotra" 
-                            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                            fill
+                            className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                            unoptimized={true} // ⚡ ZERO BUFFERING
                         />
                         </div>
                         <div style={nameStyle}>Dr. Magan Mehrotra</div>
@@ -526,21 +532,21 @@ const colorectalFacultyList = [
             </div>
 
             {/* Faculty Gen. */}
-            {/* Updated: items-center for mobile, md:items-start for desktop */}
             <div className="flex flex-col items-center md:items-start w-full mb-16">
                 <div style={sectionLabelBoxStyle}>
                 <span style={sectionLabelTextStyle}>Faculty Members</span>
                 </div>
-                {/* Updated: justify-items-center for mobile grid alignment */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 justify-items-center md:justify-items-start">
                 {generalFacultyList.map((faculty, index) => (
                     <FadeInView key={index} delay={index * 30}>
                         <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
-                            <img 
+                            <Image 
                                 src={`/images/about/general/${faculty.image}`} 
                                 alt={faculty.name} 
-                                className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                                fill
+                                className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                                unoptimized={true} // ⚡ ZERO BUFFERING
                             />
                         </div>
                         <div style={nameStyle}>{faculty.name}</div>
@@ -554,7 +560,7 @@ const colorectalFacultyList = [
       )}
 
       {/* =========================================================
-                         COLORECTAL SURGERY SECTION
+                          COLORECTAL SURGERY SECTION
       ========================================================= */}
       {(activeFilter === 'All' || activeFilter === 'Colorectal Surgery') && (
         <FadeInView>
@@ -563,8 +569,7 @@ const colorectalFacultyList = [
             </div>
 
             <div className="flex flex-wrap gap-16 mb-16 justify-center md:justify-start">
-                {/* Chairman Colorectal - Reusing per1.png */}
-                {/* Updated: items-center for mobile, md:items-start for desktop */}
+                {/* Chairman Colorectal */}
                 <div className="flex flex-col items-center md:items-start">
                 <div style={sectionLabelBoxStyle}>
                     <span style={sectionLabelTextStyle}>Chairman</span>
@@ -572,10 +577,12 @@ const colorectalFacultyList = [
                 <FadeInView>
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
-                        <img 
+                        <Image 
                             src="/images/about/general/per1.webp" 
                             alt="Dr. Raj Gajbhiye" 
-                            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                            fill
+                            className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                            unoptimized={true} // ⚡ ZERO BUFFERING
                         />
                         </div>
                         <div style={nameStyle}>Dr. Raj Gajbhiye</div>
@@ -584,8 +591,7 @@ const colorectalFacultyList = [
                 </FadeInView>
                 </div>
 
-                {/* Co-Chair Colorectal - Reusing per2.png */}
-                {/* Updated: items-center for mobile, md:items-start for desktop */}
+                {/* Co-Chair Colorectal */}
                 <div className="flex flex-col items-center md:items-start">
                 <div style={sectionLabelBoxStyle}>
                     <span style={sectionLabelTextStyle}>Co - Chairperson</span>
@@ -593,10 +599,12 @@ const colorectalFacultyList = [
                 <FadeInView>
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
-                        <img 
+                        <Image 
                             src="/images/about/general/per2.webp" 
                             alt="Dr. Magan Mehrotra" 
-                            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                            fill
+                            className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                            unoptimized={true} // ⚡ ZERO BUFFERING
                         />
                         </div>
                         <div style={nameStyle}>Dr. Magan Mehrotra</div>
@@ -606,22 +614,22 @@ const colorectalFacultyList = [
                 </div>
             </div>
 
-            {/* Faculty Colorectal - Uses per3.png and per4.png from general folder */}
-            {/* Updated: items-center for mobile, md:items-start for desktop */}
+            {/* Faculty Colorectal */}
             <div className="flex flex-col items-center md:items-start w-full mb-16">
                 <div style={sectionLabelBoxStyle}>
                 <span style={sectionLabelTextStyle}>Faculty Members</span>
                 </div>
-                {/* Updated: justify-items-center for mobile grid alignment */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 justify-items-center md:justify-items-start">
                 {colorectalFacultyList.map((faculty, index) => (
                     <FadeInView key={index} delay={index * 30}>
                         <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
-                            <img 
+                            <Image 
                                 src={`/images/about/general/${faculty.image}`} 
                                 alt={faculty.name} 
-                                className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                                fill
+                                className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                                unoptimized={true} // ⚡ ZERO BUFFERING
                             />
                         </div>
                         <div style={nameStyle}>{faculty.name}</div>

@@ -144,6 +144,7 @@ const AboutTab = () => {
                       alt={card.text}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      unoptimized={true} // ⚡ Ensures instant cache loading
                     />
                   </div>
 
@@ -193,6 +194,7 @@ const AboutTab = () => {
                         alt={card.text} 
                         fill 
                         className="object-cover"
+                        unoptimized={true} // ⚡ Ensures instant cache loading
                       />
                     </div>
 

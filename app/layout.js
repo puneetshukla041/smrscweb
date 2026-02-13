@@ -3,7 +3,8 @@ import "./globals.css";
 import Timer from "../components/ui/CountdownTimer"; 
 import SmoothScroll from "../components/common/SmoothScroll"; 
 import MasterLoader from "../components/common/MasterLoader"; 
-import SpeedLogger from "../components/SpeedLogger"; // <--- 1. IMPORT THIS
+// 👇 Ensure this path matches where you saved the file above
+import SpeedLogger from "../components/SpeedLogger"; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,23 +27,19 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <SmoothScroll />
         
-        {/* BACKGROUND LOADER: Downloads all pages/assets while user is on Home */}
+        {/* 1. Downloads assets in background */}
         <MasterLoader /> 
         
-        {/* SPEED LOGGER: Prints render time to console */}
+        {/* 2. Logs navigation speed to console */}
         <SpeedLogger /> 
         
         {children}
         
-        {/* Wrapper to ensure Timer is strictly Mobile Only (Hidden on Desktop) */}
         <div className="md:hidden">
           <Timer />
         </div>

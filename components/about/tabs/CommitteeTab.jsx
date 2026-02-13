@@ -1,9 +1,10 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 
 const CommitteeTab = () => {
 
-  // --- DATA: International Committee (per5 - per20) ---
+  // --- DATA: International Committee ---
   const internationalCommittee = [
     { name: "Dr. Mani Menon", role: "Vattikuti Urology Institute, Detroit, MI, USA", src: "/images/about/committe/per5.webp" },
     { name: "Dr. Ashutosh K. Tewari", role: "Icahn School of Medicine at Mount Sinai, NY, USA", src: "/images/about/committe/per6.webp" },
@@ -23,7 +24,7 @@ const CommitteeTab = () => {
     { name: "Dr. Ivan Rizal Sini", role: "Bunda Group Hospitals, Jakarta, Indonesia", src: "/images/about/committe/per20.webp" },
   ];
 
-  // --- DATA: National Committee (per21 - per34) ---
+  // --- DATA: National Committee ---
   const nationalCommittee = [
     { name: "Dr. Sudhir K Rawal", role: "Rajiv Gandhi Cancer Institute and Research Center", src: "/images/about/committe/krawal.png" },
     { name: "Dr. Somashekhar SP", role: "Aster DM Healthcare", src: "/images/about/committe/somash.png" },
@@ -42,7 +43,6 @@ const CommitteeTab = () => {
   ];
 
   // --- STYLES ---
-
   const baseHeadingStyle = {
     color: '#F8FFFF',
     fontFamily: '"Blauer Nue", sans-serif',
@@ -95,7 +95,13 @@ const CommitteeTab = () => {
         <div className="flex flex-col items-center flex-1 w-full xl:w-auto">
           <h3 style={baseHeadingStyle} className="w-full xl:w-[330px]">Organizing Chairman</h3>
           <div className="relative rounded-[12px] overflow-hidden w-full max-w-[305px] h-[390px]">
-            <img src="/images/about/committe/sudhir.png" alt="Dr. Sudhir Srivastava" className="object-contain w-full h-full" />
+            <Image 
+              src="/images/about/committe/sudhir.png" 
+              alt="Dr. Sudhir Srivastava" 
+              fill
+              className="object-contain"
+              unoptimized={true} 
+            />
           </div>
           <div style={textWrapperStyle} className="w-full max-w-[305px]">
             <div style={nameStyle}>Dr. Sudhir Srivastava</div>
@@ -115,7 +121,13 @@ const CommitteeTab = () => {
           <div className="flex flex-col md:flex-row gap-6 w-full md:w-auto items-center md:items-start">
             <div className="flex flex-col items-center md:items-start w-full md:w-auto">
               <div className="relative rounded-[12px] overflow-hidden w-full max-w-[305px] h-[390px]">
-                <img src="/images/about/committe/krawal.png" alt="Dr. Sudhir K Rawal" className="object-contain w-full h-full" />
+                <Image 
+                  src="/images/about/committe/krawal.png" 
+                  alt="Dr. Sudhir K Rawal" 
+                  fill
+                  className="object-contain"
+                  unoptimized={true} 
+                />
               </div>
               <div style={textWrapperStyle} className="w-full max-w-[305px]">
                 <div style={nameStyle}>Dr. Sudhir K Rawal</div>
@@ -124,7 +136,13 @@ const CommitteeTab = () => {
             </div>
             <div className="flex flex-col items-center md:items-start w-full md:w-auto">
               <div className="relative rounded-[12px] overflow-hidden w-full max-w-[305px] h-[390px]">
-                <img src="/images/about/committe/somash.png" alt="Dr. S.P. Somashekhar" className="object-contain w-full h-full" />
+                <Image 
+                  src="/images/about/committe/somash.png" 
+                  alt="Dr. S.P. Somashekhar" 
+                  fill
+                  className="object-contain"
+                  unoptimized={true} 
+                />
               </div>
               <div style={textWrapperStyle} className="w-full max-w-[305px]">
                 <div style={nameStyle}>Dr. S.P. Somashekhar</div>
@@ -138,7 +156,13 @@ const CommitteeTab = () => {
         <div className="flex flex-col items-center flex-1 w-full xl:w-auto">
           <h3 style={baseHeadingStyle} className="w-full xl:w-[330px]">Organizing Secretary</h3>
           <div className="relative rounded-[12px] overflow-hidden w-full max-w-[305px] h-[390px]">
-            <img src="/images/about/committe/vishwa.png" alt="Dr. vishwa" className="object-contain w-full h-full" />
+            <Image 
+              src="/images/about/committe/vishwa.png" 
+              alt="Dr. Vishwa Srivastava" 
+              fill
+              className="object-contain"
+              unoptimized={true} 
+            />
           </div>
           <div style={textWrapperStyle} className="w-full max-w-[305px]">
             <div style={nameStyle}>Dr. Vishwa Srivastava</div>
@@ -158,10 +182,12 @@ const CommitteeTab = () => {
               <div 
                 className="relative rounded-[12px] overflow-hidden w-full h-[390px] drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
               >
-                <img 
+                <Image 
                   src={member.src} 
                   alt={member.name} 
-                  className="object-contain w-full h-full hover:scale-105 transition-transform duration-500"
+                  fill
+                  className="object-contain hover:scale-105 transition-transform duration-500"
+                  unoptimized={true} // ⚡ Ensures instant cache loading
                 />
               </div>
               <div style={textWrapperStyle} className="w-full">
@@ -183,10 +209,12 @@ const CommitteeTab = () => {
               <div 
                  className="relative rounded-[12px] overflow-hidden w-full h-[390px] drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
               >
-                <img 
+                <Image 
                   src={member.src} 
                   alt={member.name} 
-                  className="object-contain w-full h-full hover:scale-105 transition-transform duration-500"
+                  fill
+                  className="object-contain hover:scale-105 transition-transform duration-500"
+                  unoptimized={true} // ⚡ Ensures instant cache loading
                 />
               </div>
               <div style={textWrapperStyle} className="w-full">
@@ -198,7 +226,6 @@ const CommitteeTab = () => {
         </div>
       </div>
 
-      {/* Font Import */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap');
       `}</style>
