@@ -38,7 +38,7 @@ const CommitteeTab = () => {
     { name: "Dr. Magan Mehrotra", role: "Apex Hospital, Moradabad, UP", src: "/images/about/committe/per31.webp" },
     { name: "Dr. Leena Mehrotra", role: "Apex Hospital, Moradabad, UP", src: "/images/about/committe/per32.webp" },
     { name: "Dr. Manjiri Somashekhar", role: "Aster CMI Bangalore, Aster RV Bangalore", src: "/images/about/committe/per33.webp" },
-    { name: "Dr. Raj Gajbhiye", role: "Government Medical College, Nagpur", src: "/images/about/committe/per34.webp" },
+    { name: "Dr. Raj Gajbhiye", role: "Government Medical College, Nagpur", src: "/images/about/committe/per35.webp" },
   ];
 
   // --- STYLES ---
@@ -138,11 +138,11 @@ const CommitteeTab = () => {
         <div className="flex flex-col items-center flex-1 w-full xl:w-auto">
           <h3 style={baseHeadingStyle} className="w-full xl:w-[330px]">Organizing Secretary</h3>
           <div className="relative rounded-[12px] overflow-hidden w-full max-w-[305px] h-[390px]">
-            <img src="/images/about/committe/per4.webp" alt="Dr. Minu Bajpai" className="object-contain w-full h-full" />
+            <img src="/images/about/committe/vishwa.png" alt="Dr. vishwa" className="object-contain w-full h-full" />
           </div>
           <div style={textWrapperStyle} className="w-full max-w-[305px]">
-            <div style={nameStyle}>Dr. Minu Bajpai</div>
-            <div style={descStyle}>VMMC & Safdarjung Hospital, New Delhi</div>
+            <div style={nameStyle}>Dr. Vishwa Srivastava</div>
+            <div style={descStyle}>President & COO, SS Innovations</div>
           </div>
         </div>
 
