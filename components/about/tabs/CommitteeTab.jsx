@@ -26,7 +26,7 @@ const CommitteeTab = () => {
   // --- DATA: National Committee (per21 - per34) ---
   const nationalCommittee = [
     { name: "Dr. Sudhir K Rawal", role: "Rajiv Gandhi Cancer Institute and Research Center", src: "/images/about/committe/per21.webp" },
-    { name: "Dr. Somashekhar SP", role: "Aster DM Healthcare", src: "/images/about/committe/per22.webp" },
+    { name: "Dr. Somashekhar SP", role: "Aster DM Healthcare", src: "/images/about/committe/somash.png" },
     { name: "Dr. Lalitaditya Malik", role: "Manipal Hospitals, Jaipur, RJ", src: "/images/about/committe/per23.webp" },
     { name: "Dr. Priya Bhave Chittawar", role: "Her Health Hospital, Bhopal, MP", src: "/images/about/committe/per24.webp" },
     { name: "Dr. Ritesh Mongha", role: "Marengo Asia Hospitals, Faridabad, Haryana", src: "/images/about/committe/per25.webp" },
