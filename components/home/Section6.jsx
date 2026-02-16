@@ -25,19 +25,31 @@ const Section6 = () => {
 
       <motion.div className="w-full flex flex-col items-center h-full" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }}>
         
+        {/* HEADING SECTION */}
         <div className="max-w-[1380px] w-full flex flex-col items-start gap-1 mt-4 md:mt-10">
           <motion.div variants={textVariants} style={subHeadingBaseStyle} className="w-full h-auto md:h-[47px] text-xl md:text-[32px] leading-tight">Last year we inspired</motion.div>
           <motion.h1 variants={textVariants} style={mainHeadingBaseStyle} className="text-4xl leading-tight md:text-[64px] md:leading-[86px]">THIS YEAR, WE TRANSFORM</motion.h1>
         </div>
 
-        <motion.div variants={imageVariants} className="mt-16 md:mt-auto" style={{ overflow: 'hidden' }}>
-          <div className="relative w-[350px] h-[173px] md:w-[1380px] md:h-[693px] rounded-[20px] md:rounded-[40px] overflow-hidden flex justify-center items-center">
+        {/* IMAGE SECTION - Adjusted Spacing Here (mt-12 md:mt-24 lg:mt-32) */}
+        <motion.div variants={imageVariants} className="mt-12 md:mt-24 lg:mt-32 w-full flex justify-center" style={{ overflow: 'hidden' }}>
+          <div className="relative w-[350px] h-[173px] md:w-[1380px] md:h-[693px] rounded-[20px] md:rounded-[40px] overflow-hidden flex justify-center items-center shadow-2xl">
+            
             <Image src="/images/home/section6/image1.webp" alt="SMRSC 2026 Transformation Desktop" fill sizes="1380px" className="object-cover hidden md:block" unoptimized={true} loading="eager" />
             <Image src="/images/home/section6/mobile.webp" alt="SMRSC 2026 Transformation Mobile" fill sizes="350px" className="object-cover block md:hidden" unoptimized={true} loading="eager" />
 
-            <motion.div onHoverStart={() => setIsHovered(true)} onHoverEnd={() => setIsHovered(false)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} style={registerBtnStyle} className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 md:top-[450px] md:translate-y-0">
+            {/* BUTTON */}
+            <motion.div 
+              onHoverStart={() => setIsHovered(true)} 
+              onHoverEnd={() => setIsHovered(false)} 
+              whileHover={{ scale: 1.05 }} 
+              whileTap={{ scale: 0.95 }} 
+              style={registerBtnStyle} 
+              className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 md:top-[450px] md:translate-y-0"
+            >
               <span style={registerBtnTextStyle}>{isHovered ? "Coming Soon" : "Registration Opening Soon"}</span>
             </motion.div>
+
           </div>
         </motion.div>
 
