@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useRouter } from 'next/navigation'; // Added for redirection
+import { useRouter } from 'next/navigation';
 
 const Overview = () => {
-  const router = useRouter(); // Initialize router
+  const router = useRouter(); 
 
   // --- Carousel State & Logic ---
   const [page, setPage] = useState(0);
@@ -143,7 +143,8 @@ const Overview = () => {
   };
 
   // --- Styles ---
-  const arrowBtnClass = "flex w-[40px] md:w-[48px] h-[40px] md:h-[48px] p-[8px] md:p-[10px] justify-center items-center gap-[10px] rounded-full bg-white/5 hover:bg-white/10 transition-all border border-white/10 shrink-0 z-50 active:scale-95 cursor-pointer";
+  // Updated arrow class for a premium glassmorphic feel that stands out over the side cards
+  const arrowBtnClass = "flex w-[44px] md:w-[56px] h-[44px] md:h-[56px] justify-center items-center rounded-full bg-black/50 backdrop-blur-md hover:bg-white/20 transition-all border border-white/20 shrink-0 z-50 active:scale-95 cursor-pointer shadow-[0_0_20px_rgba(0,0,0,0.5)]";
 
   const cardLabelStyle = {
     color: '#E1C583',
@@ -250,7 +251,7 @@ const Overview = () => {
              lineHeight: '40px',
            }}
          >
-            What Awaits You
+           What Awaits You
          </h2>
       </div>
 
@@ -262,17 +263,27 @@ const Overview = () => {
         viewport={{ once: true }}
         className="relative w-full min-h-[500px] md:h-screen flex flex-col items-center justify-start pb-20 overflow-visible"
       >
-        <div className="relative flex items-center justify-center w-full overflow-visible px-4 md:px-10">
+        {/* Adjusted padding to leave room for the outside arrows on small screens */}
+        <div className="relative flex items-center justify-center w-full overflow-visible px-14 md:px-24">
           
-          <div className="absolute left-2 md:left-10 z-[60]">
-            <button onClick={() => paginate(-1)} className={arrowBtnClass}>
-              <ChevronLeft className="text-white w-full h-full" />
-            </button>
-          </div>
-
           <div 
-            className="relative overflow-visible shrink-0 w-full max-w-[340px] md:max-w-[1380px] h-[450px] md:h-[720px]"
+            className="relative overflow-visible shrink-0 w-full max-w-[280px] md:max-w-[1200px] h-[450px] md:h-[720px]"
           >
+            {/* LEFT ARROW - Pinned to the outside edge of the central container */}
+            <div className="absolute top-1/2 -translate-y-1/2 -left-12 md:-left-20 z-[70]">
+              <button onClick={() => paginate(-1)} className={arrowBtnClass}>
+                <ChevronLeft className="text-white w-6 h-6 md:w-8 md:h-8" />
+              </button>
+            </div>
+
+            {/* RIGHT ARROW - Pinned to the outside edge of the central container */}
+            <div className="absolute top-1/2 -translate-y-1/2 -right-12 md:-right-20 z-[70]">
+              <button onClick={() => paginate(1)} className={arrowBtnClass}>
+                <ChevronRight className="text-white w-6 h-6 md:w-8 md:h-8" />
+              </button>
+            </div>
+
+            {/* IMAGES */}
             {images.map((img, index) => {
               const position = getPosition(index);
               
@@ -304,12 +315,6 @@ const Overview = () => {
                 </motion.div>
               );
             })}
-          </div>
-
-          <div className="absolute right-2 md:right-10 z-[60]">
-            <button onClick={() => paginate(1)} className={arrowBtnClass}>
-              <ChevronRight className="text-white w-full h-full" />
-            </button>
           </div>
         </div>
 
@@ -412,30 +417,30 @@ const Overview = () => {
              </div>
            </div>
         </div>
-{/* DAY 3 CARD */}
-<div className="w-full flex flex-col md:flex-row items-center justify-between gap-10 md:gap-[80px] mb-20">
-   <div className="shrink-0 w-full md:w-[810px] h-[300px] md:h-[489px] relative rounded-[24px] overflow-hidden">
-     {/* Make sure this image exists or use a placeholder */}
-     <img 
-       src="/images/explore/image9.webp" 
-       alt="Day 3 Workshops" 
-       className="absolute inset-0 w-full h-full object-cover"
-     />
-   </div>
-   
-   <div className="flex flex-col items-start justify-center w-full max-w-[445px]">
-     <h3 className="text-[28px] leading-[32px] md:text-[36px] md:leading-[40px]" style={dayHeadingStyle}>
-       Day 3 - Workshops & Masterclasses
-     </h3>
-     <p style={dayParaStyle}>
-       Intensive dry-lab sessions, masterclasses on complex suturing, and deep-dives into future technologies.
-     </p>
-     <div className="flex flex-wrap items-center gap-4">
-         <button style={viewBtnStyle} onClick={() => handleNavigation('day3')}>View Day 3</button>
-         <button style={calendarBtnStyle}>Add to Calendar</button>
-     </div>
-   </div>
-</div>
+
+        {/* DAY 3 CARD */}
+        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-10 md:gap-[80px] mb-20">
+           <div className="shrink-0 w-full md:w-[810px] h-[300px] md:h-[489px] relative rounded-[24px] overflow-hidden">
+             <img 
+               src="/images/explore/image9.webp" 
+               alt="Day 3 Workshops" 
+               className="absolute inset-0 w-full h-full object-cover"
+             />
+           </div>
+           
+           <div className="flex flex-col items-start justify-center w-full max-w-[445px]">
+             <h3 className="text-[28px] leading-[32px] md:text-[36px] md:leading-[40px]" style={dayHeadingStyle}>
+               Day 3 - Workshops & Masterclasses
+             </h3>
+             <p style={dayParaStyle}>
+               Intensive dry-lab sessions, masterclasses on complex suturing, and deep-dives into future technologies.
+             </p>
+             <div className="flex flex-wrap items-center gap-4">
+                 <button style={viewBtnStyle} onClick={() => handleNavigation('day3')}>View Day 3</button>
+                 <button style={calendarBtnStyle}>Add to Calendar</button>
+             </div>
+           </div>
+        </div>
       </div>
     </div>
   );
