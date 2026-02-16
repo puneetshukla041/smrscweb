@@ -1,15 +1,18 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const Overview = () => {
   const router = useRouter(); 
 
-  // --- Carousel State & Logic ---
+  // --- Carousel State & Logic (Updated to match Section3) ---
   const [page, setPage] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
+  // Preserved original images
   const images = [
     { id: 1, src: "/images/explore/image1.webp", title: "Experience 1" },
     { id: 2, src: "/images/explore/image2.webp", title: "Experience 2" },
@@ -19,11 +22,25 @@ const Overview = () => {
     { id: 6, src: "/images/explore/image6.webp", title: "Experience 6" },
   ];
 
+  // Mobile detection
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const imageIndex = ((page % images.length) + images.length) % images.length;
 
   const paginate = (newDirection) => {
     setPage(page + newDirection);
   };
+
+  // Auto-scroll logic from Section3
+  useEffect(() => {
+    const timer = setInterval(() => { paginate(1); }, 3000);
+    return () => clearInterval(timer);
+  }, [page]); 
 
   const getPosition = (index) => {
     const total = images.length;
@@ -44,7 +61,7 @@ const Overview = () => {
     router.push(`/explore?tab=${tab}`, { scroll: false });
   };
 
-  // --- Animation Variants ---
+  // --- Animation Variants (From Section3) ---
   const itemVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { 
@@ -126,39 +143,10 @@ const Overview = () => {
     }
   };
 
-  const textVariants = {
-    center: {
-      y: 0,
-      opacity: 1,
-      transition: { 
-        delay: 0.2, 
-        duration: 0.6, 
-        ease: "easeOut" 
-      }
-    },
-    left: { y: 30, opacity: 0 },
-    right: { y: 30, opacity: 0 },
-    "far-left": { y: 30, opacity: 0 },
-    "far-right": { y: 30, opacity: 0 },
-  };
-
   // --- Styles ---
-  // Updated arrow class for a premium glassmorphic feel that stands out over the side cards
-  const arrowBtnClass = "flex w-[44px] md:w-[56px] h-[44px] md:h-[56px] justify-center items-center rounded-full bg-black/50 backdrop-blur-md hover:bg-white/20 transition-all border border-white/20 shrink-0 z-50 active:scale-95 cursor-pointer shadow-[0_0_20px_rgba(0,0,0,0.5)]";
-
-  const cardLabelStyle = {
-    color: '#E1C583',
-    textShadow: '0 4px 4px rgba(0, 0, 0, 0.25)',
-    fontFamily: '"Blauer Nue", sans-serif',
-    fontSize: '1rem',
-    fontStyle: 'normal',
-    fontWeight: 500,
-    lineHeight: '2.25rem', 
-    position: 'absolute',
-    top: '-40px',
-    left: '0px',
-    zIndex: 40,
-  };
+  
+  // Updated arrow class from Section3
+  const arrowBtnClass = "flex w-[40px] md:w-[48px] h-[40px] md:h-[48px] p-[8px] md:p-[10px] justify-center items-center gap-[10px] rounded-full bg-white hover:bg-white/90 transition-all shrink-0 z-50 active:scale-95 cursor-pointer shadow-lg";
 
   const indicatorContainerStyle = {
     display: 'inline-flex',
@@ -255,7 +243,7 @@ const Overview = () => {
          </h2>
       </div>
 
-      {/* 2. Carousel Section */}
+      {/* 2. Carousel Section (Updated to match Section3) */}
       <motion.div 
         variants={itemVariants}
         initial="hidden"
@@ -263,27 +251,30 @@ const Overview = () => {
         viewport={{ once: true }}
         className="relative w-full min-h-[500px] md:h-screen flex flex-col items-center justify-start pb-20 overflow-visible"
       >
-        {/* Adjusted padding to leave room for the outside arrows on small screens */}
-        <div className="relative flex items-center justify-center w-full overflow-visible px-14 md:px-24">
+        <div className="relative flex items-center justify-center w-full overflow-visible px-4 md:px-10">
           
+          {/* LEFT ARROW - Positioned per Section3 */}
+          <div className="absolute left-8 md:left-24 z-[60]">
+            <button onClick={() => paginate(-1)} className={arrowBtnClass}>
+              <ChevronLeft className="text-black w-full h-full" />
+            </button>
+          </div>
+
+          {/* RIGHT ARROW - Positioned per Section3 */}
+          <div className="absolute right-8 md:right-24 z-[60]">
+             <button onClick={() => paginate(1)} className={arrowBtnClass}>
+               <ChevronRight className="text-black w-full h-full" />
+             </button>
+          </div>
+
+          {/* IMAGES CONTAINER */}
           <div 
-            className="relative overflow-visible shrink-0 w-full max-w-[280px] md:max-w-[1200px] h-[450px] md:h-[720px]"
+            className={`relative overflow-visible shrink-0 transition-all duration-300 ${
+              isMobile 
+                ? "w-[340px] h-[470px]" 
+                : "w-full max-w-[340px] md:max-w-[1380px] h-[450px] md:h-[720px]"
+            }`}
           >
-            {/* LEFT ARROW - Pinned to the outside edge of the central container */}
-            <div className="absolute top-1/2 -translate-y-1/2 -left-12 md:-left-20 z-[70]">
-              <button onClick={() => paginate(-1)} className={arrowBtnClass}>
-                <ChevronLeft className="text-white w-6 h-6 md:w-8 md:h-8" />
-              </button>
-            </div>
-
-            {/* RIGHT ARROW - Pinned to the outside edge of the central container */}
-            <div className="absolute top-1/2 -translate-y-1/2 -right-12 md:-right-20 z-[70]">
-              <button onClick={() => paginate(1)} className={arrowBtnClass}>
-                <ChevronRight className="text-white w-6 h-6 md:w-8 md:h-8" />
-              </button>
-            </div>
-
-            {/* IMAGES */}
             {images.map((img, index) => {
               const position = getPosition(index);
               
@@ -296,19 +287,15 @@ const Overview = () => {
                   style={{ willChange: "transform, opacity, filter" }}
                   className="absolute top-0 left-0 w-full h-full bg-transparent"
                 >
-                  <motion.div 
-                    variants={textVariants} 
-                    style={cardLabelStyle}
-                    className="text-sm md:text-base -top-[30px] md:-top-[50px]"
-                  >
-                    Experience Zone
-                  </motion.div>
-
                   <div className="w-full h-full rounded-[24px] md:rounded-[40px] overflow-hidden bg-[#0a0a0a] border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.6)] relative">
-                    <img 
+                    <Image 
                       src={img.src} 
                       alt={img.title}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      fill
+                      sizes="(max-width: 768px) 340px, (max-width: 1200px) 80vw, 70vw"
+                      className="object-cover"
+                      unoptimized={true}
+                      loading="eager"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   </div>
