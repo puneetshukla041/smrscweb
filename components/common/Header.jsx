@@ -5,10 +5,10 @@ import { Search, Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import SearchModal from './SearchModal'; // Make sure this path is correct based on where you put the file
+import SearchModal from './SearchModal'; 
 
 /* -------------------------------------------------------------------------- */
-/* CONSTANTS                                  */
+/* CONSTANTS                                                                  */
 /* -------------------------------------------------------------------------- */
 
 const NAV_LINKS = [
@@ -58,7 +58,15 @@ const NAV_LINKS = [
       { name: "SMRSC 2024", href: "/pastevents?tab=2024" }, 
     ]
   },
-  { name: "Contact Us", href: "/contactus" }, 
+  // UPDATED SECTION: Contact Us is now a dropdown
+  { 
+    name: "Contact Us", 
+    href: "/contactus",
+    subLinks: [
+      { name: "Contact Us", href: "/contactus" },
+      { name: "FAQs", href: "/faq" }, 
+    ]
+  }, 
 ];
 
 const ANIMATION_SPRING = { type: "spring", stiffness: 300, damping: 30, mass: 1 };
@@ -109,7 +117,7 @@ export default function Header() {
       // List of all major routes in the application
       const routesToPrefetch = [
         '/about', '/explore', '/visit/venue', '/visit/hotels', '/visit/places', 
-        '/media', '/pastevents', '/contactus', '/register'
+        '/media', '/pastevents', '/contactus', '/register', '/faq'
       ];
       
       // Delay by 1 second so it doesn't compete with the initial homepage render
