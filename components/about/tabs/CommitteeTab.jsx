@@ -4,7 +4,6 @@ import Image from 'next/image';
 
 const CommitteeTab = () => {
 
-  // --- DATA: International Committee ---
   const internationalCommittee = [
     { name: "Dr. Mani Menon", role: "Vattikuti Urology Institute, Detroit, MI, USA", src: "/images/about/committe/per5.webp" },
     { name: "Dr. Ashutosh K. Tewari", role: "Icahn School of Medicine at Mount Sinai, NY, USA", src: "/images/about/committe/per6.webp" },
@@ -24,7 +23,6 @@ const CommitteeTab = () => {
     { name: "Dr. Ivan Rizal Sini", role: "Bunda Group Hospitals, Jakarta, Indonesia", src: "/images/about/committe/per20.webp" },
   ];
 
-  // --- DATA: National Committee ---
   const nationalCommittee = [
     { name: "Dr. Sudhir K Rawal", role: "Rajiv Gandhi Cancer Institute and Research Center", src: "/images/about/committe/krawal.png" },
     { name: "Dr. Somashekhar SP", role: "Aster DM Healthcare", src: "/images/about/committe/somash.png" },
@@ -42,48 +40,11 @@ const CommitteeTab = () => {
     { name: "Dr. Raj Gajbhiye", role: "Government Medical College, Nagpur", src: "/images/about/committe/per35.webp" },
   ];
 
-  // --- STYLES ---
-  const baseHeadingStyle = {
-    color: '#F8FFFF',
-    fontFamily: '"Blauer Nue", sans-serif',
-    fontSize: '32px',
-    fontStyle: 'normal',
-    fontWeight: 500,
-    lineHeight: '40px',
-    marginBottom: '24px', 
-    textAlign: 'left',
-  };
-
-  const sectionHeadingStyle = {
-    ...baseHeadingStyle,
-    width: '100%', 
-    marginTop: '100px', 
-    marginBottom: '60px'
-  };
-
-  const textWrapperStyle = {
-    marginTop: '16px', 
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '4px'
-  };
-
-  const nameStyle = {
-    color: '#FFF',
-    fontFamily: 'Manrope, sans-serif',
-    fontSize: '16px',
-    fontWeight: 600,
-    lineHeight: '24px', 
-  };
-
-  const descStyle = {
-    color: '#FFF',
-    fontFamily: 'Manrope, sans-serif',
-    fontSize: '12px',
-    fontWeight: 400,
-    lineHeight: '16px', 
-    opacity: 0.8
-  };
+  const baseHeadingStyle = { color: '#F8FFFF', fontFamily: '"Blauer Nue", sans-serif', fontSize: '32px', fontStyle: 'normal', fontWeight: 500, lineHeight: '40px', marginBottom: '24px', textAlign: 'left' };
+  const sectionHeadingStyle = { ...baseHeadingStyle, width: '100%', marginTop: '100px', marginBottom: '60px' };
+  const textWrapperStyle = { marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '4px' };
+  const nameStyle = { color: '#FFF', fontFamily: 'Manrope, sans-serif', fontSize: '16px', fontWeight: 600, lineHeight: '24px' };
+  const descStyle = { color: '#FFF', fontFamily: 'Manrope, sans-serif', fontSize: '12px', fontWeight: 400, lineHeight: '16px', opacity: 0.8 };
 
   return (
     <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20">
@@ -91,17 +52,10 @@ const CommitteeTab = () => {
       {/* ================= SECTION 1: TOP LEADERSHIP ================= */}
       <div className="w-full px-6 xl:pl-0 xl:pr-[270px] flex flex-col xl:flex-row items-start justify-between gap-12 xl:gap-8">
         
-        {/* Organizing Chairman */}
         <div className="flex flex-col items-center flex-1 w-full xl:w-auto">
           <h3 style={baseHeadingStyle} className="w-full xl:w-[330px]">Organizing Chairman</h3>
           <div className="relative rounded-[12px] overflow-hidden w-full max-w-[305px] h-[390px]">
-            <Image 
-              src="/images/about/committe/sudhir.png" 
-              alt="Dr. Sudhir Srivastava" 
-              fill
-              className="object-contain"
-              unoptimized={true} 
-            />
+            <Image src="/images/about/committe/sudhir.png" alt="Dr. Sudhir Srivastava" fill className="object-contain" unoptimized={true} loading="eager" fetchPriority="low" />
           </div>
           <div style={textWrapperStyle} className="w-full max-w-[305px]">
             <div style={nameStyle}>Dr. Sudhir Srivastava</div>
@@ -109,25 +63,12 @@ const CommitteeTab = () => {
           </div>
         </div>
 
-        {/* Organizing Co-Chairpersons */}
         <div className="flex flex-col items-center flex-[1.5] w-full xl:w-auto">
-          <h3 
-            style={baseHeadingStyle} 
-            className="w-full xl:w-[435px] whitespace-normal xl:whitespace-nowrap"
-          >
-            Organizing Co-Chairpersons
-          </h3>
-          
+          <h3 style={baseHeadingStyle} className="w-full xl:w-[435px] whitespace-normal xl:whitespace-nowrap">Organizing Co-Chairpersons</h3>
           <div className="flex flex-col md:flex-row gap-6 w-full md:w-auto items-center md:items-start">
             <div className="flex flex-col items-center md:items-start w-full md:w-auto">
               <div className="relative rounded-[12px] overflow-hidden w-full max-w-[305px] h-[390px]">
-                <Image 
-                  src="/images/about/committe/krawal.png" 
-                  alt="Dr. Sudhir K Rawal" 
-                  fill
-                  className="object-contain"
-                  unoptimized={true} 
-                />
+                <Image src="/images/about/committe/krawal.png" alt="Dr. Sudhir K Rawal" fill className="object-contain" unoptimized={true} loading="eager" fetchPriority="low" />
               </div>
               <div style={textWrapperStyle} className="w-full max-w-[305px]">
                 <div style={nameStyle}>Dr. Sudhir K Rawal</div>
@@ -136,13 +77,7 @@ const CommitteeTab = () => {
             </div>
             <div className="flex flex-col items-center md:items-start w-full md:w-auto">
               <div className="relative rounded-[12px] overflow-hidden w-full max-w-[305px] h-[390px]">
-                <Image 
-                  src="/images/about/committe/somash.png" 
-                  alt="Dr. S.P. Somashekhar" 
-                  fill
-                  className="object-contain"
-                  unoptimized={true} 
-                />
+                <Image src="/images/about/committe/somash.png" alt="Dr. S.P. Somashekhar" fill className="object-contain" unoptimized={true} loading="eager" fetchPriority="low" />
               </div>
               <div style={textWrapperStyle} className="w-full max-w-[305px]">
                 <div style={nameStyle}>Dr. S.P. Somashekhar</div>
@@ -152,17 +87,10 @@ const CommitteeTab = () => {
           </div>
         </div>
 
-        {/* Organizing Secretary */}
         <div className="flex flex-col items-center flex-1 w-full xl:w-auto">
           <h3 style={baseHeadingStyle} className="w-full xl:w-[330px]">Organizing Secretary</h3>
           <div className="relative rounded-[12px] overflow-hidden w-full max-w-[305px] h-[390px]">
-            <Image 
-              src="/images/about/committe/vishwa.png" 
-              alt="Dr. Vishwa Srivastava" 
-              fill
-              className="object-contain"
-              unoptimized={true} 
-            />
+            <Image src="/images/about/committe/vishwa.png" alt="Dr. Vishwa Srivastava" fill className="object-contain" unoptimized={true} loading="eager" fetchPriority="low" />
           </div>
           <div style={textWrapperStyle} className="w-full max-w-[305px]">
             <div style={nameStyle}>Dr. Vishwa Srivastava</div>
@@ -175,20 +103,11 @@ const CommitteeTab = () => {
       {/* ================= SECTION 2: INTERNATIONAL COMMITTEE ================= */}
       <div className="w-full px-6 xl:pl-0 xl:pr-[270px]">
         <h3 style={sectionHeadingStyle}>Scientific Organizing Committee International</h3>
-        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 gap-y-12 place-items-center">
           {internationalCommittee.map((member, idx) => (
             <div key={idx} className="flex flex-col items-center w-full max-w-[305px]">
-              <div 
-                className="relative rounded-[12px] overflow-hidden w-full h-[390px] drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
-              >
-                <Image 
-                  src={member.src} 
-                  alt={member.name} 
-                  fill
-                  className="object-contain hover:scale-105 transition-transform duration-500"
-                  unoptimized={true} // ⚡ Ensures instant cache loading
-                />
+              <div className="relative rounded-[12px] overflow-hidden w-full h-[390px] drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
+                <Image src={member.src} alt={member.name} fill className="object-contain hover:scale-105 transition-transform duration-500" unoptimized={true} loading="eager" fetchPriority="low" />
               </div>
               <div style={textWrapperStyle} className="w-full">
                 <div style={nameStyle}>{member.name}</div>
@@ -202,20 +121,11 @@ const CommitteeTab = () => {
       {/* ================= SECTION 3: NATIONAL COMMITTEE ================= */}
       <div className="w-full px-6 xl:pl-0 xl:pr-[270px]">
         <h3 style={sectionHeadingStyle}>Scientific Organizing Committee National</h3>
-        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 gap-y-12 place-items-center">
           {nationalCommittee.map((member, idx) => (
             <div key={idx} className="flex flex-col items-center w-full max-w-[305px]">
-              <div 
-                 className="relative rounded-[12px] overflow-hidden w-full h-[390px] drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
-              >
-                <Image 
-                  src={member.src} 
-                  alt={member.name} 
-                  fill
-                  className="object-contain hover:scale-105 transition-transform duration-500"
-                  unoptimized={true} // ⚡ Ensures instant cache loading
-                />
+              <div className="relative rounded-[12px] overflow-hidden w-full h-[390px] drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
+                <Image src={member.src} alt={member.name} fill className="object-contain hover:scale-105 transition-transform duration-500" unoptimized={true} loading="eager" fetchPriority="low" />
               </div>
               <div style={textWrapperStyle} className="w-full">
                 <div style={nameStyle}>{member.name}</div>
