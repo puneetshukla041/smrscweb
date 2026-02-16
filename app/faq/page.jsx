@@ -3,10 +3,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, ArrowRight } from 'lucide-react';
-import Header from '../components/Header'; // Assuming you have your header component
+import Header from '../../components/common/Header'; 
+import Footer from '../../components/common/footer'; 
 
 const FAQPage = () => {
-  // State to track which FAQ is open
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleFAQ = (index) => {
@@ -32,112 +32,191 @@ const FAQPage = () => {
     },
     {
       question: "How do I register?",
-      // Note: Text from image duplicated the previous answer. 
-      // I have kept it consistent with the image provided, but you may want to update this text.
-      answer: "SMRSC combines academic discussions, live clinical demonstrations, and technology showcases within a structured program." 
+      answer: "Registration details can be found on our official portal. The process includes selecting your pass type, workshops, and accommodation options if needed." 
     }
   ];
+
+  // --- Animation Configurations ---
+  const springTransition = {
+    type: "spring",
+    stiffness: 300,
+    damping: 30,
+    mass: 1
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+    show: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
 
   return (
     <>
       <Header />
-      <main className="min-h-screen w-full bg-[#02050A] text-white pt-32 pb-20 px-4 flex flex-col items-center">
+      
+      <main className="min-h-screen w-full bg-[#000000] text-white pt-40 pb-32 px-6 flex flex-col items-center relative overflow-hidden">
         
-        {/* Container constrained to the width of the answers as per specs (approx 1143px) */}
-        <div className="w-full max-w-[1143px] flex flex-col">
+        {/* Dynamic Background Mesh - Neutral White/Gray Tint */}
+        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[120vw] h-[100vh] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/10 via-black/0 to-transparent blur-[120px] pointer-events-none opacity-40 animate-pulse-slow -z-10" />
+        
+        <div className="w-full max-w-[1000px] flex flex-col z-10">
           
           {/* Page Heading */}
-          <h1 
-            className="mb-16"
+          <motion.h1 
+            initial={{ opacity: 0, y: 40, filter: "blur(12px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-20 text-center md:text-left bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60"
             style={{
-              color: '#E5E5E5',
               fontFamily: 'Sora, sans-serif',
-              fontSize: '32px',
-              fontStyle: 'normal',
-              fontWeight: 500,
-              lineHeight: '50px',
+              fontSize: '48px',
+              fontWeight: 600,
+              letterSpacing: '-0.02em',
+              lineHeight: '1.1',
             }}
           >
             Frequently Asked Questions
-          </h1>
+          </motion.h1>
 
           {/* FAQ List */}
-          <div className="flex flex-col w-full">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+            className="flex flex-col w-full space-y-4"
+          >
             {faqs.map((faq, index) => {
               const isOpen = openIndex === index;
 
               return (
-                <div 
+                <motion.div 
                   key={index} 
-                  className="border-b border-[#E5E5E5]/20 last:border-none"
+                  variants={itemVariants}
+                  className="group relative cursor-pointer" // cursor-pointer added here
+                  onClick={() => toggleFAQ(index)}
                 >
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="flex items-start justify-between w-full py-8 text-left group transition-colors duration-300"
-                  >
-                    <span 
-                      style={{
-                        maxWidth: '744px',
-                        color: '#F8FFFF',
-                        fontFamily: 'Manrope, sans-serif',
-                        fontSize: '16px',
-                        fontStyle: 'normal',
-                        fontWeight: 400,
-                        lineHeight: '32px',
-                      }}
-                      className="group-hover:text-[#CE921B] transition-colors"
-                    >
-                      {faq.question}
-                    </span>
-                    
-                    <span className={`flex items-center justify-center w-10 h-10 rounded-full border border-white/30 transition-all duration-300 ${isOpen ? 'bg-white text-black border-white' : 'text-white'}`}>
-                      {isOpen ? <Minus size={20} /> : <Plus size={20} />}
-                    </span>
-                  </button>
+                  {/* Glass Card Background - Neutral Monochrome */}
+                  <motion.div
+                    layout
+                    className={`absolute inset-0 rounded-2xl border backdrop-blur-sm transition-all duration-500 ${isOpen ? 'bg-white/[0.08] border-white/20' : 'bg-white/[0.02] border-white/[0.05] group-hover:bg-white/[0.05] group-hover:border-white/10'}`}
+                  />
 
-                  <AnimatePresence>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="overflow-hidden"
+                  <div className="relative z-10 px-8 py-6 pointer-events-none">
+                    <div className="flex items-center justify-between w-full text-left">
+                      <span 
+                        style={{
+                          fontFamily: 'Manrope, sans-serif',
+                          fontSize: '18px',
+                          fontWeight: 500,
+                          letterSpacing: '-0.01em',
+                        }}
+                        className={`transition-colors duration-300 pr-8 ${isOpen ? 'text-white' : 'text-white/70 group-hover:text-white'}`}
                       >
-                        <p 
-                          className="pb-8"
-                          style={{
-                            maxWidth: '1143px', // Matches spec width for answers
-                            color: '#E5E5E5',
-                            fontFamily: 'Manrope, sans-serif',
-                            fontSize: '12px',
-                            fontStyle: 'normal',
-                            fontWeight: 400,
-                            lineHeight: '24px',
-                            opacity: 0.8 // Visual adjustment for readability vs raw hex
-                          }}
-                        >
-                          {faq.answer}
-                        </p>
+                        {faq.question}
+                      </span>
+                      
+                      <motion.div 
+                        className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full transition-colors duration-300 ${isOpen ? 'bg-white text-black' : 'bg-white/10 text-white group-hover:bg-white/20'}`}
+                      >
+                         <AnimatePresence mode="wait" initial={false}>
+                            {isOpen ? (
+                                <motion.div
+                                    key="minus"
+                                    initial={{ rotate: -90, opacity: 0 }}
+                                    animate={{ rotate: 0, opacity: 1 }}
+                                    exit={{ rotate: 90, opacity: 0 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    <Minus size={16} strokeWidth={2.5} />
+                                </motion.div>
+                            ) : (
+                                <motion.div
+                                    key="plus"
+                                    initial={{ rotate: 90, opacity: 0 }}
+                                    animate={{ rotate: 0, opacity: 1 }}
+                                    exit={{ rotate: -90, opacity: 0 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    <Plus size={16} strokeWidth={2.5} />
+                                </motion.div>
+                            )}
+                         </AnimatePresence>
                       </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                    </div>
+
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={springTransition}
+                          className="overflow-hidden"
+                        >
+                          <motion.p 
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 0.7 }}
+                            exit={{ y: 20, opacity: 0 }}
+                            transition={{ duration: 0.4, delay: 0.1 }}
+                            className="pt-4 pb-2 text-base leading-relaxed text-gray-300 max-w-3xl"
+                            style={{ fontFamily: 'Manrope, sans-serif' }}
+                          >
+                            {faq.answer}
+                          </motion.p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
 
           {/* Bottom Button */}
-          <div className="w-full flex justify-end mt-12">
-            <button 
-              className="flex items-center gap-2 bg-white text-[#02050A] px-6 py-3 rounded-full font-manrope font-medium text-sm hover:bg-gray-200 transition-colors"
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.8 }}
+            className="w-full flex justify-center md:justify-end mt-16"
+          >
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full overflow-hidden cursor-pointer hover:bg-gray-200 transition-colors"
             >
-              View all Faqs
-            </button>
-          </div>
+              <span className="relative z-10 font-manrope font-semibold text-sm tracking-wide">View all FAQs</span>
+              <motion.span
+                className="relative z-10"
+                initial={{ x: 0 }}
+                whileHover={{ x: 5 }}
+                transition={{ type: "spring", stiffness: 400, damping: 20 }}
+              >
+                  <ArrowRight size={18} />
+              </motion.span>
+              
+              {/* Button Shine Effect - White/Gray */}
+              <div className="absolute inset-0 -translate-x-full group-hover:animate-[shine_1s_infinite] bg-gradient-to-r from-transparent via-gray-400/20 to-transparent z-0" />
+            </motion.button>
+          </motion.div>
 
         </div>
       </main>
+      <Footer />
     </>
   );
 };
