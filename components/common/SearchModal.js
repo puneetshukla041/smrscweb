@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from "react";
-import { Search, MapPin, Users, FileText, Sparkles, CornerDownLeft } from "lucide-react";
+import { Search, MapPin, Users, FileText, Sparkles, CornerDownLeft, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from 'next/navigation';
 
@@ -10,17 +10,17 @@ const SEARCH_INDEX = [
     title: "Cardiac Surgery on SSI Mantra", 
     href: "/map", 
     category: "Live Surgery & Map", 
-    icon: <MapPin size={20} strokeWidth={1.5} />, 
+    icon: <MapPin size={18} strokeWidth={1.5} />, 
     tags: ["cardiac", "surgery", "auditorium 2", "map", "navigation", "dr. sudhir srivastava", "day 2"] 
   },
-  { title: "Conference Agenda & Schedule", href: "/explore", category: "Program", icon: <FileText size={20} strokeWidth={1.5} />, tags: ["timing", "dates", "plan", "day 1", "day 2", "day 3"] },
-  { title: "Scientific Workshops", href: "/explore#workshops", category: "Program", icon: <FileText size={20} strokeWidth={1.5} />, tags: ["training", "hands on", "learning"] },
-  { title: "Organizing Committee", href: "/about#committee", category: "Leadership", icon: <Users size={20} strokeWidth={1.5} />, tags: ["board", "team", "chairman", "secretary"] },
-  { title: "International Faculty", href: "/about#faculty", category: "Speakers", icon: <Users size={20} strokeWidth={1.5} />, tags: ["doctors", "professors", "guests", "experts"] },
-  { title: "Venue & Location", href: "/visit/venue", category: "Visit", icon: <MapPin size={20} strokeWidth={1.5} />, tags: ["address", "directions", "city"] },
-  { title: "Hotel Accommodations", href: "/visit/hotels", category: "Visit", icon: <MapPin size={20} strokeWidth={1.5} />, tags: ["stay", "rooms", "booking", "lodging"] },
-  { title: "Delegate Registration", href: "/register", category: "Action", icon: <Users size={20} strokeWidth={1.5} />, tags: ["sign up", "buy", "ticket", "fee"] },
-  { title: "Contact Support", href: "/contactus", category: "Support", icon: <Users size={20} strokeWidth={1.5} />, tags: ["help", "email", "phone"] },
+  { title: "Conference Agenda & Schedule", href: "/explore", category: "Program", icon: <FileText size={18} strokeWidth={1.5} />, tags: ["timing", "dates", "plan", "day 1", "day 2", "day 3"] },
+  { title: "Scientific Workshops", href: "/explore#workshops", category: "Program", icon: <FileText size={18} strokeWidth={1.5} />, tags: ["training", "hands on", "learning"] },
+  { title: "Organizing Committee", href: "/about#committee", category: "Leadership", icon: <Users size={18} strokeWidth={1.5} />, tags: ["board", "team", "chairman", "secretary"] },
+  { title: "International Faculty", href: "/about#faculty", category: "Speakers", icon: <Users size={18} strokeWidth={1.5} />, tags: ["doctors", "professors", "guests", "experts"] },
+  { title: "Venue & Location", href: "/visit/venue", category: "Visit", icon: <MapPin size={18} strokeWidth={1.5} />, tags: ["address", "directions", "city"] },
+  { title: "Hotel Accommodations", href: "/visit/hotels", category: "Visit", icon: <MapPin size={18} strokeWidth={1.5} />, tags: ["stay", "rooms", "booking", "lodging"] },
+  { title: "Delegate Registration", href: "/register", category: "Action", icon: <Users size={18} strokeWidth={1.5} />, tags: ["sign up", "buy", "ticket", "fee"] },
+  { title: "Contact Support", href: "/contactus", category: "Support", icon: <Users size={18} strokeWidth={1.5} />, tags: ["help", "email", "phone"] },
 ];
 
 const QUICK_LINKS = [
@@ -40,7 +40,11 @@ export default function SearchModal({ isOpen, onClose }) {
     if (isOpen) {
       setTimeout(() => setQuery(""), 100);
       setSelectedIndex(0);
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling on mobile
+    } else {
+      document.body.style.overflow = 'unset';
     }
+    return () => { document.body.style.overflow = 'unset'; };
   }, [isOpen]);
 
   useEffect(() => {
@@ -52,8 +56,8 @@ export default function SearchModal({ isOpen, onClose }) {
     const lowerQuery = query.toLowerCase();
     const filtered = SEARCH_INDEX.filter(item => 
       item.title.toLowerCase().includes(lowerQuery) || 
-      item.category.toLowerCase().includes(lowerQuery) ||
-      item.tags.some(tag => tag.toLowerCase().includes(lowerQuery))
+      item.category?.toLowerCase().includes(lowerQuery) ||
+      item.tags?.some(tag => tag.toLowerCase().includes(lowerQuery))
     );
     setResults(filtered);
     setSelectedIndex(0); 
@@ -93,86 +97,111 @@ export default function SearchModal({ isOpen, onClose }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }} // Apple-like easing curve
-          className="fixed inset-0 z-[150] flex flex-col items-center pt-[15vh] px-4 font-sans"
+          transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }} 
+          className="fixed inset-0 z-[150] flex flex-col items-center justify-start pt-[5vh] sm:pt-[12vh] px-4 sm:px-6 font-sans"
         >
+          {/* Deep Blur Backdrop */}
           <div 
-            className="absolute inset-0 bg-black/40 backdrop-blur-xl" 
+            className="absolute inset-0 bg-[#000000]/50 backdrop-blur-xl" 
             onClick={onClose}
           />
+          
           <motion.div 
-            initial={{ scale: 0.98, opacity: 0, y: 15 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.98, opacity: 0, y: 10 }}
+            initial={{ scale: 0.96, opacity: 0, y: 20, filter: "blur(8px)" }}
+            animate={{ scale: 1, opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ scale: 0.98, opacity: 0, y: 10, filter: "blur(8px)" }}
             transition={{ type: "spring", stiffness: 400, damping: 30, mass: 0.8 }}
-            className="relative w-full max-w-2xl bg-[#1c1c1e]/80 backdrop-blur-3xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[60vh] ring-1 ring-white/5"
+            className="relative w-full max-w-2xl bg-[#151516]/85 backdrop-blur-3xl border border-white/[0.08] rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col max-h-[85vh] sm:max-h-[65vh]"
             onClick={(e) => e.stopPropagation()} 
           >
-            <div className="flex items-center gap-4 p-5 border-b border-white/10 bg-[#2c2c2e]/40">
-              <Search className="text-white/50" size={22} strokeWidth={1.5} />
+            {/* SEARCH INPUT HEADER */}
+            <div className="flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 sm:py-5 border-b border-white/[0.08] bg-white/[0.02]">
+              <Search className="text-white/40 flex-shrink-0" size={22} strokeWidth={1.5} />
               <input
                 autoFocus
                 type="text"
                 placeholder="Search agenda, speakers, or venue..."
-                className="flex-1 bg-transparent text-white text-lg placeholder:text-white/40 outline-none font-medium leading-none"
+                className="flex-1 bg-transparent text-white text-xl sm:text-2xl font-light placeholder:text-white/30 outline-none leading-none tracking-wide"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
               />
+              {/* Mobile Close Icon */}
               <button 
                 onClick={onClose} 
-                className="text-[11px] font-semibold text-white/40 border border-white/10 px-2 py-1 rounded hover:bg-white/10 transition-colors"
+                className="sm:hidden text-white/50 hover:text-white transition-colors p-2 cursor-pointer"
+              >
+                <X size={20} strokeWidth={1.5} />
+              </button>
+              {/* Desktop ESC Button */}
+              <button 
+                onClick={onClose} 
+                className="hidden sm:block text-[10px] tracking-wider font-medium text-white/40 bg-white/5 border border-white/[0.08] px-2 py-1 rounded hover:bg-white/10 hover:text-white transition-colors uppercase cursor-pointer"
               >
                 ESC
               </button>
             </div>
 
-            <div className="overflow-y-auto p-2 scrollbar-hide">
+            {/* RESULTS BODY */}
+            <div className="overflow-y-auto p-2 scrollbar-hide flex-1 overscroll-contain">
               {query && results.length === 0 && (
-                <div className="py-12 text-center text-white/40 text-sm font-medium">
+                <div className="py-16 text-center text-white/40 text-sm font-light tracking-wide">
                   <p>No results found for "{query}"</p>
                 </div>
               )}
 
               <div className="px-4 py-3 flex items-center justify-between">
-                <span className="text-[11px] font-semibold text-white/40 uppercase tracking-widest">
-                  {query ? "Search Results" : "Suggested"}
+                <span className="text-[11px] font-semibold text-white/30 uppercase tracking-widest">
+                  {query ? "Results" : "Suggestions"}
                 </span>
               </div>
 
-              <div className="flex flex-col gap-1 pb-2 px-2">
+              <div className="flex flex-col gap-1 pb-2 px-1 sm:px-2">
                 {results.map((item, idx) => {
                   const isSelected = idx === selectedIndex;
                   return (
                     <motion.button
                       key={item.href + idx}
                       layout
+                      whileTap={{ scale: 0.98 }} // Native iOS tap feeling
                       onClick={() => handleSelect(item.href)}
                       onMouseEnter={() => setSelectedIndex(idx)} 
-                      className={`relative flex items-center justify-between p-3 rounded-xl w-full text-left transition-all duration-200 ${isSelected ? 'bg-white/10 backdrop-blur-md shadow-sm border border-white/5' : 'hover:bg-white/5 border border-transparent'}`}
+                      className={`relative flex items-center justify-between px-4 py-3.5 sm:py-4 rounded-xl w-full text-left transition-all duration-200 cursor-pointer outline-none ${
+                        isSelected 
+                          ? 'bg-white/[0.08] shadow-sm' 
+                          : 'hover:bg-white/[0.04]'
+                      }`}
                     >
                       <div className="flex items-center gap-4 relative z-10">
-                        <div className={`${isSelected ? 'text-white' : 'text-white/40'} transition-colors duration-200`}>
+                        <div className={`p-1.5 rounded-lg transition-colors duration-200 flex items-center justify-center ${
+                          isSelected ? 'bg-white/10 text-white shadow-sm' : 'text-white/40'
+                        }`}>
                           {item.icon}
                         </div>
-                        <div>
-                          <h4 className={`text-[15px] font-medium leading-tight transition-colors duration-200 ${isSelected ? 'text-white' : 'text-white/70'}`}>
+                        <div className="flex flex-col">
+                          <h4 className={`text-[15px] sm:text-[16px] tracking-wide transition-colors duration-200 ${
+                            isSelected ? 'text-white font-medium' : 'text-white/80 font-light'
+                          }`}>
                             {item.name || item.title}
                           </h4>
                           {item.category && (
-                            <span className={`text-[12px] font-medium mt-1 block transition-colors duration-200 ${isSelected ? 'text-[#3FD0D4]' : 'text-white/30'}`}>
+                            <span className={`text-[11px] sm:text-[12px] mt-0.5 block transition-colors duration-200 ${
+                              isSelected ? 'text-white/70 font-medium' : 'text-white/30 font-light'
+                            }`}>
                               {item.category}
                             </span>
                           )}
                         </div>
                       </div>
                       
-                      <div className={`transition-all duration-200 flex items-center gap-2 ${isSelected ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}>
+                      <div className={`hidden sm:flex transition-all duration-200 items-center gap-2 ${
+                        isSelected ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'
+                      }`}>
                         {isSelected && (
-                          <span className="text-[10px] font-medium text-white/50 mr-1">
-                            Return
+                          <span className="text-[10px] font-medium text-white/40 mr-1">
+                            Jump to
                           </span>
                         )}
-                        <CornerDownLeft size={16} className="text-white/60" strokeWidth={1.5} />
+                        <CornerDownLeft size={16} className="text-white/50" strokeWidth={1.5} />
                       </div>
                     </motion.button>
                   );
@@ -180,17 +209,25 @@ export default function SearchModal({ isOpen, onClose }) {
               </div>
             </div>
             
-            <div className="bg-[#2c2c2e]/40 p-2 px-4 flex items-center justify-between border-t border-white/10">
-               <div className="flex gap-4">
-                  <span className="text-[10px] text-white/40 flex items-center gap-1.5 font-medium tracking-wide">
-                    <span className="bg-white/5 border border-white/10 px-1.5 py-0.5 rounded text-white/60 shadow-sm">↑</span>
-                    <span className="bg-white/5 border border-white/10 px-1.5 py-0.5 rounded text-white/60 shadow-sm">↓</span>
+            {/* APPLE STYLE FOOTER (Hidden on mobile, visible on tablet/desktop) */}
+            <div className="hidden sm:flex bg-[#1c1c1e]/60 px-6 py-3 items-center justify-between border-t border-white/[0.05]">
+               <div className="flex gap-6">
+                  <div className="flex items-center gap-2 text-[11px] text-white/40 font-light tracking-wide">
+                    <div className="flex items-center gap-1">
+                      <kbd className="bg-white/5 border border-white/10 px-1.5 py-0.5 rounded text-[10px] font-sans text-white/60 shadow-sm">↑</kbd>
+                      <kbd className="bg-white/5 border border-white/10 px-1.5 py-0.5 rounded text-[10px] font-sans text-white/60 shadow-sm">↓</kbd>
+                    </div>
                     Navigate
-                  </span>
-                  <span className="text-[10px] text-white/40 flex items-center gap-1.5 font-medium tracking-wide">
-                    <span className="bg-white/5 border border-white/10 px-1.5 py-0.5 rounded text-white/60 shadow-sm">↵</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[11px] text-white/40 font-light tracking-wide">
+                    <kbd className="bg-white/5 border border-white/10 px-1.5 py-0.5 rounded text-[10px] font-sans text-white/60 shadow-sm">↵</kbd>
                     Select
-                  </span>
+                  </div>
+               </div>
+               
+               {/* Apple minimalist watermark detail */}
+               <div className="text-[10px] text-white/20 uppercase tracking-[0.2em] font-medium">
+                 SMRSC 2026
                </div>
             </div>
             
