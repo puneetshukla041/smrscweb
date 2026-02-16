@@ -4,7 +4,6 @@ import Image from 'next/image';
 
 const events = [
   // Column 1 (Left)
-  // UPDATED: .png -> .webp
   { id: 1, src: "/images/pastevent/24/image1.webp", title: "Inaugural lamp lighting by distinguished guests." },
   { id: 4, src: "/images/pastevent/24/image4.webp", title: "Live robotic surgery telecast in the conference." },
   { id: 7, src: "/images/pastevent/24/image7.webp", title: "Dr. Sudhir Srivastava demonstrating live telesurgery." },
@@ -31,7 +30,7 @@ const EventCard = ({ item }) => (
       style={{
         width: '385.521px',
         height: '361.756px',
-        minWidth: '385.521px', // Ensures it doesn't shrink
+        minWidth: '385.521px', 
       }}
     >
       <Image
@@ -40,6 +39,9 @@ const EventCard = ({ item }) => (
         fill
         className="object-cover"
         sizes="385px"
+        unoptimized={true}     // ⚡ ZERO BUFFERING
+        loading="eager"        // ⚡ FORCES DOWNLOAD
+        fetchPriority="low"    // ⚡ BACKGROUND PRIORITY
       />
     </div>
 
@@ -63,12 +65,10 @@ const EventCard = ({ item }) => (
 const SMRSC2024 = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // Split data for the 3 columns
   const col1 = events.filter((_, i) => i < 4); 
   const col2 = events.filter((_, i) => i >= 4 && i < 8);
   const col3 = events.filter((_, i) => i >= 8);
 
-  // YouTube Video ID for 2024 Highlights
   const videoId = "QZwgLY869GA";
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
@@ -77,48 +77,29 @@ const SMRSC2024 = () => {
       
       {/* --- Image Grid Section --- */}
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start gap-12 lg:gap-[100px] mb-[150px]">
-        
-        {/* Column 1 */}
         <div className="flex flex-col gap-16 lg:gap-[220px]">
           {col1.map((item) => (
             <EventCard key={item.id} item={item} />
           ))}
         </div>
-
-        {/* Column 2 (Center - Offset by 220px) */}
         <div className="flex flex-col gap-16 lg:gap-[220px] lg:pt-[220px]">
           {col2.map((item) => (
             <EventCard key={item.id} item={item} />
           ))}
         </div>
-
-        {/* Column 3 */}
         <div className="flex flex-col gap-16 lg:gap-[220px]">
           {col3.map((item) => (
             <EventCard key={item.id} item={item} />
           ))}
         </div>
-
       </div>
 
       {/* --- YouTube Video Section --- */}
       <div className="w-full max-w-[1380px] flex flex-col gap-8">
-        
-        {/* Heading */}
-        <h2 
-          style={{
-            color: '#F8FFFF',
-            fontFamily: '"Blauer Nue", sans-serif',
-            fontSize: '36px',
-            fontStyle: 'normal',
-            fontWeight: 500,
-            lineHeight: '36px',
-          }}
-        >
+        <h2 style={{ color: '#F8FFFF', fontFamily: '"Blauer Nue", sans-serif', fontSize: '36px', fontStyle: 'normal', fontWeight: 500, lineHeight: '36px' }}>
           SMRSC 2024 Highlights
         </h2>
 
-        {/* Video Card */}
         <div 
           className="relative overflow-hidden shadow-2xl group cursor-pointer"
           style={{
@@ -132,32 +113,18 @@ const SMRSC2024 = () => {
           onClick={() => setIsPlaying(true)}
         >
           {!isPlaying ? (
-            // Thumbnail State with Play Button
             <div className="w-full h-full flex items-center justify-center">
               <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                {/* Play Icon */}
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" className="ml-1">
                   <path d="M8 5V19L19 12L8 5Z" />
                 </svg>
               </div>
             </div>
           ) : (
-            // Active Video State (Iframe)
-            <iframe 
-              width="100%" 
-              height="100%" 
-              src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} 
-              title="SMRSC 2024 Highlights" 
-              frameBorder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen
-              className="w-full h-full rounded-[20px]"
-            ></iframe>
+            <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} title="SMRSC 2024 Highlights" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full h-full rounded-[20px]"></iframe>
           )}
         </div>
-
       </div>
-
     </div>
   );
 };

@@ -1,6 +1,5 @@
 'use client';
 import React, { useState, useEffect, Suspense } from 'react';
-import { motion } from 'framer-motion'; 
 import { useSearchParams, useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 
@@ -24,6 +23,39 @@ const PastEventsContent = () => {
     }
   }, [tabParam]);
 
+  // 👇 BACKGROUND PRELOADER LOGIC
+  useEffect(() => {
+    const preloadBackgroundAssets = async () => {
+      // Pre-fetch the heavy component code in the background
+      await Promise.all([
+        import('../../components/pastevent/SMRSC2024'),
+        import('../../components/pastevent/SMRSC2025')
+      ]);
+
+      // Automatically generate paths for all 24 images
+      const assetsToPreload = [];
+      for (let i = 1; i <= 12; i++) {
+        assetsToPreload.push(`/images/pastevent/24/image${i}.webp`);
+        assetsToPreload.push(`/images/pastevent/2025/image${i}.webp`);
+      }
+
+      // Delay by 800ms to guarantee the Hero Video gets 100% of the internet connection first
+      setTimeout(() => {
+        assetsToPreload.forEach((src) => {
+          const img = new window.Image();
+          img.src = src; // Silently downloads and caches the image
+        });
+      }, 800); 
+    };
+
+    if (document.readyState === 'complete') {
+      preloadBackgroundAssets();
+    } else {
+      window.addEventListener('load', preloadBackgroundAssets);
+      return () => window.removeEventListener('load', preloadBackgroundAssets);
+    }
+  }, []);
+
   const handleTabChange = (year) => {
     setActiveTab(year);
     router.push(`/pastevents?tab=${year}`, { scroll: false });
@@ -39,13 +71,8 @@ const PastEventsContent = () => {
   return (
     <div className="min-h-screen w-full bg-[#020617] flex flex-col items-center justify-start overflow-x-hidden pt-24 md:pt-0">
       
-      {/* --- HERO VIDEO SECTION --- */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
-        className="relative z-10 w-full flex justify-center px-4"
-      >
+      {/* --- HERO VIDEO SECTION (Opacity delay removed for instant paint) --- */}
+      <div className="relative z-10 w-full flex justify-center px-4">
         <div
           style={{
             marginTop: "98px",
@@ -58,6 +85,7 @@ const PastEventsContent = () => {
           }}
           className="relative bg-gray-900 shadow-2xl group"
         >
+          {/* Added fetchPriority="high" to the video element */}
           <video
             key={activeTab} 
             className="w-full h-full object-cover" 
@@ -65,6 +93,7 @@ const PastEventsContent = () => {
             muted
             loop
             playsInline
+            fetchpriority="high"
           >
             <source src={videoSource} type="video/webm" />
           </video>
@@ -85,7 +114,7 @@ const PastEventsContent = () => {
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 pointer-events-none" />
         </div>
-      </motion.div>
+      </div>
 
       {/* --- NAVIGATION TABS --- */}
       <div className="w-full mb-10 flex items-center justify-start pl-4 md:pl-[270px] gap-6 overflow-x-auto">
