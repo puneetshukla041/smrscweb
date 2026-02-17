@@ -1,8 +1,9 @@
-'use client'
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus, ArrowRight } from 'lucide-react'; // Added ArrowRight for the button
+import { Plus, Minus, ArrowRight } from 'lucide-react';
 
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/footer';
@@ -182,23 +183,29 @@ const FAQSection = () => {
         transition={{ delay: 0.5, duration: 0.8 }}
         className="w-full flex justify-center md:justify-end mt-12"
       >
+        {/* === UPDATED BUTTON STYLING === */}
         <motion.button 
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="group relative flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full overflow-hidden cursor-pointer hover:bg-gray-200 transition-colors"
+          whileHover={{ scale: 1.05 }} 
+          whileTap={{ scale: 0.95 }} 
+          className="group relative flex items-center gap-[10px] px-[24px] py-[12px] rounded-[40px] border border-transparent hover:border-white text-white transition-all duration-300 cursor-pointer overflow-hidden"
+          style={{ background: 'rgba(0, 0, 0, 0.20)' }}
         >
+          {/* Hover Gradient Background - Fades in on hover */}
+          <div 
+            className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" 
+            style={{ background: 'linear-gradient(180deg, rgba(51, 51, 51, 0.20) 0%, rgba(0, 0, 0, 0.20) 137.5%)' }} 
+          />
+          
           <span className="relative z-10 font-manrope font-semibold text-sm tracking-wide">View all FAQs</span>
-          <motion.div
-            className="relative z-10"
-            initial={{ x: 0 }}
-            whileHover={{ x: 5 }}
+          
+          <motion.div 
+            className="relative z-10" 
+            initial={{ x: 0 }} 
+            whileHover={{ x: 5 }} 
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
           >
               <ArrowRight size={18} />
           </motion.div>
-          
-          {/* Button Shine Effect */}
-          <div className="absolute inset-0 -translate-x-full group-hover:animate-[shine_1s_infinite] bg-gradient-to-r from-transparent via-gray-400/20 to-transparent z-0" />
         </motion.button>
       </motion.div>
     </div>

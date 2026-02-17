@@ -34,91 +34,99 @@ const FadeInView = ({ children, delay = 0 }) => {
 };
 
 const FacultyTab = () => {
-  const [activeFilter, setActiveFilter] = useState('All');
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  // const [activeFilter, setActiveFilter] = useState('All');
+  // const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const filterOptions = ['All', 'Cardiac', 'Urology', 'General Surgery', 'Colorectal Surgery'];
+  // const filterOptions = ['All', 'Cardiac', 'Urology', 'General Surgery', 'Colorectal Surgery'];
 
-  const internationalFacultyList = [
-    { name: "Dr. Valluvan Jeevanandam", desc: "The University of Chicago Medicine...", image: "image2.webp" },
-    { name: "Dr. T Sloane Guy", desc: "Georgia Heart Institute, Gainesville, GA, USA", image: "image3.webp" },
-    { name: "Dr. Gianluca Torregrossa", desc: "Lankenau Heart Institute, Philadelphia, PA, USA", image: "image4.webp" },
-    { name: "Dr. Frank Van Praet", desc: "OLV Clinic, Aalst, Belgium", image: "image5.webp" },
-    { name: "Dr. Bob Kiaii", desc: "Foothills Medical Centre, University of Calgary", image: "image6.webp" },
-    { name: "Dr. Jae Won Lee", desc: "Buchon Sejong Hospital, Seoul, South Korea", image: "image7.webp" },
-    { name: "Dr John D Puskas", desc: "Emory University Hospital Midtown, Atlanta", image: "image8.webp" },
-    { name: "Dr. Johannes Oliver Bonatti", desc: "University of Pittsburgh Medical Center", image: "image9.webp" },
-    { name: "Dr. Dudy Hanafy", desc: "Harapan Kita Hospital, Jakarta, Indonesia", image: "image10.webp" },
-    { name: "Dr. Go Watanabe", desc: "New Heart Watanabe Hospital, Tokyo, Japan", image: "image11.webp" },
-    { name: "Dr. Nirav Patel", desc: "Lenox Hill Hospital, New York, NY, USA", image: "image12.webp" },
-    { name: "Dr. Victor Castillo", desc: "Fundación Cardiovascular de Colombia", image: "image13.webp" },
-    { name: "Dr. Feras Khaliel", desc: "King Faisal Specialist Hospital, Saudi Arabia", image: "image14.webp" }
-  ];
+  // const internationalFacultyList = [
+  //   { name: "Dr. Valluvan Jeevanandam", desc: "The University of Chicago Medicine...", image: "image2.webp" },
+  //   { name: "Dr. T Sloane Guy", desc: "Georgia Heart Institute, Gainesville, GA, USA", image: "image3.webp" },
+  //   { name: "Dr. Gianluca Torregrossa", desc: "Lankenau Heart Institute, Philadelphia, PA, USA", image: "image4.webp" },
+  //   { name: "Dr. Frank Van Praet", desc: "OLV Clinic, Aalst, Belgium", image: "image5.webp" },
+  //   { name: "Dr. Bob Kiaii", desc: "Foothills Medical Centre, University of Calgary", image: "image6.webp" },
+  //   { name: "Dr. Jae Won Lee", desc: "Buchon Sejong Hospital, Seoul, South Korea", image: "image7.webp" },
+  //   { name: "Dr John D Puskas", desc: "Emory University Hospital Midtown, Atlanta", image: "image8.webp" },
+  //   { name: "Dr. Johannes Oliver Bonatti", desc: "University of Pittsburgh Medical Center", image: "image9.webp" },
+  //   { name: "Dr. Dudy Hanafy", desc: "Harapan Kita Hospital, Jakarta, Indonesia", image: "image10.webp" },
+  //   { name: "Dr. Go Watanabe", desc: "New Heart Watanabe Hospital, Tokyo, Japan", image: "image11.webp" },
+  //   { name: "Dr. Nirav Patel", desc: "Lenox Hill Hospital, New York, NY, USA", image: "image12.webp" },
+  //   { name: "Dr. Victor Castillo", desc: "Fundación Cardiovascular de Colombia", image: "image13.webp" },
+  //   { name: "Dr. Feras Khaliel", desc: "King Faisal Specialist Hospital, Saudi Arabia", image: "image14.webp" }
+  // ];
 
-  const nationalFacultyList = [
-    { name: "Dr. Lalitaditya Malik", desc: "Manipal Hospitals, Jaipur, Rajasthan", image: "per2.webp" },
-    { name: "Dr. Harish Badami", desc: "Malla Reddy Narayana Hospital, Hyderabad", image: "per3.webp" },
-    { name: "Dr. Nitin Rajput", desc: "Medanta - The Medicity, Gurugram, Haryana", image: "per4.webp" },
-    { name: "Dr. Hiremath CS", desc: "Sri Sathya Sai Institute, Bengaluru, KA", image: "per5.webp" },
-    { name: "Dr. Ashok Seth", desc: "Fortis Escorts, Okhla, Delhi", image: "per6.webp" },
-    { name: "Dr. Zile Singh Meherwal", desc: "Fortis Escorts, Okhla, Delhi", image: "per7.webp" },
-    { name: "Dr. Yugal Kishore Mishra", desc: "Manipal Hospitals, Dwarka, Delhi", image: "per8.webp" },
-    { name: "Dr. Praveen Chandra", desc: "Medanta - The Medicity, Gurugram, Haryana", image: "per9.webp" },
-    { name: "Dr. Krishna Subramony Iyer", desc: "Fortis Escorts, Okhla, Delhi", image: "per10.webp" },
-    { name: "Dr. Arul Furtado", desc: "Aster CMI Hospital, Bengaluru, KA", image: "per11.webp" },
-    { name: "Dr. Ritwick Raj Bhuyan", desc: "Fortis Escorts, Okhla, Delhi", image: "per12.webp" },
-    { name: "Dr. T.S. Mahant", desc: "Fortis Hospital, Mohali, PB", image: "per13.webp" },
-    { name: "Dr. Ganeshakrishnan Iyer", desc: "Aster CMI Hospital, Bengaluru, KA", image: "per14.webp" },
-    { name: "Dr. Manoj Durairaj", desc: "Marian Cardiac Centre, Pune, MH", image: "per15.webp" },
-    { name: "Dr. M M Yusuf", desc: "Apollo Hospital, Chennai, TN", image: "per16.webp" },
-    { name: "Dr. Ajay Kaul", desc: "Fortis Hospital, Noida, UP", image: "per17.webp" },
-    { name: "Dr. Kunal Sarkar", desc: "Medica Superspecialty Hospital, Kolkata, WB", image: "per18.webp" },
-    { name: "Dr. S K Agarwal", desc: "SGPGI, Lucknow, UP", image: "per19.webp" },
-    { name: "Dr. Arunkumar Ulaganathan", desc: "KG Hospital, Coimbatore, TN", image: "per20.webp" },
-    { name: "Dr. Devagourou Velayoudam", desc: "Aiims, New Delhi", image: "per21.webp" },
-    { name: "Dr. Anubhav Gupta", desc: "Safdarjung Hospital, Delhi", image: "per22.webp" },
-    { name: "Dr. Amit Chandan", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "per23.webp" },
-    { name: "Dr. Satyajit Bose", desc: "The Mission Hospital, Durgapur, WB", image: "per24.webp" },
-    { name: "Dr. Dhiren Shah", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "per25.webp" }
-  ];
+  // const nationalFacultyList = [
+  //   { name: "Dr. Lalitaditya Malik", desc: "Manipal Hospitals, Jaipur, Rajasthan", image: "per2.webp" },
+  //   { name: "Dr. Harish Badami", desc: "Malla Reddy Narayana Hospital, Hyderabad", image: "per3.webp" },
+  //   { name: "Dr. Nitin Rajput", desc: "Medanta - The Medicity, Gurugram, Haryana", image: "per4.webp" },
+  //   { name: "Dr. Hiremath CS", desc: "Sri Sathya Sai Institute, Bengaluru, KA", image: "per5.webp" },
+  //   { name: "Dr. Ashok Seth", desc: "Fortis Escorts, Okhla, Delhi", image: "per6.webp" },
+  //   { name: "Dr. Zile Singh Meherwal", desc: "Fortis Escorts, Okhla, Delhi", image: "per7.webp" },
+  //   { name: "Dr. Yugal Kishore Mishra", desc: "Manipal Hospitals, Dwarka, Delhi", image: "per8.webp" },
+  //   { name: "Dr. Praveen Chandra", desc: "Medanta - The Medicity, Gurugram, Haryana", image: "per9.webp" },
+  //   { name: "Dr. Krishna Subramony Iyer", desc: "Fortis Escorts, Okhla, Delhi", image: "per10.webp" },
+  //   { name: "Dr. Arul Furtado", desc: "Aster CMI Hospital, Bengaluru, KA", image: "per11.webp" },
+  //   { name: "Dr. Ritwick Raj Bhuyan", desc: "Fortis Escorts, Okhla, Delhi", image: "per12.webp" },
+  //   { name: "Dr. T.S. Mahant", desc: "Fortis Hospital, Mohali, PB", image: "per13.webp" },
+  //   { name: "Dr. Ganeshakrishnan Iyer", desc: "Aster CMI Hospital, Bengaluru, KA", image: "per14.webp" },
+  //   { name: "Dr. Manoj Durairaj", desc: "Marian Cardiac Centre, Pune, MH", image: "per15.webp" },
+  //   { name: "Dr. M M Yusuf", desc: "Apollo Hospital, Chennai, TN", image: "per16.webp" },
+  //   { name: "Dr. Ajay Kaul", desc: "Fortis Hospital, Noida, UP", image: "per17.webp" },
+  //   { name: "Dr. Kunal Sarkar", desc: "Medica Superspecialty Hospital, Kolkata, WB", image: "per18.webp" },
+  //   { name: "Dr. S K Agarwal", desc: "SGPGI, Lucknow, UP", image: "per19.webp" },
+  //   { name: "Dr. Arunkumar Ulaganathan", desc: "KG Hospital, Coimbatore, TN", image: "per20.webp" },
+  //   { name: "Dr. Devagourou Velayoudam", desc: "Aiims, New Delhi", image: "per21.webp" },
+  //   { name: "Dr. Anubhav Gupta", desc: "Safdarjung Hospital, Delhi", image: "per22.webp" },
+  //   { name: "Dr. Amit Chandan", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "per23.webp" },
+  //   { name: "Dr. Satyajit Bose", desc: "The Mission Hospital, Durgapur, WB", image: "per24.webp" },
+  //   { name: "Dr. Dhiren Shah", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "per25.webp" }
+  // ];
 
-  const urologyFacultyList = [
-    { name: "Dr. Amitabh Singh", desc: "RGCI, Delhi", image: "per4.webp" },
-    { name: "Dr. Sarbartha Kumar Pratihar", desc: "RGCI, Delhi", image: "per5.webp" },
-    { name: "Dr. Nikhil Saurabh", desc: "RGCI, Delhi", image: "per6.webp" },
-    { name: "Dr. M Ramalingam", desc: "Hindustan Hospital, Coimbatore, TN", image: "per7.webp" },
-    { name: "Dr. R.S. Sinha", desc: "VMMC & Safdarjung Hospital, New Delhi", image: "per8.webp" }
-  ];
+  // const urologyFacultyList = [
+  //   { name: "Dr. Amitabh Singh", desc: "RGCI, Delhi", image: "per4.webp" },
+  //   { name: "Dr. Sarbartha Kumar Pratihar", desc: "RGCI, Delhi", image: "per5.webp" },
+  //   { name: "Dr. Nikhil Saurabh", desc: "RGCI, Delhi", image: "per6.webp" },
+  //   { name: "Dr. M Ramalingam", desc: "Hindustan Hospital, Coimbatore, TN", image: "per7.webp" },
+  //   { name: "Dr. R.S. Sinha", desc: "VMMC & Safdarjung Hospital, New Delhi", image: "per8.webp" }
+  // ];
 
-  const urologyCoChairpersons = [
-    { name: "Dr. Chandra Mohan vaddi", desc: "Preeti Urology & Kidney Hospital", image: "per2.webp" },
-    { name: "Dr. Ritesh Mongha", desc: "Metro Hospital, Faridabad, HR", image: "per3.webp" }
-  ];
+  // const urologyCoChairpersons = [
+  //   { name: "Dr. Chandra Mohan vaddi", desc: "Preeti Urology & Kidney Hospital", image: "per2.webp" },
+  //   { name: "Dr. Ritesh Mongha", desc: "Metro Hospital, Faridabad, HR", image: "per3.webp" }
+  // ];
 
-  const generalFacultyList = [
-    { name: "Dr. Deepak Mittal", desc: "Aadhar Hospital, Hisar, HR", image: "per3.webp" },
-    { name: "Dr. Harish Sharma", desc: "Aadhar Hospital, Hisar, HR", image: "per4.webp" }
-  ];
+  // const generalFacultyList = [
+  //   { name: "Dr. Deepak Mittal", desc: "Aadhar Hospital, Hisar, HR", image: "per3.webp" },
+  //   { name: "Dr. Harish Sharma", desc: "Aadhar Hospital, Hisar, HR", image: "per4.webp" }
+  // ];
 
-  const colorectalFacultyList = [
-    { name: "Dr. Deepak Mittal", desc: "Aadhar Hospital, Hisar, HR", image: "per3.webp" },
-    { name: "Dr. Harish Sharma", desc: "Aadhar Hospital, Hisar, HR", image: "per4.webp" }
-  ];
+  // const colorectalFacultyList = [
+  //   { name: "Dr. Deepak Mittal", desc: "Aadhar Hospital, Hisar, HR", image: "per3.webp" },
+  //   { name: "Dr. Harish Sharma", desc: "Aadhar Hospital, Hisar, HR", image: "per4.webp" }
+  // ];
 
-  const allSpecialtyStyle = { color: '#F8FFFF', fontFamily: '"Blauer Nue", sans-serif', fontSize: '36px', fontStyle: 'normal', fontWeight: 500, lineHeight: '36px' };
-  const bannerContainerStyle = (color) => ({ display: 'flex', width: '100%', maxWidth: '1390px', padding: '20px', alignItems: 'center', gap: '10px', backgroundColor: color, marginTop: '24px', marginBottom: '30px', borderRadius: '4px' });
-  const bannerTextStyle = { color: '#E6E6E6', fontFamily: 'Manrope, sans-serif', fontSize: '32px', fontStyle: 'normal', fontWeight: 500, lineHeight: '32px' };
-  const sectionLabelBoxStyle = { display: 'flex', width: '100%', maxWidth: '300px', padding: '10px 20px', alignItems: 'center', gap: '10px', borderRadius: '20px', border: '1px solid #114D7E', background: 'linear-gradient(90deg, #1A689D 0%, rgba(0, 0, 0, 0.00) 42.79%)', marginBottom: '20px' };
-  const sectionLabelTextStyle = { color: '#F8FFFF', fontFamily: '"Blauer Nue", sans-serif', fontSize: '24px', fontStyle: 'normal', fontWeight: 500, lineHeight: '40px' };
-  const cardImageContainer = { position: 'relative', width: '100%', maxWidth: '300px', height: '373.333px', aspectRatio: '45/56', borderRadius: '16px', overflow: 'hidden', backgroundColor: 'transparent' };
-  const nameStyle = { display: 'flex', height: 'auto', minHeight: '27px', flexDirection: 'column', justifyContent: 'center', color: '#FFF', fontFamily: 'Manrope, sans-serif', fontSize: '20px', fontStyle: 'normal', fontWeight: 600, lineHeight: '28px', marginTop: '16px' };
-  const descStyle = { alignSelf: 'stretch', color: '#FFF', fontFamily: 'Manrope, sans-serif', fontSize: '14px', fontStyle: 'normal', fontWeight: 400, lineHeight: '18px', marginTop: '4px', width: '100%', maxWidth: '300px' };
+  // const allSpecialtyStyle = { color: '#F8FFFF', fontFamily: '"Blauer Nue", sans-serif', fontSize: '36px', fontStyle: 'normal', fontWeight: 500, lineHeight: '36px' };
+  // const bannerContainerStyle = (color) => ({ display: 'flex', width: '100%', maxWidth: '1390px', padding: '20px', alignItems: 'center', gap: '10px', backgroundColor: color, marginTop: '24px', marginBottom: '30px', borderRadius: '4px' });
+  // const bannerTextStyle = { color: '#E6E6E6', fontFamily: 'Manrope, sans-serif', fontSize: '32px', fontStyle: 'normal', fontWeight: 500, lineHeight: '32px' };
+  // const sectionLabelBoxStyle = { display: 'flex', width: '100%', maxWidth: '300px', padding: '10px 20px', alignItems: 'center', gap: '10px', borderRadius: '20px', border: '1px solid #114D7E', background: 'linear-gradient(90deg, #1A689D 0%, rgba(0, 0, 0, 0.00) 42.79%)', marginBottom: '20px' };
+  // const sectionLabelTextStyle = { color: '#F8FFFF', fontFamily: '"Blauer Nue", sans-serif', fontSize: '24px', fontStyle: 'normal', fontWeight: 500, lineHeight: '40px' };
+  // const cardImageContainer = { position: 'relative', width: '100%', maxWidth: '300px', height: '373.333px', aspectRatio: '45/56', borderRadius: '16px', overflow: 'hidden', backgroundColor: 'transparent' };
+  // const nameStyle = { display: 'flex', height: 'auto', minHeight: '27px', flexDirection: 'column', justifyContent: 'center', color: '#FFF', fontFamily: 'Manrope, sans-serif', fontSize: '20px', fontStyle: 'normal', fontWeight: 600, lineHeight: '28px', marginTop: '16px' };
+  // const descStyle = { alignSelf: 'stretch', color: '#FFF', fontFamily: 'Manrope, sans-serif', fontSize: '14px', fontStyle: 'normal', fontWeight: 400, lineHeight: '18px', marginTop: '4px', width: '100%', maxWidth: '300px' };
 
   return (
-    <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20">
+    <div className="w-full flex items-center justify-center animate-in fade-in duration-700 min-h-[50vh] pb-20">
       
-      {/* --- PAGE HEADER & FILTER --- */}
-      <div className="flex flex-col md:flex-row items-center md:justify-between w-full max-w-[1390px] relative gap-6 md:gap-0">
+      {/* ================= COMING SOON MESSAGE ================= */}
+      <h2 
+        className="text-[#E3F5F6] text-[40px] md:text-[64px] font-semibold tracking-widest uppercase animate-pulse" 
+        style={{ fontFamily: "'Blauer Nue', sans-serif" }}
+      >
+        Coming Soon
+      </h2>
+
+      {/* ================= COMMENTED OUT ORIGINAL CONTENT ================= */}
+      {/* <div className="flex flex-col md:flex-row items-center md:justify-between w-full max-w-[1390px] relative gap-6 md:gap-0">
         <h2 style={allSpecialtyStyle} className="text-center md:text-left">{activeFilter === 'All' ? 'All Specialty' : `${activeFilter} Faculty`}</h2>
         
         <div className="relative">
@@ -143,9 +151,6 @@ const FacultyTab = () => {
         </div>
       </div>
 
-      {/* =========================================================
-                                CARDIAC SECTION
-      ========================================================= */}
       {(activeFilter === 'All' || activeFilter === 'Cardiac') && (
         <FadeInView>
             <div style={bannerContainerStyle('rgba(121, 46, 46, 0.85)')} className="justify-center md:justify-start">
@@ -218,9 +223,6 @@ const FacultyTab = () => {
         </FadeInView>
       )}
 
-      {/* =========================================================
-                                UROLOGY SECTION
-      ========================================================= */}
       {(activeFilter === 'All' || activeFilter === 'Urology') && (
         <FadeInView>
             <div style={bannerContainerStyle('rgba(46, 88, 121, 0.85)')} className="justify-center md:justify-start"><h3 style={bannerTextStyle}>Urology Faculty</h3></div>
@@ -275,9 +277,6 @@ const FacultyTab = () => {
         </FadeInView>
       )}
 
-      {/* =========================================================
-                            GENERAL SURGERY SECTION
-      ========================================================= */}
       {(activeFilter === 'All' || activeFilter === 'General Surgery') && (
         <FadeInView>
             <div style={bannerContainerStyle('rgba(64, 25, 107, 0.85)')} className="justify-center md:justify-start"><h3 style={bannerTextStyle}>General Surgery Faculty</h3></div>
@@ -328,9 +327,6 @@ const FacultyTab = () => {
         </FadeInView>
       )}
 
-      {/* =========================================================
-                          COLORECTAL SURGERY SECTION
-      ========================================================= */}
       {(activeFilter === 'All' || activeFilter === 'Colorectal Surgery') && (
         <FadeInView>
             <div style={bannerContainerStyle('rgba(42, 85, 156, 0.85)')} className="justify-center md:justify-start"><h3 style={bannerTextStyle}>Colorectal Surgery Faculty</h3></div>
@@ -380,6 +376,7 @@ const FacultyTab = () => {
             </div>
         </FadeInView>
       )}
+      */}
 
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap');

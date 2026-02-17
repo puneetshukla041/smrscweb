@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect, Suspense } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation'; // Added useRouter
+import { useSearchParams, useRouter } from 'next/navigation';
 
 // Import your separate content files
 import AboutTab from './tabs/AboutTab';
@@ -10,10 +10,11 @@ import FacultyTab from './tabs/FacultyTab';
 
 const Section2Content = () => {
   const searchParams = useSearchParams();
-  const router = useRouter(); // Initialize router
+  const router = useRouter(); 
   const tabParam = searchParams.get('tab');
   
-  const [activeTab, setActiveTab] = useState("About SMRSC");
+  // Set the default tab, or use the URL parameter if it exists
+  const [activeTab, setActiveTab] = useState(tabParam || "About SMRSC");
 
   const navItems = [
     "About SMRSC",
@@ -49,11 +50,12 @@ const Section2Content = () => {
         <div id="about-tabs-nav" className="flex flex-wrap items-center gap-4 px-6 md:px-0 pt-4">
           {navItems.map((item) => {
             const isActive = activeTab === item;
+            
             return (
               <button
                 key={item}
-                onClick={() => handleTabChange(item)} // Use the new handler
-                className="nav-button"
+                onClick={() => handleTabChange(item)}
+                className="group relative flex items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-105"
                 style={{
                   display: 'flex',
                   padding: '12px 24px',
@@ -65,15 +67,24 @@ const Section2Content = () => {
                   fontSize: '14px',
                   fontWeight: 600,
                   lineHeight: '20px',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  border: isActive ? '1px solid #FFF' : '1px solid transparent',
+                  // 👇 FIX: Active gets solid white border, Inactive gets faint white border
+                  border: isActive ? '1px solid #FFF' : '1px solid rgba(255, 255, 255, 0.2)',
+                  // Background stays the same
                   background: isActive 
                     ? 'linear-gradient(180deg, rgba(51, 51, 51, 0.20) 0%, rgba(0, 0, 0, 0.20) 137.5%)'
                     : 'rgba(0, 0, 0, 0.20)',
+                  overflow: 'hidden'
                 }}
               >
-                {item}
+                {/* Hover/Active Gradient Layer */}
+                <div 
+                  className={`absolute inset-0 w-full h-full transition-opacity duration-300 pointer-events-none ${isActive ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'}`}
+                  style={{
+                    background: 'linear-gradient(180deg, rgba(51, 51, 51, 0.20) 0%, rgba(0, 0, 0, 0.20) 137.5%)',
+                  }}
+                />
+                
+                <span className="relative z-10">{item}</span>
               </button>
             );
           })}
@@ -91,7 +102,6 @@ const Section2Content = () => {
   );
 };
 
-// ... keep Section2 component and styles exactly as they were
 // --- Main Section Component ---
 const Section2 = () => {
   return (
@@ -101,14 +111,6 @@ const Section2 = () => {
         <Section2Content />
       </Suspense>
 
-      <style jsx>{`
-        .nav-button:hover {
-          border: 1px solid #FFF !important;
-          background: linear-gradient(180deg, rgba(51, 51, 51, 0.20) 0%, rgba(0, 0, 0, 0.20) 137.5%) !important;
-          transform: scale(1.05);
-        }
-      `}</style>
-      
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Sora:wght@600&display=swap');
       `}</style>
