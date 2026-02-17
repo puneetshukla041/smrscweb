@@ -2,9 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Timer from "../components/ui/CountdownTimer"; 
 import SmoothScroll from "../components/common/SmoothScroll"; 
-import MasterLoader from "../components/common/MasterLoader"; 
-// 👇 Ensure this path matches where you saved the file above
-import SpeedLogger from "../components/SpeedLogger"; 
+import GlobalPreloader from "../components/common/GlobalPreloader"; // <-- Add this import
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,17 +30,14 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <SmoothScroll />
         
-        {/* 1. Downloads assets in background */}
-        <MasterLoader /> 
-        
-        {/* 2. Logs navigation speed to console */}
-        <SpeedLogger /> 
-        
         {children}
         
         <div className="md:hidden">
           <Timer />
         </div>
+
+        {/* 🚀 The silent background loader */}
+        <GlobalPreloader />
       </body>
     </html>
   );
