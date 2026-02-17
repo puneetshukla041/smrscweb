@@ -33,6 +33,38 @@ const FAQPage = () => {
     {
       question: "How do I register?",
       answer: "Registration details can be found on our official portal. The process includes selecting your pass type, workshops, and accommodation options if needed." 
+    },
+    {
+      question: "What payment methods are accepted?",
+      answer: "Major credit and debit cards and supported online payment gateways are accepted."
+    },
+    {
+      question: "I did not receive my confirmation email. What should I do?",
+      answer: "Please check your spam folder. If not found, contact the support team with your transaction details."
+    },
+    {
+      question: "Is reimbursement available for international surgeons?",
+      answer: "International surgeons are eligible for reimbursement of up to USD 5,000, covering travel and accommodation expenses. Reimbursements are subject to prior approval by the organizing committee and submission of valid supporting documentation in accordance with event policy guidelines."
+    },
+    {
+      question: "Can I attend sessions outside my specialty?",
+      answer: "Yes, attendees may attend sessions across specialties, subject to venue capacity."
+    },
+    {
+      question: "How can I find session timings and locations?",
+      answer: "Session details, including timing and hall information, are available on the Agenda page and through the website search feature."
+    },
+    {
+      question: "Which visa category should I apply under?",
+      answer: "International participants are advised to apply under the Tourist Visa category, subject to eligibility and applicable regulations."
+    },
+    {
+      question: "Does SMRSC provide visa assistance?",
+      answer: "The organizing team can provide general guidance. Visa applications must be completed through official government channels."
+    },
+    {
+      question: "Does SMRSC arrange hotel bookings?",
+      answer: "Attendees are responsible for booking accommodation directly with hotels."
     }
   ];
 
